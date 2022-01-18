@@ -49,17 +49,23 @@ int verify_callback(int ok, X509_STORE_CTX *ctx)
 {
     X509 *err_cert;
     int err, depth;
-
+// X509_STORE_CTX_get_current_cert(0x55929b2897d0, 0x55929b2897d0, 0, 2) = 0x55929b28ca00
     err_cert = X509_STORE_CTX_get_current_cert(ctx);
+// X509_STORE_CTX_get_error(0x55d996efe7d0, 0x55d996efe7d0, 0, 7) = 0
     err = X509_STORE_CTX_get_error(ctx);
+// X509_STORE_CTX_get_error_depth(0x55d996efe7d0, 0x55d996efe7d0, 0, 7) = 0
     depth = X509_STORE_CTX_get_error_depth(ctx);
 
     if (!verify_args.quiet || !ok) {
+// BIO_printf(0x55d996eb94d0, 0x55d99644a4f1, 0, 7depth=0 ) = 8
         BIO_printf(bio_err, "depth=%d ", depth);
         if (err_cert != NULL) {
+// X509_NAME_print_ex(0x55d996eb94d0, 0x55d996ef9980, 0, 0x82031fCN = dns.google) = 15
             X509_NAME_print_ex(bio_err,
+// X509_get_subject_name(0x55d996efa5d0, 0x7fff319db360, 0, 0x7f65dd840d53) = 0x55d996ef9980
                                X509_get_subject_name(err_cert),
                                0, get_nameopt());
+// BIO_puts(0x55d996eb94d0, 0x55d99643bf4e, 0x55d996eb94d0, 0x7f65dda0170c)
             BIO_puts(bio_err, "\n");
         } else {
             BIO_puts(bio_err, "<no cert>\n");
@@ -77,7 +83,7 @@ int verify_callback(int ok, X509_STORE_CTX *ctx)
             verify_args.error = X509_V_ERR_CERT_CHAIN_TOO_LONG;
         }
     }
-    switch (err) {
+    switch (err) { // error = 0 
     case X509_V_ERR_UNABLE_TO_GET_ISSUER_CERT:
         BIO_puts(bio_err, "issuer= ");
         X509_NAME_print_ex(bio_err, X509_get_issuer_name(err_cert),
@@ -103,9 +109,11 @@ int verify_callback(int ok, X509_STORE_CTX *ctx)
     }
     if (err == X509_V_OK && ok == 2 && !verify_args.quiet)
         policies_print(ctx);
-    if (ok && !verify_args.quiet)
+// VERIFY_CB_ARGS verify_args = { -1, 0, X509_V_OK, 0 };
+    if (ok && !verify_args.quiet) // both ok==1 and verify_args.quiet==0
+// BIO_printf(0x55d996eb94d0, 0x55d99644a527, 1, 0x7f65dd840d53verify return:1
         BIO_printf(bio_err, "verify return:%d\n", ok);
-    return ok;
+    return ok; // return 1
 }
 
 int set_cert_stuff(SSL_CTX *ctx, char *cert_file, char *key_file)

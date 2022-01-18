@@ -226,10 +226,13 @@ typedef struct tlsextctx_st {
 static int ssl_servername_cb(SSL *s, int *ad, void *arg)
 {
     tlsextctx *p = (tlsextctx *) arg;
+// SSL_get_servername(0x55d996ee6220, 0, 0x7fff319dc3b0, 0x55d99640b600) = 0
     const char *hn = SSL_get_servername(s, TLSEXT_NAMETYPE_host_name);
+// SSL_get_servername_type(0x55d996ee6220, 0, 0x7f65ddcbf940, 38) = 0xffffffff
     if (SSL_get_servername_type(s) != -1)
         p->ack = !SSL_session_reused(s) && hn != NULL;
     else
+// BIO_printf(0x55d996eb94d0, 0x55d99643fa98, 0x7f65ddcbf940, 38Can't use SSL_get_servername
         BIO_printf(bio_err, "Can't use SSL_get_servername\n");
 
     return SSL_TLSEXT_ERR_OK;
@@ -1013,6 +1016,7 @@ int s_client_main(int argc, char **argv)
             protohost = opt_arg();
             break;
         case OPT_VERIFY:
+// verify will be used in line1903 : SSL_CTX_set_verify(ctx, verify, verify_callback);
             verify = SSL_VERIFY_PEER;
             verify_args.depth = atoi(opt_arg());
             if (!c_quiet)
@@ -1799,7 +1803,7 @@ int s_client_main(int argc, char **argv)
     }
 #endif
 
-#ifndef OPENSSL_NO_PSK
+#ifndef OPENSSL_NO_PSK // private key exchange
     if (psk_key != NULL) {
         if (c_debug)
             BIO_printf(bio_c_out, "PSK key given, setting client callback\n");
@@ -1896,8 +1900,8 @@ int s_client_main(int argc, char **argv)
         ERR_clear_error();
     }
 #endif
-
-    SSL_CTX_set_verify(ctx, verify, verify_callback);
+// very first before line1949 : SSL_CTX_set_verify(0x55d996ebf110, 0, 0x55d996430640, 1) = 0
+    SSL_CTX_set_verify(ctx, verify, verify_callback);// s_cb line48 : int verify_callback(int ok, X509_STORE_CTX *ctx) 
 
     if (!ctx_set_verify_locations(ctx, CAfile, noCAfile, CApath, noCApath,
                                   CAstore, noCAstore)) {
@@ -1906,13 +1910,14 @@ int s_client_main(int argc, char **argv)
     }
 
     ssl_ctx_add_crls(ctx, crls, crl_download);
-
+// it will then call function of s_cb in line111 : int set_cert_stuff(SSL_CTX *ctx, char *cert_file, char *key_file)
     if (!set_cert_key_stuff(ctx, cert, key, chain, build_chain))
         goto end;
 
     if (!noservername) {
         tlsextcbp.biodebug = bio_err;
-        SSL_CTX_set_tlsext_servername_callback(ctx, ssl_servername_cb);
+// callback to line226 : static int ssl_servername_cb(SSL *s, int *ad, void *arg)
+        SSL_CTX_set_tlsext_servername_callback(ctx, ssl_servername_cb); // so it then call ssl_servername_cb in line 226
         SSL_CTX_set_tlsext_servername_arg(ctx, &tlsextcbp);
     }
 #ifndef OPENSSL_NO_SRP
@@ -1942,7 +1947,7 @@ int s_client_main(int argc, char **argv)
 
     if (set_keylog_file(ctx, keylog_file))
         goto end;
-
+// after making sure 8.8.8.8, Start From Here -> SSL_new(0x55d996ebf110, 0, 513, 0)      = 0x55d996ee6220
     con = SSL_new(ctx);
     if (con == NULL)
         goto end;
@@ -2121,12 +2126,14 @@ int s_client_main(int argc, char **argv)
         SSL_CTX_set_tlsext_status_arg(ctx, bio_c_out);
     }
 #endif
-
+// after setting up BIO socket connection -> SSL_set_bio(0x55d996ee6220, 0x55d996ee9880, 0x55d996ee9880, 0x7fff319dc0d4) = 0
     SSL_set_bio(con, sbio, sbio);
     SSL_set_connect_state(con);
 
     /* ok, lets connect */
-    if (fileno_stdin() > SSL_get_fd(con))
+// I don't know the why file descripter using here -> fileno(0x7f65dd9109a0)
+// SSL_get_fd(0x55d996ee6220, 105, 0, 0x7fff319dc0f4) = 3 
+    if (fileno_stdin() > SSL_get_fd(con)) // compare both?? 
         width = fileno_stdin() + 1;
     else
         width = SSL_get_fd(con) + 1;
@@ -2679,17 +2686,18 @@ int s_client_main(int argc, char **argv)
 
         BIO_free(edfile);
     }
-
+// for looping to check connection type
     for (;;) {
         FD_ZERO(&readfds);
         FD_ZERO(&writefds);
-
+// verify whether using datagram TLS -> SSL_is_dtls(0x55d996ee6220, 105, 0, 0)  = 0
         if (SSL_is_dtls(con) && DTLSv1_get_timeout(con, &timeout))
             timeoutp = &timeout;
         else
             timeoutp = NULL;
-
+// return true -> SSL_is_init_finished(0x55d996ee6220, 105, 0, 0) = 0
         if (!SSL_is_init_finished(con) && SSL_total_renegotiations(con) == 0
+// SSL_get_key_update_type(0x55d996ee6220, 9, 0, 0) = 0xffffffff
                 && SSL_get_key_update_type(con) == SSL_KEY_UPDATE_NONE) {
             in_init = 1;
             tty_on = 0;
@@ -2724,7 +2732,7 @@ int s_client_main(int argc, char **argv)
                 }
             }
         }
-
+// SSL_has_pending(0x55d996ee6220, 9, 0, 0) = 0
         ssl_pending = read_ssl && SSL_has_pending(con);
 
         if (!ssl_pending) {
@@ -2798,6 +2806,7 @@ int s_client_main(int argc, char **argv)
             BIO_printf(bio_err, "TIMEOUT occurred\n");
 
         if (!ssl_pending && FD_ISSET(SSL_get_fd(con), &writefds)) {
+// SSL_write(0x55d996ee6220, 0x55d996edbaa0, 0, 0x7fff319dc0f4 <unfinished ...>
             k = SSL_write(con, &(cbuf[cbuf_off]), (unsigned int)cbuf_len);
             switch (SSL_get_error(con, k)) {
             case SSL_ERROR_NONE:
