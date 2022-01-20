@@ -1,0 +1,1105 @@
+(gdb) r
+Starting program: /home/csti02/Delta/openssl/apps/openssl s_client -showcerts -connect 8.8.8.8:443
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 4, s_client_main (argc=<optimized out>, argv=<optimized out>) at apps/s_client.c:1904
+1904	    SSL_CTX_set_verify(ctx, verify, verify_callback);// s_cb line48 : int verify_callback(int ok, X509_STORE_CTX *ctx) 
+(gdb) c
+Continuing.
+
+Breakpoint 7, X509_LOOKUP_new (method=0x7ffff7f019a0 <x509_file_lookup>) at crypto/x509/x509_lu.c:20
+20	    X509_LOOKUP *ret = OPENSSL_zalloc(sizeof(*ret));
+(gdb) c
+Continuing.
+
+Breakpoint 8, X509_LOOKUP_new (method=0x7ffff7f019a0 <x509_file_lookup>) at crypto/x509/x509_lu.c:22
+22	    if (ret == NULL) {
+(gdb) c
+Continuing.
+
+Breakpoint 9, X509_LOOKUP_new (method=0x7ffff7f019a0 <x509_file_lookup>) at crypto/x509/x509_lu.c:28
+28	    if (method->new_item != NULL && method->new_item(ret) == 0) {
+(gdb) c
+Continuing.
+
+Breakpoint 7, X509_LOOKUP_new (method=0x7ffff7f01940 <x509_dir_lookup>) at crypto/x509/x509_lu.c:20
+20	    X509_LOOKUP *ret = OPENSSL_zalloc(sizeof(*ret));
+(gdb) c
+Continuing.
+
+Breakpoint 8, X509_LOOKUP_new (method=0x7ffff7f01940 <x509_dir_lookup>) at crypto/x509/x509_lu.c:22
+22	    if (ret == NULL) {
+(gdb) c
+Continuing.
+
+Breakpoint 9, X509_LOOKUP_new (method=0x7ffff7f01940 <x509_dir_lookup>) at crypto/x509/x509_lu.c:28
+28	    if (method->new_item != NULL && method->new_item(ret) == 0) {
+(gdb) c
+Continuing.
+
+Breakpoint 7, X509_LOOKUP_new (method=0x7ffff7f01a00 <x509_store_lookup>) at crypto/x509/x509_lu.c:20
+20	    X509_LOOKUP *ret = OPENSSL_zalloc(sizeof(*ret));
+(gdb) c
+Continuing.
+
+Breakpoint 8, X509_LOOKUP_new (method=0x7ffff7f01a00 <x509_store_lookup>) at crypto/x509/x509_lu.c:22
+22	    if (ret == NULL) {
+(gdb) 
+Continuing.
+
+Breakpoint 9, X509_LOOKUP_new (method=0x7ffff7f01a00 <x509_store_lookup>) at crypto/x509/x509_lu.c:28
+28	    if (method->new_item != NULL && method->new_item(ret) == 0) {
+(gdb) 
+Continuing.
+
+Breakpoint 5, s_client_main (argc=<optimized out>, argv=<optimized out>) at apps/s_client.c:1920
+1920	        SSL_CTX_set_tlsext_servername_callback(ctx, ssl_servername_cb); // so it then call ssl_servername_cb in line 226
+(gdb) 
+Continuing.
+
+Breakpoint 11, s_client_main (argc=<optimized out>, argv=<optimized out>) at apps/s_client.c:1921
+1921	        SSL_CTX_set_tlsext_servername_arg(ctx, &tlsextcbp);
+(gdb) 
+Continuing.
+
+Breakpoint 6, s_client_main (argc=<optimized out>, argv=<optimized out>) at apps/s_client.c:1951
+1951	    con = SSL_new(ctx);
+(gdb) 
+Continuing.
+
+Breakpoint 12, SSL_new (ctx=0x555555665100) at ssl/ssl_lib.c:686
+686	    if (s == NULL)
+(gdb) 
+Continuing.
+
+Breakpoint 13, SSL_new (ctx=0x555555665100) at ssl/ssl_lib.c:691
+691	    if (s->lock == NULL) {
+(gdb) 
+Continuing.
+Connecting to 8.8.8.8
+CONNECTED(00000003)
+
+Breakpoint 15, s_client_main (argc=<optimized out>, argv=<optimized out>) at apps/s_client.c:2130
+2130	    SSL_set_bio(con, sbio, sbio);
+(gdb) 
+Continuing.
+
+Breakpoint 19, read_state_machine (s=0x5555557107d0) at ssl/statem/statem.c:550
+550	    size_t len = 0;
+(gdb) 
+Continuing.
+
+Breakpoint 18, read_state_machine (s=0x5555557107d0) at ssl/statem/statem.c:606
+606	            if (!transition(s, mt))
+(gdb) 
+Continuing.
+
+Breakpoint 16, read_state_machine (s=0x5555557107d0) at ssl/statem/statem.c:650
+650	            s->init_num = 0;
+(gdb) 
+Continuing.
+
+Breakpoint 18, read_state_machine (s=0x5555557107d0) at ssl/statem/statem.c:606
+606	            if (!transition(s, mt))
+(gdb) s
+ossl_statem_client_read_transition (s=0x5555557107d0, mt=8) at ssl/statem/statem_clnt.c:215
+215	    if (SSL_IS_TLS13(s)) {
+(gdb) 
+216	        if (!ossl_statem_client13_read_transition(s, mt))
+(gdb) 
+0x00007ffff7f6dd14 in ossl_statem_client13_read_transition (mt=<optimized out>, s=<optimized out>)
+    at ssl/statem/statem_clnt.c:99
+99	    switch (st->hand_state) {
+(gdb) 
+216	        if (!ossl_statem_client13_read_transition(s, mt))
+(gdb) 
+ossl_statem_client13_read_transition (mt=8, s=0x5555557107d0) at ssl/statem/statem_clnt.c:99
+99	    switch (st->hand_state) {
+(gdb) 
+115	        if (mt == SSL3_MT_ENCRYPTED_EXTENSIONS) {
+(gdb) 
+116	            st->hand_state = TLS_ST_CR_ENCRYPTED_EXTENSIONS;
+(gdb) 
+ossl_statem_client_read_transition (s=0x5555557107d0, mt=8) at ssl/statem/statem_clnt.c:117
+117	            return 1;
+(gdb) 
+read_state_machine (s=0x5555557107d0) at ssl/statem/statem.c:609
+609	            if (s->s3.tmp.message_size > max_message_size(s)) {
+(gdb) 
+ossl_statem_client_max_message_size (s=0x5555557107d0) at ssl/statem/statem_clnt.c:959
+959	    switch (st->hand_state) {
+(gdb) 
+1006	        return ENCRYPTED_EXTENSIONS_MAX_LENGTH;
+(gdb) 
+read_state_machine (s=0x5555557107d0) at ssl/statem/statem.c:616
+616	            if (!SSL_IS_DTLS(s)
+(gdb) 
+0x00007ffff7f6c0a7 in read_state_machine (s=0x5555557107d0) at ssl/statem/statem.c:618
+618	                    && !grow_init_buf(s, s->s3.tmp.message_size
+(gdb) 
+grow_init_buf (size=6, s=0x5555557107d0) at ssl/statem/statem.c:507
+507	    size_t msg_offset = (char *)s->init_msg - s->init_buf->data;
+(gdb) 
+509	    if (!BUF_MEM_grow_clean(s->init_buf, (int)size))
+(gdb) 
+BUF_MEM_grow_clean (str=0x555555712f80, len=len@entry=6) at crypto/buffer/buffer.c:115
+115	    if (str->length >= len) {
+(gdb) 
+116	        if (str->data != NULL)
+(gdb) 
+117	            memset(&str->data[len], 0, str->length - len);
+(gdb) 
+__memset_sse2_unaligned () at ../sysdeps/x86_64/multiarch/memset-vec-unaligned-erms.S:99
+99	../sysdeps/x86_64/multiarch/memset-vec-unaligned-erms.S: No such file or directory.
+(gdb) 
+105	in ../sysdeps/x86_64/multiarch/memset-vec-unaligned-erms.S
+(gdb) 
+106	in ../sysdeps/x86_64/multiarch/memset-vec-unaligned-erms.S
+(gdb) 
+107	in ../sysdeps/x86_64/multiarch/memset-vec-unaligned-erms.S
+(gdb) c
+Continuing.
+
+Breakpoint 1, ssl_servername_cb (s=0x5555557107d0, ad=<optimized out>, arg=0x7fffffffdef0) at apps/s_client.c:236
+236	        BIO_printf(bio_err, "Can't use SSL_get_servername\n");
+(gdb) 
+Continuing.
+Can't use SSL_get_servername
+
+Breakpoint 16, read_state_machine (s=0x5555557107d0) at ssl/statem/statem.c:650
+650	            s->init_num = 0;
+(gdb) 
+Continuing.
+
+Breakpoint 18, read_state_machine (s=0x5555557107d0) at ssl/statem/statem.c:606
+606	            if (!transition(s, mt))
+(gdb) 
+Continuing.
+
+Breakpoint 16, read_state_machine (s=0x5555557107d0) at ssl/statem/statem.c:650
+650	            s->init_num = 0;
+(gdb) 
+Continuing.
+depth=2 C=US, O=Google Trust Services LLC, CN=GTS Root R1
+verify error:num=20:unable to get local issuer certificate
+verify return:1
+depth=1 C=US, O=Google Trust Services LLC, CN=GTS CA 1C3
+verify return:1
+depth=0 CN=dns.google
+verify return:1
+
+Breakpoint 18, read_state_machine (s=0x5555557107d0) at ssl/statem/statem.c:606
+606	            if (!transition(s, mt))
+(gdb) r
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/csti02/Delta/openssl/apps/openssl s_client -showcerts -connect 8.8.8.8:443
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 4, s_client_main (argc=<optimized out>, argv=<optimized out>) at apps/s_client.c:1904
+1904	    SSL_CTX_set_verify(ctx, verify, verify_callback);// s_cb line48 : int verify_callback(int ok, X509_STORE_CTX *ctx) 
+(gdb) c
+Continuing.
+
+Breakpoint 7, X509_LOOKUP_new (method=0x7ffff7f019a0 <x509_file_lookup>) at crypto/x509/x509_lu.c:20
+20	    X509_LOOKUP *ret = OPENSSL_zalloc(sizeof(*ret));
+(gdb) c
+Continuing.
+
+Breakpoint 8, X509_LOOKUP_new (method=0x7ffff7f019a0 <x509_file_lookup>) at crypto/x509/x509_lu.c:22
+22	    if (ret == NULL) {
+(gdb) 
+Continuing.
+
+Breakpoint 9, X509_LOOKUP_new (method=0x7ffff7f019a0 <x509_file_lookup>) at crypto/x509/x509_lu.c:28
+28	    if (method->new_item != NULL && method->new_item(ret) == 0) {
+(gdb) 
+Continuing.
+
+Breakpoint 7, X509_LOOKUP_new (method=0x7ffff7f01940 <x509_dir_lookup>) at crypto/x509/x509_lu.c:20
+20	    X509_LOOKUP *ret = OPENSSL_zalloc(sizeof(*ret));
+(gdb) 
+Continuing.
+
+Breakpoint 8, X509_LOOKUP_new (method=0x7ffff7f01940 <x509_dir_lookup>) at crypto/x509/x509_lu.c:22
+22	    if (ret == NULL) {
+(gdb) 
+Continuing.
+
+Breakpoint 9, X509_LOOKUP_new (method=0x7ffff7f01940 <x509_dir_lookup>) at crypto/x509/x509_lu.c:28
+28	    if (method->new_item != NULL && method->new_item(ret) == 0) {
+(gdb) 
+Continuing.
+
+Breakpoint 7, X509_LOOKUP_new (method=0x7ffff7f01a00 <x509_store_lookup>) at crypto/x509/x509_lu.c:20
+20	    X509_LOOKUP *ret = OPENSSL_zalloc(sizeof(*ret));
+(gdb) 
+Continuing.
+
+Breakpoint 8, X509_LOOKUP_new (method=0x7ffff7f01a00 <x509_store_lookup>) at crypto/x509/x509_lu.c:22
+22	    if (ret == NULL) {
+(gdb) 
+Continuing.
+
+Breakpoint 9, X509_LOOKUP_new (method=0x7ffff7f01a00 <x509_store_lookup>) at crypto/x509/x509_lu.c:28
+28	    if (method->new_item != NULL && method->new_item(ret) == 0) {
+(gdb) 
+Continuing.
+
+Breakpoint 5, s_client_main (argc=<optimized out>, argv=<optimized out>) at apps/s_client.c:1920
+1920	        SSL_CTX_set_tlsext_servername_callback(ctx, ssl_servername_cb); // so it then call ssl_servername_cb in line 226
+(gdb) 
+Continuing.
+
+Breakpoint 11, s_client_main (argc=<optimized out>, argv=<optimized out>) at apps/s_client.c:1921
+1921	        SSL_CTX_set_tlsext_servername_arg(ctx, &tlsextcbp);
+(gdb) 
+Continuing.
+
+Breakpoint 6, s_client_main (argc=<optimized out>, argv=<optimized out>) at apps/s_client.c:1951
+1951	    con = SSL_new(ctx);
+(gdb) 
+Continuing.
+
+Breakpoint 12, SSL_new (ctx=0x555555665100) at ssl/ssl_lib.c:686
+686	    if (s == NULL)
+(gdb) 
+Continuing.
+
+Breakpoint 13, SSL_new (ctx=0x555555665100) at ssl/ssl_lib.c:691
+691	    if (s->lock == NULL) {
+(gdb) 
+Continuing.
+Connecting to 8.8.8.8
+CONNECTED(00000003)
+
+Breakpoint 15, s_client_main (argc=<optimized out>, argv=<optimized out>) at apps/s_client.c:2130
+2130	    SSL_set_bio(con, sbio, sbio);
+(gdb) 
+Continuing.
+
+Breakpoint 19, read_state_machine (s=0x5555557107d0) at ssl/statem/statem.c:550
+550	    size_t len = 0;
+(gdb) n
+558	    cb = get_callback(s);
+(gdb) n
+560	    if (s->server) {
+(gdb) p s->server
+$14 = 0
+(gdb) p s
+$15 = (SSL *) 0x5555557107d0
+(gdb) p *s
+$16 = {version = 772, method = 0x7ffff7fa9620 <TLS_client_method_data.14>, rbio = 0x555555712eb0, wbio = 0x555555720720, 
+  bbio = 0x555555720720, rwstate = 1, handshake_func = 0x7ffff7f6c6a0 <ossl_statem_connect>, server = 0, new_session = 0, 
+  quiet_shutdown = 0, shutdown = 0, statem = {state = MSG_FLOW_READING, write_state = WRITE_STATE_TRANSITION, 
+    write_state_work = WORK_FINISHED_CONTINUE, read_state = READ_STATE_HEADER, read_state_work = WORK_ERROR, 
+    hand_state = TLS_ST_CW_CLNT_HELLO, request_state = TLS_ST_BEFORE, in_init = 1, read_state_first_init = 1, in_handshake = 1, 
+    cleanuphand = 0, no_cert_verify = 0, use_timer = 0, enc_write_state = ENC_WRITE_STATE_VALID, 
+    enc_read_state = ENC_READ_STATE_VALID}, early_data_state = SSL_EARLY_DATA_NONE, init_buf = 0x555555712f80, init_msg = 0x0, 
+  init_num = 0, init_off = 0, s3 = {flags = 0, read_mac_secret_size = 0, read_mac_secret = '\000' <repeats 63 times>, 
+    write_mac_secret_size = 0, write_mac_secret = '\000' <repeats 63 times>, server_random = '\000' <repeats 31 times>, 
+    client_random = ":\276p\307\346\177\023\243\250\235Cl$\377\207\301\063^?\307B\276Q\341\277 s\344\004_\225\202", 
+    need_empty_fragments = 0, empty_fragment_done = 0, handshake_buffer = 0x555555722840, handshake_dgst = 0x0, 
+    change_cipher_spec = 0, warn_alert = 0, fatal_alert = 0, alert_dispatch = 0, send_alert = "\000", renegotiate = 0, 
+    total_renegotiations = 0, num_renegotiations = 0, in_read_app_data = 0, tmp = {finish_md = '\000' <repeats 127 times>, 
+      finish_md_len = 0, peer_finish_md = '\000' <repeats 127 times>, peer_finish_md_len = 0, message_size = 0, 
+      message_type = 0, new_cipher = 0x0, pkey = 0x5555556fe680, cert_req = 0, ctype = 0x0, ctype_len = 0, peer_ca_names = 0x0, 
+      key_block_length = 0, key_block = 0x0, new_sym_enc = 0x0, new_hash = 0x0, new_mac_pkey_type = 0, new_mac_secret_size = 0, 
+      new_compression = 0x0, cert_request = 0, ciphers_raw = 0x0, ciphers_rawlen = 0, pms = 0x0, pmslen = 0, psk = 0x0, 
+      psklen = 0, sigalg = 0x0, cert = 0x0, peer_sigalgs = 0x0, peer_cert_sigalgs = 0x0, peer_sigalgslen = 0, 
+      peer_cert_sigalgslen = 0, peer_sigalg = 0x0, valid_flags = {0, 0, 0, 0, 0, 0, 0, 0, 0}, mask_k = 488, mask_a = 80, 
+      min_ver = 769, max_ver = 772}, previous_client_finished = '\000' <repeats 63 times>, previous_client_finished_len = 0, 
+    previous_server_finished = '\000' <repeats 63 times>, previous_server_finished_len = 0, send_connection_binding = 0, 
+    npn_seen = 0, alpn_selected = 0x0, alpn_selected_len = 0, alpn_proposed = 0x0, alpn_proposed_len = 0, alpn_sent = 0, 
+    is_probably_safari = 0 '\000', did_kex = 0 '\000', group_id = 29, peer_tmp = 0x0}, d1 = 0x0, msg_callback = 0x0, 
+  msg_callback_arg = 0x0, hit = 0, param = 0x555555712810, dane = {dctx = 0x0, trecs = 0x0, certs = 0x0, mtlsa = 0x0, 
+    mcert = 0x0, umask = 0, mdpth = -1, pdpth = -1, flags = 0}, peer_ciphers = 0x0, cipher_list = 0x0, cipher_list_by_id = 0x0, 
+  tls13_ciphersuites = 0x555555712590, mac_flags = 0, early_secret = '\000' <repeats 63 times>, 
+  handshake_secret = '\000' <repeats 63 times>, master_secret = '\000' <repeats 63 times>, 
+  resumption_master_secret = '\000' <repeats 63 times>, client_finished_secret = '\000' <repeats 63 times>, 
+  server_finished_secret = '\000' <repeats 63 times>, server_finished_hash = '\000' <repeats 63 times>, 
+  handshake_traffic_hash = '\000' <repeats 63 times>, client_app_traffic_secret = '\000' <repeats 63 times>, 
+  server_app_traffic_secret = '\000' <repeats 63 times>, exporter_master_secret = '\000' <repeats 63 times>, 
+  early_exporter_master_secret = '\000' <repeats 63 times>, enc_read_ctx = 0x0, read_iv = '\000' <repeats 15 times>, 
+  read_hash = 0x0, compress = 0x0, expand = 0x0, enc_write_ctx = 0x0, write_iv = '\000' <repeats 15 times>, write_hash = 0x0, 
+  cert = 0x5555557125f0, cert_verify_hash = '\000' <repeats 63 times>, cert_verify_hash_len = 0, 
+  hello_retry_request = SSL_HRR_NONE, sid_ctx_length = 0, sid_ctx = '\000' <repeats 31 times>, session = 0x5555556e4110, 
+  psksession = 0x0, psksession_id = 0x0, psksession_id_len = 0, generate_session_id = 0x0, 
+  tmp_session_id = "\264&-\260\343۾s8[\200͚i\244\315\060J\034^6\003\246\243\346\025\214d\262M\006\226", 
+  tmp_session_id_len = 32, verify_mode = 0, verify_callback = 0x5555555f86e0 <verify_callback>, info_callback = 0x0, error = 0, 
+  error_code = 0, psk_client_callback = 0x0, psk_server_callback = 0x0, psk_find_session_cb = 0x0, psk_use_session_cb = 0x0, 
+  ctx = 0x555555665100, verified_chain = 0x0, verify_result = 0, ex_data = {ctx = 0x0, sk = 0x0}, ca_names = 0x0, 
+  client_ca_names = 0x0, references = 1, options = 1179648, mode = 0, min_proto_version = 0, max_proto_version = 0, 
+  max_cert_list = 102400, first_packet = 0, client_version = 771, split_send_fragment = 16384, max_send_fragment = 16384, 
+  max_pipelines = 0, ext = {
+    extflags = "\000\000\000\000\002\002\002\000\000\000\000\002\000\002\000\000\002\002\002\002\000\000\000\000\000", 
+    debug_cb = 0x0, debug_arg = 0x0, hostname = 0x0, status_type = -1, scts = 0x0, scts_len = 0, status_expected = 0, ocsp = {
+      ids = 0x0, exts = 0x0, resp = 0x0, resp_len = 0}, ticket_expected = 0, extra_tickets_expected = 0, 
+    ecpointformats_len = 0, ecpointformats = 0x0, peer_ecpointformats_len = 0, peer_ecpointformats = 0x0, 
+    supportedgroups_len = 0, supportedgroups = 0x0, peer_supportedgroups_len = 0, peer_supportedgroups = 0x0, 
+    session_ticket = 0x0, session_ticket_cb = 0x0, session_ticket_cb_arg = 0x0, session_secret_cb = 0x0, 
+    session_secret_cb_arg = 0x0, alpn = 0x0, alpn_len = 0, npn = 0x0, npn_len = 0, psk_kex_mode = 2, use_etm = 0, 
+    early_data = 0, early_data_ok = 0, tls13_cookie = 0x0, tls13_cookie_len = 0, cookieok = 0, 
+    max_fragment_len_mode = 0 '\000', tick_identity = 0}, clienthello = 0x0, servername_done = 0, ct_validation_callback = 0x0, 
+  ct_validation_callback_arg = 0x0, scts = 0x0, scts_parsed = 0, session_ctx = 0x555555665100, srtp_profiles = 0x0, 
+  srtp_profile = 0x0, renegotiate = 0, key_update = -1, post_handshake_auth = SSL_PHA_NONE, pha_enabled = 0, pha_context = 0x0, 
+  pha_context_len = 0, certreqs_sent = 0, pha_dgst = 0x0, srp_ctx = {SRP_cb_arg = 0x0, TLS_ext_srp_username_callback = 0x0, 
+    SRP_verify_param_callback = 0x0, SRP_give_srp_client_pwd_callback = 0x0, login = 0x0, N = 0x0, g = 0x0, s = 0x0, B = 0x0, 
+    A = 0x0, a = 0x0, b = 0x0, v = 0x0, info = 0x0, strength = 1024, srp_Mask = 0}, not_resumable_session_cb = 0x0, rlayer = {
+    s = 0x5555557107d0, read_ahead = 0, rstate = 240, numrpipes = 0, numwpipes = 1, rbuf = {buf = 0x555555718510 "", 
+      default_len = 0, len = 16712, offset = 0, left = 0, app_buffer = 0}, wbuf = {{buf = 0x55555571c660 "", default_len = 0, 
+        len = 16568, offset = 306, left = 0, app_buffer = 0}, {buf = 0x0, default_len = 0, len = 0, offset = 0, left = 0, 
+        app_buffer = 0} <repeats 31 times>}, rrec = {{rec_version = 0, type = 0, length = 0, orig_len = 0, off = 0, data = 0x0, 
+        input = 0x0, comp = 0x0, read = 0, epoch = 0, seq_num = "\000\000\000\000\000\000\000"} <repeats 32 times>}, 
+    packet = 0x0, packet_length = 0, wnum = 0, handshake_fragment = "\000\000\000", handshake_fragment_len = 0, 
+    empty_record_count = 0, wpend_tot = 298, wpend_type = 22, wpend_ret = 298, wpend_buf = 0x555555712fb0 "\001", 
+    read_sequence = "\000\000\000\000\000\000\000", write_sequence = "\000\000\000\000\000\000\000", is_first_record = 1, 
+    alert_count = 0, d = 0x0}, default_passwd_callback = 0x0, default_passwd_callback_userdata = 0x0, job = 0x0, waitctx = 0x0, 
+  asyncrw = 0, max_early_data = 0, recv_max_early_data = 16384, early_data_count = 0, record_padding_cb = 0x0, 
+  record_padding_arg = 0x0, block_padding = 0, lock = 0x55555570fd10, num_tickets = 2, sent_tickets = 0, next_ticket_nonce = 0, 
+  allow_early_data_cb = 0x0, allow_early_data_cb_data = 0x0, async_cb = 0x0, async_cb_arg = 0x0, shared_sigalgs = 0x0, 
+  shared_sigalgslen = 0}
+(gdb) n
+572	    if (st->read_state_first_init) {
+(gdb) 
+573	        s->first_packet = 1;
+(gdb) 
+574	        st->read_state_first_init = 0;
+(gdb) 
+578	        switch (st->read_state) {
+(gdb) 
+581	            if (SSL_IS_DTLS(s)) {
+(gdb) s
+587	                ret = tls_get_message_header(s, &mt);
+(gdb) s
+tls_get_message_header (s=0x5555557107d0, mt=0x7fffffffd9c4) at ssl/statem/statem_lib.c:1164
+1164	    p = (unsigned char *)s->init_buf->data;
+(gdb) n
+1167	        while (s->init_num < SSL3_HM_HEADER_LENGTH) {
+(gdb) n
+1168	            i = s->method->ssl_read_bytes(s, SSL3_RT_HANDSHAKE, &recvd_type,
+(gdb) n
+1172	            if (i <= 0) {
+(gdb) 
+1176	            if (recvd_type == SSL3_RT_CHANGE_CIPHER_SPEC) {
+(gdb) 
+1202	            } else if (recvd_type != SSL3_RT_HANDSHAKE) {
+(gdb) 
+1207	            s->init_num += readbytes;
+(gdb) 
+1167	        while (s->init_num < SSL3_HM_HEADER_LENGTH) {
+(gdb) 
+1211	        if (!s->server)
+(gdb) 
+1212	            if (s->statem.hand_state != TLS_ST_OK
+(gdb) 
+1232	    *mt = *p;
+(gdb) 
+1233	    s->s3.tmp.message_type = *(p++);
+(gdb) 
+1235	    if (RECORD_LAYER_is_sslv2_record(&s->rlayer)) {
+(gdb) 
+1257	        s->s3.tmp.message_size = l;
+(gdb) 
+1259	        s->init_msg = s->init_buf->data + SSL3_HM_HEADER_LENGTH;
+(gdb) 
+1260	        s->init_num = 0;
+(gdb) 
+read_state_machine (s=0x5555557107d0) at ssl/statem/statem.c:590
+590	            if (ret == 0) {
+(gdb) 
+595	            if (cb != NULL) {
+(gdb) p ret
+$17 = 1
+(gdb) p mt
+$18 = 2
+(gdb) p &mt
+$19 = (int *) 0x7fffffffd9c4
+(gdb) 
+$20 = (int *) 0x7fffffffd9c4
+(gdb) p *(&mt)
+$21 = 2
+(gdb) p **mt
+Cannot access memory at address 0x2
+(gdb) n
+
+Breakpoint 18, read_state_machine (s=0x5555557107d0) at ssl/statem/statem.c:606
+606	            if (!transition(s, mt))
+(gdb) n
+609	            if (s->s3.tmp.message_size > max_message_size(s)) {
+(gdb) 
+616	            if (!SSL_IS_DTLS(s)
+(gdb) 
+
+Breakpoint 16, read_state_machine (s=0x5555557107d0) at ssl/statem/statem.c:650
+650	            s->init_num = 0;
+(gdb) 
+652	            switch (ret) {
+(gdb) n
+669	                st->read_state = READ_STATE_HEADER;
+(gdb) l
+664	                st->read_state = READ_STATE_POST_PROCESS;
+665	                st->read_state_work = WORK_MORE_A;
+666	                break;
+667	
+668	            default:
+669	                st->read_state = READ_STATE_HEADER;
+670	                break;
+671	            }
+672	            break;
+673	
+(gdb) n
+581	            if (SSL_IS_DTLS(s)) {
+(gdb) 
+587	                ret = tls_get_message_header(s, &mt);
+(gdb) 
+590	            if (ret == 0) {
+(gdb) 
+595	            if (cb != NULL) {
+(gdb) 
+
+Breakpoint 18, read_state_machine (s=0x5555557107d0) at ssl/statem/statem.c:606
+606	            if (!transition(s, mt))
+(gdb) 
+609	            if (s->s3.tmp.message_size > max_message_size(s)) {
+(gdb) 
+616	            if (!SSL_IS_DTLS(s)
+(gdb) 
+
+Breakpoint 1, ssl_servername_cb (s=0x5555557107d0, ad=<optimized out>, arg=0x7fffffffdef0) at apps/s_client.c:236
+236	        BIO_printf(bio_err, "Can't use SSL_get_servername\n");
+(gdb) 
+Can't use SSL_get_servername
+ssl_servername_cb (s=0x5555557107d0, ad=<optimized out>, arg=0x7fffffffdef0) at apps/s_client.c:238
+238	    return SSL_TLSEXT_ERR_OK;
+(gdb) 
+final_server_name (s=0x5555557107d0, context=<optimized out>, sent=0) at ssl/statem/extensions.c:938
+938	    if (s->server) {
+(gdb) n
+955	    if (SSL_IS_FIRST_HANDSHAKE(s) && s->ctx != s->session_ctx
+(gdb) 
+966	    if (ret == SSL_TLSEXT_ERR_OK && s->ext.ticket_expected
+(gdb) 
+1003	        return 1;
+(gdb) 
+tls_parse_all_extensions (s=s@entry=0x5555557107d0, context=context@entry=1024, exts=<optimized out>, x=x@entry=0x0, 
+    chainidx=chainidx@entry=0, fin=fin@entry=1) at ssl/statem/extensions.c:751
+751	             i++, thisexd++) {
+(gdb) 
+750	        for (i = 0, thisexd = ext_defs; i < OSSL_NELEM(ext_defs);
+(gdb) 
+752	            if (thisexd->final != NULL && (thisexd->context & context) != 0
+(gdb) 
+751	             i++, thisexd++) {
+(gdb) 
+750	        for (i = 0, thisexd = ext_defs; i < OSSL_NELEM(ext_defs);
+(gdb) 
+752	            if (thisexd->final != NULL && (thisexd->context & context) != 0
+(gdb) 
+751	             i++, thisexd++) {
+(gdb) 
+750	        for (i = 0, thisexd = ext_defs; i < OSSL_NELEM(ext_defs);
+(gdb) 
+752	            if (thisexd->final != NULL && (thisexd->context & context) != 0
+(gdb) 
+751	             i++, thisexd++) {
+(gdb) 
+750	        for (i = 0, thisexd = ext_defs; i < OSSL_NELEM(ext_defs);
+(gdb) 
+752	            if (thisexd->final != NULL && (thisexd->context & context) != 0
+(gdb) 
+751	             i++, thisexd++) {
+(gdb) 
+750	        for (i = 0, thisexd = ext_defs; i < OSSL_NELEM(ext_defs);
+(gdb) 
+752	            if (thisexd->final != NULL && (thisexd->context & context) != 0
+(gdb) 
+751	             i++, thisexd++) {
+(gdb) 
+750	        for (i = 0, thisexd = ext_defs; i < OSSL_NELEM(ext_defs);
+(gdb) 
+752	            if (thisexd->final != NULL && (thisexd->context & context) != 0
+(gdb) 
+751	             i++, thisexd++) {
+(gdb) 
+750	        for (i = 0, thisexd = ext_defs; i < OSSL_NELEM(ext_defs);
+(gdb) 
+752	            if (thisexd->final != NULL && (thisexd->context & context) != 0
+(gdb) 
+751	             i++, thisexd++) {
+(gdb) 
+750	        for (i = 0, thisexd = ext_defs; i < OSSL_NELEM(ext_defs);
+(gdb) 
+752	            if (thisexd->final != NULL && (thisexd->context & context) != 0
+(gdb) 
+751	             i++, thisexd++) {
+(gdb) 
+750	        for (i = 0, thisexd = ext_defs; i < OSSL_NELEM(ext_defs);
+(gdb) 
+752	            if (thisexd->final != NULL && (thisexd->context & context) != 0
+(gdb) 
+751	             i++, thisexd++) {
+(gdb) 
+750	        for (i = 0, thisexd = ext_defs; i < OSSL_NELEM(ext_defs);
+(gdb) 
+752	            if (thisexd->final != NULL && (thisexd->context & context) != 0
+(gdb) 
+751	             i++, thisexd++) {
+(gdb) 
+750	        for (i = 0, thisexd = ext_defs; i < OSSL_NELEM(ext_defs);
+(gdb) 
+752	            if (thisexd->final != NULL && (thisexd->context & context) != 0
+(gdb) 
+751	             i++, thisexd++) {
+(gdb) 
+750	        for (i = 0, thisexd = ext_defs; i < OSSL_NELEM(ext_defs);
+(gdb) 
+752	            if (thisexd->final != NULL && (thisexd->context & context) != 0
+(gdb) 
+751	             i++, thisexd++) {
+(gdb) 
+750	        for (i = 0, thisexd = ext_defs; i < OSSL_NELEM(ext_defs);
+(gdb) 
+752	            if (thisexd->final != NULL && (thisexd->context & context) != 0
+(gdb) 
+751	             i++, thisexd++) {
+(gdb) 
+750	        for (i = 0, thisexd = ext_defs; i < OSSL_NELEM(ext_defs);
+(gdb) 
+752	            if (thisexd->final != NULL && (thisexd->context & context) != 0
+(gdb) 
+751	             i++, thisexd++) {
+(gdb) 
+750	        for (i = 0, thisexd = ext_defs; i < OSSL_NELEM(ext_defs);
+(gdb) 
+752	            if (thisexd->final != NULL && (thisexd->context & context) != 0
+(gdb) 
+751	             i++, thisexd++) {
+(gdb) 
+750	        for (i = 0, thisexd = ext_defs; i < OSSL_NELEM(ext_defs);
+(gdb) 
+752	            if (thisexd->final != NULL && (thisexd->context & context) != 0
+(gdb) 
+751	             i++, thisexd++) {
+(gdb) 
+750	        for (i = 0, thisexd = ext_defs; i < OSSL_NELEM(ext_defs);
+(gdb) 
+752	            if (thisexd->final != NULL && (thisexd->context & context) != 0
+(gdb) 
+751	             i++, thisexd++) {
+(gdb) 
+750	        for (i = 0, thisexd = ext_defs; i < OSSL_NELEM(ext_defs);
+(gdb) 
+752	            if (thisexd->final != NULL && (thisexd->context & context) != 0
+(gdb) 
+751	             i++, thisexd++) {
+(gdb) 
+750	        for (i = 0, thisexd = ext_defs; i < OSSL_NELEM(ext_defs);
+(gdb) 
+752	            if (thisexd->final != NULL && (thisexd->context & context) != 0
+(gdb) 
+751	             i++, thisexd++) {
+(gdb) 
+750	        for (i = 0, thisexd = ext_defs; i < OSSL_NELEM(ext_defs);
+(gdb) 
+752	            if (thisexd->final != NULL && (thisexd->context & context) != 0
+(gdb) 
+751	             i++, thisexd++) {
+(gdb) 
+750	        for (i = 0, thisexd = ext_defs; i < OSSL_NELEM(ext_defs);
+(gdb) 
+752	            if (thisexd->final != NULL && (thisexd->context & context) != 0
+(gdb) 
+751	             i++, thisexd++) {
+(gdb) 
+750	        for (i = 0, thisexd = ext_defs; i < OSSL_NELEM(ext_defs);
+(gdb) 
+752	            if (thisexd->final != NULL && (thisexd->context & context) != 0
+(gdb) 
+751	             i++, thisexd++) {
+(gdb) 
+750	        for (i = 0, thisexd = ext_defs; i < OSSL_NELEM(ext_defs);
+(gdb) 
+752	            if (thisexd->final != NULL && (thisexd->context & context) != 0
+(gdb) 
+751	             i++, thisexd++) {
+(gdb) 
+750	        for (i = 0, thisexd = ext_defs; i < OSSL_NELEM(ext_defs);
+(gdb) 
+752	            if (thisexd->final != NULL && (thisexd->context & context) != 0
+(gdb) 
+751	             i++, thisexd++) {
+(gdb) 
+750	        for (i = 0, thisexd = ext_defs; i < OSSL_NELEM(ext_defs);
+(gdb) 
+tls_process_encrypted_extensions (pkt=<optimized out>, s=0x5555557107d0) at ssl/statem/statem_clnt.c:3640
+
+3640	    OPENSSL_free(rawexts);
+(gdb) 
+3641	    return MSG_PROCESS_CONTINUE_READING;
+(gdb) l
+3636	        /* SSLfatal() already called */
+3637	        goto err;
+3638	    }
+3639	
+3640	    OPENSSL_free(rawexts);
+3641	    return MSG_PROCESS_CONTINUE_READING;
+3642	
+3643	 err:
+3644	    OPENSSL_free(rawexts);
+3645	    return MSG_PROCESS_ERROR;
+(gdb) 
+3646	}
+3647	
+3648	int ssl_do_client_cert_cb(SSL *s, X509 **px509, EVP_PKEY **ppkey)
+3649	{
+3650	    int i = 0;
+3651	#ifndef OPENSSL_NO_ENGINE
+3652	    if (s->ctx->client_cert_engine) {
+3653	        i = tls_engine_load_ssl_client_cert(s, px509, ppkey);
+3654	        if (i != 0)
+3655	            return i;
+(gdb) n
+
+Breakpoint 16, read_state_machine (s=0x5555557107d0) at ssl/statem/statem.c:650
+650	            s->init_num = 0;
+(gdb) n
+652	            switch (ret) {
+(gdb) 
+669	                st->read_state = READ_STATE_HEADER;
+(gdb) 
+581	            if (SSL_IS_DTLS(s)) {
+(gdb) 
+587	                ret = tls_get_message_header(s, &mt);
+(gdb) 
+590	            if (ret == 0) {
+(gdb) 
+595	            if (cb != NULL) {
+(gdb) 
+
+Breakpoint 18, read_state_machine (s=0x5555557107d0) at ssl/statem/statem.c:606
+606	            if (!transition(s, mt))
+(gdb) 
+609	            if (s->s3.tmp.message_size > max_message_size(s)) {
+(gdb) l
+604	             * to that state if so
+605	             */
+606	            if (!transition(s, mt))
+607	                return SUB_STATE_ERROR;
+608	
+609	            if (s->s3.tmp.message_size > max_message_size(s)) {
+610	                SSLfatal(s, SSL_AD_ILLEGAL_PARAMETER,
+611	                         SSL_R_EXCESSIVE_MESSAGE_SIZE);
+612	                return SUB_STATE_ERROR;
+613	            }
+(gdb) 
+614	
+615	            /* dtls_get_message already did this */
+616	            if (!SSL_IS_DTLS(s)
+617	                    && s->s3.tmp.message_size > 0
+618	                    && !grow_init_buf(s, s->s3.tmp.message_size
+619	                                         + SSL3_HM_HEADER_LENGTH)) {
+620	                SSLfatal(s, SSL_AD_INTERNAL_ERROR, ERR_R_BUF_LIB);
+621	                return SUB_STATE_ERROR;
+622	            }
+623	
+(gdb) n
+616	            if (!SSL_IS_DTLS(s)
+(gdb) 
+
+Breakpoint 16, read_state_machine (s=0x5555557107d0) at ssl/statem/statem.c:650
+650	            s->init_num = 0;
+(gdb) 
+652	            switch (ret) {
+(gdb) 
+state_machine (s=0x5555557107d0, server=0) at ssl/statem/statem.c:442
+442	            ssret = read_state_machine(s);
+(gdb) 
+depth=2 C=US, O=Google Trust Services LLC, CN=GTS Root R1
+verify error:num=20:unable to get local issuer certificate
+verify return:1
+depth=1 C=US, O=Google Trust Services LLC, CN=GTS CA 1C3
+verify return:1
+depth=0 CN=dns.google
+verify return:1
+
+Breakpoint 18, read_state_machine (s=0x5555557107d0) at ssl/statem/statem.c:606
+606	            if (!transition(s, mt))
+(gdb) n
+609	            if (s->s3.tmp.message_size > max_message_size(s)) {
+(gdb) 
+616	            if (!SSL_IS_DTLS(s)
+(gdb) 
+
+Breakpoint 16, read_state_machine (s=0x5555557107d0) at ssl/statem/statem.c:650
+650	            s->init_num = 0;
+(gdb) 
+652	            switch (ret) {
+(gdb) 
+669	                st->read_state = READ_STATE_HEADER;
+(gdb) 
+581	            if (SSL_IS_DTLS(s)) {
+(gdb) 
+587	                ret = tls_get_message_header(s, &mt);
+(gdb) 
+590	            if (ret == 0) {
+(gdb) 
+595	            if (cb != NULL) {
+(gdb) 
+
+Breakpoint 18, read_state_machine (s=0x5555557107d0) at ssl/statem/statem.c:606
+606	            if (!transition(s, mt))
+(gdb) 
+609	            if (s->s3.tmp.message_size > max_message_size(s)) {
+(gdb) 
+616	            if (!SSL_IS_DTLS(s)
+(gdb) 
+
+Breakpoint 16, read_state_machine (s=0x5555557107d0) at ssl/statem/statem.c:650
+650	            s->init_num = 0;
+(gdb) 
+652	            switch (ret) {
+(gdb) 
+658	                if (SSL_IS_DTLS(s)) {
+(gdb) 
+state_machine (s=0x5555557107d0, server=0) at ssl/statem/statem.c:445
+445	                init_write_state_machine(s);
+(gdb) 
+450	        } else if (st->state == MSG_FLOW_WRITING) {
+(gdb) 
+451	            ssret = write_state_machine(s);
+(gdb) 
+456	                st->state = MSG_FLOW_FINISHED;
+(gdb) 
+440	    while (st->state != MSG_FLOW_FINISHED) {
+(gdb) 
+472	    st->in_handshake--;
+(gdb) 
+485	    BUF_MEM_free(buf);
+(gdb) 
+486	    if (cb != NULL) {
+(gdb) 
+ssl3_write_bytes (s=0x5555557107d0, type=23, buf_=0x55555565c7f0, len=0, written=0x7fffffffdbe8)
+    at ssl/record/rec_layer_s3.c:405
+
+405	        if (i < 0)
+(gdb) 
+407	        if (i == 0) {
+(gdb) 
+416	    if (wb->left != 0) {
+(gdb) 
+434	    if (type == SSL3_RT_APPLICATION_DATA
+(gdb) 
+561	    if (tot == len) {           /* done? */
+(gdb) 
+562	        if (s->mode & SSL_MODE_RELEASE_BUFFERS && !SSL_IS_DTLS(s))
+(gdb) 
+565	        *written = tot;
+(gdb) 
+566	        return 1;
+(gdb) 
+641	            return i;
+(gdb) 
+SSL_write (s=<optimized out>, buf=<optimized out>, num=<optimized out>) at ssl/ssl_lib.c:2131
+
+
+2131	    if (ret > 0)
+(gdb) 
+s_client_main (argc=<optimized out>, argv=<optimized out>) at apps/s_client.c:2859
+
+2859	                if ((k != 0) || (cbuf_len != 0)) {
+(gdb) 
+2691	        FD_ZERO(&readfds);
+(gdb) 
+2694	        if (SSL_is_dtls(con) && DTLSv1_get_timeout(con, &timeout))
+(gdb) 
+2699	        if (!SSL_is_init_finished(con) && SSL_total_renegotiations(con) == 0
+(gdb) 
+2706	            if (in_init) {
+(gdb) 
+2708	                if (c_brief) {
+(gdb) 
+2713	                print_stuff(bio_c_out, con, full_log);
+(gdb) 
+---
+Certificate chain
+ 0 s:CN=dns.google
+   i:C=US, O=Google Trust Services LLC, CN=GTS CA 1C3
+   a:PKEY: rsaEncryption, 2048 (bit); sigalg: RSA-SHA256
+   v:NotBefore: Dec 27 08:13:51 2021 GMT; NotAfter: Mar 21 08:13:50 2022 GMT
+-----BEGIN CERTIFICATE-----
+MIIF4zCCBMugAwIBAgIRAJ//HVFoLHbQCgAAAAErgaAwDQYJKoZIhvcNAQELBQAw
+RjELMAkGA1UEBhMCVVMxIjAgBgNVBAoTGUdvb2dsZSBUcnVzdCBTZXJ2aWNlcyBM
+TEMxEzARBgNVBAMTCkdUUyBDQSAxQzMwHhcNMjExMjI3MDgxMzUxWhcNMjIwMzIx
+MDgxMzUwWjAVMRMwEQYDVQQDEwpkbnMuZ29vZ2xlMIIBIjANBgkqhkiG9w0BAQEF
+AAOCAQ8AMIIBCgKCAQEAxJMwOeAnKA80ld2ubu0PULISlcdaXMN5w79XpWASRxQb
+c5G8zzqkgvmgP3Uk+gGkPhGECXbA9XuC2J7DpL+aeZShBAkLo5+Q4frvYPdJwSA5
+2CtcJLGG4JTYsSJa46+h5jqk+r93gdmimPaeb8kDt4I96hwQZ5dnakfeiJ7SpvVv
+mYqQhi5oKeBl/+XXJrrnaqYSBJY4LNKMOBX1RV3PQlJww/i4+JsbC7whRXVHlSCm
+EgjWLjoeM/UiCn+pKdOZ91zwgGh7D/rkIWO1/pxblo4D/cNtxJS+NzYG51468rdb
+EKWM/Nt5DGyS5OOiBfdBPCsdhINsfTMG64Q+2C4O7wIDAQABo4IC+zCCAvcwDgYD
+VR0PAQH/BAQDAgWgMBMGA1UdJQQMMAoGCCsGAQUFBwMBMAwGA1UdEwEB/wQCMAAw
+HQYDVR0OBBYEFCIEx5jXaS80yZ6DUiI+Z7ST2wpUMB8GA1UdIwQYMBaAFIp0f6+F
+ze6VzT2c0OJGFPNxNR0nMGoGCCsGAQUFBwEBBF4wXDAnBggrBgEFBQcwAYYbaHR0
+cDovL29jc3AucGtpLmdvb2cvZ3RzMWMzMDEGCCsGAQUFBzAChiVodHRwOi8vcGtp
+Lmdvb2cvcmVwby9jZXJ0cy9ndHMxYzMuZGVyMIGsBgNVHREEgaQwgaGCCmRucy5n
+b29nbGWCDmRucy5nb29nbGUuY29tghAqLmRucy5nb29nbGUuY29tggs4ODg4Lmdv
+b2dsZYIQZG5zNjQuZG5zLmdvb2dsZYcECAgICIcECAgEBIcQIAFIYEhgAAAAAAAA
+AACIiIcQIAFIYEhgAAAAAAAAAACIRIcQIAFIYEhgAAAAAAAAAABkZIcQIAFIYEhg
+AAAAAAAAAAAAZDAhBgNVHSAEGjAYMAgGBmeBDAECATAMBgorBgEEAdZ5AgUDMDwG
+A1UdHwQ1MDMwMaAvoC2GK2h0dHA6Ly9jcmxzLnBraS5nb29nL2d0czFjMy9tb1ZE
+ZklTaWEyay5jcmwwggEEBgorBgEEAdZ5AgQCBIH1BIHyAPAAdgBGpVXrdfqRIDC1
+oolp9PN9ESxBdL79SbiFq/L8cP5tRwAAAX37KuxVAAAEAwBHMEUCIDX2Zt0hwofx
+wP1jzKN4A7tzZQWVCcVlQlKNrc/ngEEBAiEA+GCaH5jEh0N6UlU20JrPrYroSANo
+7P3/xVZvr85nAZsAdgBRo7D1/QF5nFZtuDd4jwykeswbJ8v3nohCmg3+1IsF5QAA
+AX37KuyTAAAEAwBHMEUCIQCP+qXa5LwxWzhvYORpPMvahhAUlZSWiJiedCYm8hd4
+CgIgCSfrJEycJroZkyv+n+lr7cS2fp3i6XI+nQ/PtjFD1AgwDQYJKoZIhvcNAQEL
+BQADggEBAJDcetHAsFI570CH2ls5Xvy0mT9/wgc1OaFbjQopLr9FIQ4GJ+H7Cy89
+BPXnK4xvAwz7UxsNJMlMjKu0oYS9mfX50Hc58ajF+f+XBqnmPHzXHRvjyeHRLvHf
+xYJnbvWi8JyTA0TqcSlK0PXChcQxc+Y2AhuGSwNvS2gx0cO5rUl5msarPWyPW0l1
+uxHSr1eFn2dhOxg77/u3dS2kJOCDVfREnuc3hS07WwRM4dv0r1vWselptLgnyx9Y
+u7Ny47vouikICmiR/Z6Y9cujF/hUHtY5Wtmc0PqL2ZtFrDSwZHFHvJGqDOuOG1kz
+2wSSX6ZPsal/Oh/b7DC8Y4SvOrU7tqM=
+-----END CERTIFICATE-----
+ 1 s:C=US, O=Google Trust Services LLC, CN=GTS CA 1C3
+   i:C=US, O=Google Trust Services LLC, CN=GTS Root R1
+   a:PKEY: rsaEncryption, 2048 (bit); sigalg: RSA-SHA256
+   v:NotBefore: Aug 13 00:00:42 2020 GMT; NotAfter: Sep 30 00:00:42 2027 GMT
+-----BEGIN CERTIFICATE-----
+MIIFljCCA36gAwIBAgINAgO8U1lrNMcY9QFQZjANBgkqhkiG9w0BAQsFADBHMQsw
+CQYDVQQGEwJVUzEiMCAGA1UEChMZR29vZ2xlIFRydXN0IFNlcnZpY2VzIExMQzEU
+MBIGA1UEAxMLR1RTIFJvb3QgUjEwHhcNMjAwODEzMDAwMDQyWhcNMjcwOTMwMDAw
+MDQyWjBGMQswCQYDVQQGEwJVUzEiMCAGA1UEChMZR29vZ2xlIFRydXN0IFNlcnZp
+Y2VzIExMQzETMBEGA1UEAxMKR1RTIENBIDFDMzCCASIwDQYJKoZIhvcNAQEBBQAD
+ggEPADCCAQoCggEBAPWI3+dijB43+DdCkH9sh9D7ZYIl/ejLa6T/belaI+KZ9hzp
+kgOZE3wJCor6QtZeViSqejOEH9Hpabu5dOxXTGZok3c3VVP+ORBNtzS7XyV3NzsX
+lOo85Z3VvMO0Q+sup0fvsEQRY9i0QYXdQTBIkxu/t/bgRQIh4JZCF8/ZK2VWNAcm
+BA2o/X3KLu/qSHw3TT8An4Pf73WELnlXXPxXbhqW//yMmqaZviXZf5YsBvcRKgKA
+gOtjGDxQSYflispfGStZloEAoPtR28p3CwvJlk/vcEnHXG0g/Zm0tOLKLnf9LdwL
+tmsTDIwZKxeWmLnwi/agJ7u2441Rj72ux5uxiZ0CAwEAAaOCAYAwggF8MA4GA1Ud
+DwEB/wQEAwIBhjAdBgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIwEgYDVR0T
+AQH/BAgwBgEB/wIBADAdBgNVHQ4EFgQUinR/r4XN7pXNPZzQ4kYU83E1HScwHwYD
+VR0jBBgwFoAU5K8rJnEaK0gnhS9SZizv8IkTcT4waAYIKwYBBQUHAQEEXDBaMCYG
+CCsGAQUFBzABhhpodHRwOi8vb2NzcC5wa2kuZ29vZy9ndHNyMTAwBggrBgEFBQcw
+AoYkaHR0cDovL3BraS5nb29nL3JlcG8vY2VydHMvZ3RzcjEuZGVyMDQGA1UdHwQt
+MCswKaAnoCWGI2h0dHA6Ly9jcmwucGtpLmdvb2cvZ3RzcjEvZ3RzcjEuY3JsMFcG
+A1UdIARQME4wOAYKKwYBBAHWeQIFAzAqMCgGCCsGAQUFBwIBFhxodHRwczovL3Br
+aS5nb29nL3JlcG9zaXRvcnkvMAgGBmeBDAECATAIBgZngQwBAgIwDQYJKoZIhvcN
+AQELBQADggIBAIl9rCBcDDy+mqhXlRu0rvqrpXJxtDaV/d9AEQNMwkYUuxQkq/BQ
+cSLbrcRuf8/xam/IgxvYzolfh2yHuKkMo5uhYpSTld9brmYZCwKWnvy15xBpPnrL
+RklfRuFBsdeYTWU0AIAaP0+fbH9JAIFTQaSSIYKCGvGjRFsqUBITTcFTNvNCCK9U
++o53UxtkOCcXCb1YyRt8OS1b887U7ZfbFAO/CVMkH8IMBHmYJvJh8VNS/UKMG2Yr
+PxWhu//2m+OBmgEGcYk1KCTd4b3rGS3hSMs9WYNRtHTGnXzGsYZbr8w0xNPM1IER
+lQCh9BIiAfq0g3GvjLeMcySsN1PCAJA/Ef5c7TaUEDu9Ka7ixzpiO2xj2YC/WXGs
+Yye5TBeg2vZzFb8q3o/zpWwygTMD0IZRcZk0upONXbVRWPeyk+gB9lm+cZv9TSjO
+z23HFtz30dZGm6fKa+l3D/2gthsjgx0QGtkJAITgRNOidSOzNIb2ILCkXhAd4FJG
+AJ2xDx8hcFH1mt0G/FX0Kw4zd8NLQsLxdxP8c4CU6x+7Nz/OAipmsHMdMqUybDKw
+juDEI/9bfU1lcKwrmz3O2+BtjjKAvpafkmO8l7tdufThcV4q5O8DIrGKZTqPwJNl
+1IXNDw9bg1kWRxYtnCQ6yICmJhSFm/Y3m6xv+cXDBlHz4n/FsRC6UfTd
+-----END CERTIFICATE-----
+ 2 s:C=US, O=Google Trust Services LLC, CN=GTS Root R1
+   i:C=BE, O=GlobalSign nv-sa, OU=Root CA, CN=GlobalSign Root CA
+   a:PKEY: rsaEncryption, 4096 (bit); sigalg: RSA-SHA256
+   v:NotBefore: Jun 19 00:00:42 2020 GMT; NotAfter: Jan 28 00:00:42 2028 GMT
+-----BEGIN CERTIFICATE-----
+MIIFYjCCBEqgAwIBAgIQd70NbNs2+RrqIQ/E8FjTDTANBgkqhkiG9w0BAQsFADBX
+MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEQMA4GA1UE
+CxMHUm9vdCBDQTEbMBkGA1UEAxMSR2xvYmFsU2lnbiBSb290IENBMB4XDTIwMDYx
+OTAwMDA0MloXDTI4MDEyODAwMDA0MlowRzELMAkGA1UEBhMCVVMxIjAgBgNVBAoT
+GUdvb2dsZSBUcnVzdCBTZXJ2aWNlcyBMTEMxFDASBgNVBAMTC0dUUyBSb290IFIx
+MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAthECix7joXebO9y/lD63
+ladAPKH9gvl9MgaCcfb2jH/76Nu8ai6Xl6OMS/kr9rH5zoQdsfnFl97vufKj6bwS
+iV6nqlKr+CMny6SxnGPb15l+8Ape62im9MZaRw1NEDPjTrETo8gYbEvs/AmQ351k
+KSUjB6G00j0uYODP0gmHu81I8E3CwnqIiru6z1kZ1q+PsAewnjHxgsHA3y6mbWwZ
+DrXYfiYaRQM9sHmklCitD38m5agI/pboPGiUU+6DOogrFZYJsuB6jC511pzrp1Zk
+j5ZPaK49l8KEj8C8QMALXL32h7M1bKwYUH+E4EzNktMg6TO8UpmvMrUpsyUqtEj5
+cuHKZPfmghCN6J3Cioj6OGaK/GP5Afl4/Xtcd/p2h/rs37EOeZVXtL0m79YB0esW
+CruOC7XFxYpVq9Os6pFLKcwZpDIlTirxZUTQAs6qzkm06p98g7BAe+dDq6dso499
+iYH6TKX/1Y7DzkvgtdizjkXPdsDtQCv9Uw+wp9U7DbGKogPeMa3Md+pvez7W35Ei
+Eua++tgy/BBjFFFy3l3WFpO9KWgz7zpm7AeKJt8T11dleCfeXkkUAKIAf5qoIbap
+sZWwpbkNFhHax2xIPEDgfg1azVY80ZcFuctL7TlLnMQ/0lUTbiSw1nH69MG6zO0b
+9f6BQdgAmD06yK56mDcYBZUCAwEAAaOCATgwggE0MA4GA1UdDwEB/wQEAwIBhjAP
+BgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBTkrysmcRorSCeFL1JmLO/wiRNxPjAf
+BgNVHSMEGDAWgBRge2YaRQ2XyolQL30EzTSo//z9SzBgBggrBgEFBQcBAQRUMFIw
+JQYIKwYBBQUHMAGGGWh0dHA6Ly9vY3NwLnBraS5nb29nL2dzcjEwKQYIKwYBBQUH
+MAKGHWh0dHA6Ly9wa2kuZ29vZy9nc3IxL2dzcjEuY3J0MDIGA1UdHwQrMCkwJ6Al
+oCOGIWh0dHA6Ly9jcmwucGtpLmdvb2cvZ3NyMS9nc3IxLmNybDA7BgNVHSAENDAy
+MAgGBmeBDAECATAIBgZngQwBAgIwDQYLKwYBBAHWeQIFAwIwDQYLKwYBBAHWeQIF
+AwMwDQYJKoZIhvcNAQELBQADggEBADSkHrEoo9C0dhemMXoh6dFSPsjbdBZBiLg9
+NR3t5P+T4Vxfq7vqfM/b5A3Ri1fyJm9bvhdGaJQ3b2t6yMAYN/olUazsaL+yyEn9
+WprKASOshIArAoyZl+tJaox118fessmXn1hIVw41oeQa1v1vg4Fv74zPl6/AhSrw
+9U5pCZEt4Wi4wStz6dTZ/CLANx8LZh1J7QJVj2fhMtfTJr9w4z30Z209fOU0iOMy
++qduBmpvvYuR7hZL6Dupszfnw0Skfths18dG9ZKb59UhvmaSGZRVbNQpsg3BZlvi
+d0lIKO2d1xozclOzgjXPYovJJIultzkMu34qQb9Sz/yilrbCgj8=
+-----END CERTIFICATE-----
+---
+Server certificate
+subject=CN=dns.google
+issuer=C=US, O=Google Trust Services LLC, CN=GTS CA 1C3
+---
+No client certificate CA names sent
+Peer signing digest: SHA256
+Peer signature type: RSA-PSS
+Server Temp Key: X25519, 253 bits
+---
+SSL handshake has read 4827 bytes and written 383 bytes
+Verification error: unable to get local issuer certificate
+---
+New, TLSv1.3, Cipher is TLS_AES_256_GCM_SHA384
+Server public key is 2048 bit
+This TLS version forbids renegotiation.
+Compression: NONE
+Expansion: NONE
+No ALPN negotiated
+Early data was not sent
+Verify return code: 20 (unable to get local issuer certificate)
+---
+2717	                if (starttls_proto) {
+(gdb) 
+2724	                if (reconnect) {
+(gdb) 
+2736	        ssl_pending = read_ssl && SSL_has_pending(con);
+(gdb) 
+2746	                if (read_tty && !at_eof)
+(gdb) 
+2747	                    openssl_fdset(fileno_stdin(), &readfds);
+(gdb) 
+2749	                if (write_tty)
+(gdb) 
+2753	            if (read_ssl)
+(gdb) 
+2754	                openssl_fdset(SSL_get_fd(con), &readfds);
+(gdb) 
+2755	            if (write_ssl)
+(gdb) 
+2795	            i = select(width, (void *)&readfds, (void *)&writefds,
+(gdb) 
+2798	            if (i < 0) {
+(gdb) 
+2805	        if (SSL_is_dtls(con) && DTLSv1_handle_timeout(con) > 0)
+(gdb) 
+2808	        if (!ssl_pending && FD_ISSET(SSL_get_fd(con), &writefds)) {
+(gdb) 
+2879	        else if (!ssl_pending && FD_ISSET(fileno_stdout(), &writefds))
+(gdb) 
+2899	        } else if (ssl_pending || FD_ISSET(SSL_get_fd(con), &readfds)) {
+(gdb) 
+2909	            k = SSL_read(con, sbuf, 1024 /* BUFSIZZ */ );
+(gdb) 
+2911	            switch (SSL_get_error(con, k)) {
+(gdb) 
+2958	                ERR_print_errors(bio_err);
+(gdb) 
+C0628AF7FF7F0000:error:0A000126:SSL routines:ssl3_read_n:unexpected eof while reading:ssl/record/rec_layer_s3.c:308:
+2959	                goto shut;
+(gdb) 
+3025	    if (in_init)
+(gdb) 
+3027	    do_ssl_shutdown(con);
+(gdb) 
+3039	    shutdown(SSL_get_fd(con), 1); /* SHUT_WR */
+(gdb) 
+3046	    timeout.tv_usec = 500000;  /* some extreme round-trip */
+(gdb) 
+3048	        FD_ZERO(&readfds);
+(gdb) 
+3049	        openssl_fdset(sock, &readfds);
+(gdb) 
+3051	             && BIO_read(sbio, sbuf, BUFSIZZ) > 0);
+(gdb) 
+3053	    BIO_closesocket(SSL_get_fd(con));
+(gdb) 
+3055	    if (con != NULL) {
+(gdb) 
+3056	        if (prexit != 0)
+(gdb) 
+3058	        SSL_free(con);
+(gdb) 
+3060	    SSL_SESSION_free(psksess);
+(gdb) 
+3062	    OPENSSL_free(next_proto.data);
+(gdb) 
+3064	    SSL_CTX_free(ctx);
+(gdb) 
+3065	    set_keylog_file(NULL, NULL);
+(gdb) 
+3066	    X509_free(cert);
+(gdb) 
+3067	    sk_X509_CRL_pop_free(crls, X509_CRL_free);
+(gdb) 
+3068	    EVP_PKEY_free(key);
+(gdb) 
+3069	    OSSL_STACK_OF_X509_free(chain);
+(gdb) 
+3070	    OPENSSL_free(pass);
+(gdb) 
+3072	    OPENSSL_free(srp_arg.srppassin);
+(gdb) 
+3074	    OPENSSL_free(sname_alloc);
+(gdb) 
+3075	    OPENSSL_free(connectstr);
+(gdb) 
+3076	    OPENSSL_free(bindstr);
+(gdb) 
+3077	    OPENSSL_free(bindhost);
+(gdb) 
+3078	    OPENSSL_free(bindport);
+(gdb) 
+3079	    OPENSSL_free(host);
+(gdb) 
+3080	    OPENSSL_free(port);
+(gdb) 
+3081	    OPENSSL_free(thost);
+(gdb) 
+3082	    OPENSSL_free(tport);
+(gdb) 
+3083	    X509_VERIFY_PARAM_free(vpm);
+(gdb) 
+3084	    ssl_excert_free(exc);
+(gdb) 
+3085	    sk_OPENSSL_STRING_free(ssl_args);
+(gdb) 
+3086	    sk_OPENSSL_STRING_free(dane_tlsa_rrset);
+(gdb) 
+3087	    SSL_CONF_CTX_free(cctx);
+(gdb) 
+3088	    OPENSSL_clear_free(cbuf, BUFSIZZ);
+(gdb) 
+3089	    OPENSSL_clear_free(sbuf, BUFSIZZ);
+(gdb) 
+3090	    OPENSSL_clear_free(mbuf, BUFSIZZ);
+(gdb) 
+3091	    clear_free(proxypass);
+(gdb) 
+3092	    release_engine(e);
+(gdb) 
+3093	    BIO_free(bio_c_out);
+(gdb) 
+3094	    bio_c_out = NULL;
+(gdb) 
+3095	    BIO_free(bio_c_msg);
+(gdb) 
+3097	    return ret;
+(gdb) 
+main (argc=4, argv=<optimized out>) at apps/openssl.c:301
+
+301	    OPENSSL_free(default_config_file);
+(gdb) 
+302	    lh_FUNCTION_free(prog);
+(gdb) 
+303	    OPENSSL_free(arg.argv);
+(gdb) 
+304	    if (!app_RAND_write())
+(gdb) 
+307	    BIO_free(bio_in);
+(gdb) 
+308	    BIO_free_all(bio_out);
+(gdb) 
+309	    apps_shutdown();
+(gdb) 
+310	    BIO_free(bio_err);
+(gdb) 
+311	    EXIT(ret);
+(gdb) 
