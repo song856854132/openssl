@@ -1,0 +1,1384 @@
+01:01:25.951863 getenv("OPENSSL_CONF")           = nil
+01:01:25.952234 X509_get_default_cert_area(0x5613d5fa5040, 0x7ffcf1213a08, 0x5613d5fa5035, 21) = 0x7f92842355f1
+01:01:25.952479 strlen("/usr/lib/ssl")           = 12
+01:01:25.953116 CRYPTO_malloc(25, 0x5613d5fb20af, 957, 17) = 0x5613d77df2a0
+01:01:25.953427 stpcpy(0x5613d77df2a0, "/usr/lib/ssl") = 0x5613d77df2ac
+01:01:25.953630 BIO_new_fp(0x7f9283f9b9a0, 16, 12, 0x2e6c73736e65706f) = 0x5613d77df2d0
+01:01:25.954079 BIO_new_fp(0x7f9283f9c6c0, 16, 0, 0) = 0x5613d77df410
+01:01:25.954309 getenv("HARNESS_OSSL_PREFIX")    = nil
+01:01:25.954571 BIO_new_fp(0x7f9283f9c5e0, 16, 0x5613d5fb2382, 2) = 0x5613d77df4d0
+01:01:25.954770 getenv("OPENSSL_DEBUG_MEMORY")   = nil
+01:01:25.955002 CRYPTO_mem_ctrl(1, 1, 0x5613d5fa506b, 11) = 0
+01:01:25.955171 getenv("OPENSSL_FIPS")           = nil
+01:01:25.955360 signal(SIGPIPE, 0x1)             = 0
+01:01:25.955537 OPENSSL_init_ssl(0x7640, 0, 0x7ffcf12132a0, 0) = 1
+01:01:25.957878 UI_null(0x7f928434f928, 129, 0x7fffffff, 1) = 0x7f92842a5000
+01:01:25.958120 UI_OpenSSL(0x7f928434f928, 129, 0x7fffffff, 1) = 0x7f92842b8220
+01:01:25.958276 UI_create_method(0x5613d5fb2710, 129, 0x7fffffff, 1) = 0x5613d7800b50
+01:01:25.958416 UI_method_set_opener(0x5613d7800b50, 0x5613d5f926f0, 245, 0) = 0
+01:01:25.958551 UI_method_set_reader(0x5613d7800b50, 0x5613d5f92660, 245, 0) = 0
+01:01:25.958684 UI_method_set_writer(0x5613d7800b50, 0x5613d5f925d0, 245, 0) = 0
+01:01:25.958821 UI_method_set_closer(0x5613d7800b50, 0x5613d5f925a0, 245, 0) = 0
+01:01:25.958963 qsort(0x5613d5fc9140, 147, 32, 0x5613d5f65c20 <unfinished ...>
+01:01:25.959069 strcmp("asn1parse", "ca")        = -2
+01:01:25.959227 strcmp("ciphers", "cms")         = -4
+01:01:25.959383 strcmp("asn1parse", "ciphers")   = -2
+01:01:25.959553 strcmp("ca", "ciphers")          = -8
+01:01:25.959793 strcmp("crl", "crl2pkcs7")       = -50
+01:01:25.960001 strcmp("dhparam", "dsa")         = -11
+01:01:25.960214 strcmp("dgst", "dhparam")        = -1
+01:01:25.960379 strcmp("crl", "dgst")            = -1
+01:01:25.960530 strcmp("crl2pkcs7", "dgst")      = -1
+01:01:25.960730 strcmp("asn1parse", "crl")       = -2
+01:01:25.960931 strcmp("ca", "crl")              = -17
+01:01:25.961113 strcmp("ciphers", "crl")         = -9
+01:01:25.961356 strcmp("cms", "crl")             = -5
+01:01:25.961500 strcmp("dsaparam", "ec")         = -1
+01:01:25.961744 strcmp("ecparam", "enc")         = -11
+01:01:25.961915 strcmp("dsaparam", "ecparam")    = -1
+01:01:25.962075 strcmp("ec", "ecparam")          = -112
+01:01:25.962210 strcmp("engine", "errstr")       = -4
+01:01:25.962332 strcmp("genpkey", "genrsa")      = -2
+01:01:25.962472 strcmp("gendsa", "genpkey")      = -12
+01:01:25.962610 strcmp("engine", "gendsa")       = -2
+01:01:25.962729 strcmp("errstr", "gendsa")       = -2
+01:01:25.962876 strcmp("dsaparam", "engine")     = -1
+01:01:25.963018 strcmp("ec", "engine")           = -11
+01:01:25.963198 strcmp("ecparam", "engine")      = -11
+01:01:25.963508 strcmp("enc", "engine")          = -4
+01:01:25.963710 strcmp("asn1parse", "dsaparam")  = -3
+01:01:25.964012 strcmp("ca", "dsaparam")         = -1
+01:01:25.964228 strcmp("ciphers", "dsaparam")    = -1
+01:01:25.964427 strcmp("cms", "dsaparam")        = -1
+01:01:25.964676 strcmp("crl", "dsaparam")        = -1
+01:01:25.964940 strcmp("crl2pkcs7", "dsaparam")  = -1
+01:01:25.965134 strcmp("dgst", "dsaparam")       = -12
+01:01:25.965396 strcmp("dhparam", "dsaparam")    = -11
+01:01:25.965589 strcmp("dsa", "dsaparam")        = -112
+01:01:25.965868 strcmp("help", "list")           = -4
+01:01:25.966029 strcmp("nseq", "ocsp")           = -1
+01:01:25.966177 strcmp("help", "nseq")           = -6
+01:01:25.966389 strcmp("list", "nseq")           = -2
+01:01:25.966544 strcmp("passwd", "pkcs12")       = -10
+01:01:25.966705 strcmp("pkcs8", "pkey")          = -2
+01:01:25.966927 strcmp("pkcs7", "pkcs8")         = -1
+01:01:25.967147 strcmp("passwd", "pkcs7")        = -10
+01:01:25.967370 strcmp("pkcs12", "pkcs7")        = -6
+01:01:25.967693 strcmp("help", "passwd")         = -8
+01:01:25.967954 strcmp("list", "passwd")         = -4
+01:01:25.968109 strcmp("nseq", "passwd")         = -2
+01:01:25.968297 strcmp("ocsp", "passwd")         = -1
+01:01:25.968464 strcmp("pkeyparam", "pkeyutl")   = -5
+01:01:25.968669 strcmp("prime", "rand")          = -2
+01:01:25.968845 strcmp("pkeyparam", "prime")     = -7
+01:01:25.969043 strcmp("pkeyutl", "prime")       = -7
+01:01:25.969199 strcmp("rehash", "req")          = -9
+01:01:25.969401 strcmp("rsautl", "s_client")     = -1
+01:01:25.969560 strcmp("rsa", "rsautl")          = -117
+01:01:25.969762 strcmp("rehash", "rsa")          = -14
+01:01:25.969920 strcmp("req", "rsa")             = -14
+01:01:25.970053 strcmp("pkeyparam", "rehash")    = -2
+01:01:25.970185 strcmp("pkeyutl", "rehash")      = -2
+01:01:25.970309 strcmp("prime", "rehash")        = -2
+01:01:25.970427 strcmp("rand", "rehash")         = -4
+01:01:25.970551 strcmp("help", "pkeyparam")      = -8
+01:01:25.970671 strcmp("list", "pkeyparam")      = -4
+01:01:25.970788 strcmp("nseq", "pkeyparam")      = -2
+01:01:25.970926 strcmp("ocsp", "pkeyparam")      = -1
+01:01:25.971132 strcmp("passwd", "pkeyparam")    = -10
+01:01:25.971270 strcmp("pkcs12", "pkeyparam")    = -2
+01:01:25.971455 strcmp("pkcs7", "pkeyparam")     = -2
+01:01:25.971655 strcmp("pkcs8", "pkeyparam")     = -2
+01:01:25.971792 strcmp("pkey", "pkeyparam")      = -112
+01:01:25.971991 strcmp("asn1parse", "help")      = -7
+01:01:25.972233 strcmp("ca", "help")             = -5
+01:01:25.972392 strcmp("ciphers", "help")        = -5
+01:01:25.972632 strcmp("cms", "help")            = -5
+01:01:25.972755 strcmp("crl", "help")            = -5
+01:01:25.972996 strcmp("crl2pkcs7", "help")      = -5
+01:01:25.973220 strcmp("dgst", "help")           = -4
+01:01:25.973388 strcmp("dhparam", "help")        = -4
+01:01:25.973576 strcmp("dsa", "help")            = -4
+01:01:25.973753 strcmp("dsaparam", "help")       = -4
+01:01:25.973944 strcmp("ec", "help")             = -3
+01:01:25.974107 strcmp("ecparam", "help")        = -3
+01:01:25.974291 strcmp("enc", "help")            = -3
+01:01:25.974493 strcmp("engine", "help")         = -3
+01:01:25.974706 strcmp("errstr", "help")         = -3
+01:01:25.974873 strcmp("gendsa", "help")         = -1
+01:01:25.975022 strcmp("genpkey", "help")        = -1
+01:01:25.975233 strcmp("genrsa", "help")         = -1
+01:01:25.975540 strcmp("s_server", "s_time")     = -1
+01:01:25.975775 strcmp("sess_id", "smime")       = -8
+01:01:25.975957 strcmp("s_server", "sess_id")    = -6
+01:01:25.976186 strcmp("s_time", "sess_id")      = -6
+01:01:25.976349 strcmp("speed", "spkac")         = -6
+01:01:25.976529 strcmp("storeutl", "ts")         = -1
+01:01:25.976746 strcmp("srp", "storeutl")        = -2
+01:01:25.976985 strcmp("speed", "srp")           = -2
+01:01:25.977173 strcmp("spkac", "srp")           = -2
+01:01:25.977425 strcmp("s_server", "speed")      = -17
+01:01:25.977648 strcmp("s_time", "speed")        = -17
+01:01:25.977877 strcmp("sess_id", "speed")       = -11
+01:01:25.978037 strcmp("smime", "speed")         = -3
+01:01:25.978214 strcmp("verify", "version")      = -10
+01:01:25.978387 strcmp("verify", "x509")         = -2
+01:01:25.978556 strcmp("version", "x509")        = -2
+01:01:25.978937 strcmp("md5", "gost")            = 6
+01:01:25.979154 strcmp("sha224", "sha256")       = -3
+01:01:25.979284 strcmp("sha1", "sha224")         = -1
+01:01:25.979492 strcmp("gost", "sha1")           = -12
+01:01:25.979668 strcmp("md5", "sha1")            = -6
+01:01:25.979812 strcmp("md4", "gost")            = 6
+01:01:25.979980 strcmp("md4", "md5")             = -1
+01:01:25.980127 strcmp("s_server", "verify")     = -3
+01:01:25.980333 strcmp("s_time", "verify")       = -3
+01:01:25.980574 strcmp("sess_id", "verify")      = -3
+01:01:25.980738 strcmp("smime", "verify")        = -3
+01:01:25.980951 strcmp("speed", "verify")        = -3
+01:01:25.981184 strcmp("spkac", "verify")        = -3
+01:01:25.981375 strcmp("srp", "verify")          = -3
+01:01:25.981543 strcmp("storeutl", "verify")     = -3
+01:01:25.981720 strcmp("ts", "verify")           = -2
+01:01:25.981922 strcmp("sha384", "sha512")       = -2
+01:01:25.982104 strcmp("sha512-224", "sha512-256") = -3
+01:01:25.982314 strcmp("sha384", "sha512-224")   = -2
+01:01:25.982527 strcmp("sha512", "sha512-224")   = -45
+01:01:25.982716 strcmp("sha3-224", "sha3-256")   = -3
+01:01:25.982940 strcmp("sha3-512", "shake128")   = -56
+01:01:25.983125 strcmp("sha3-384", "sha3-512")   = -2
+01:01:25.983390 strcmp("sha3-224", "sha3-384")   = -1
+01:01:25.983547 strcmp("sha3-256", "sha3-384")   = -1
+01:01:25.983689 strcmp("sha384", "sha3-224")     = 11
+01:01:25.983856 strcmp("sha384", "sha3-256")     = 11
+01:01:25.984020 strcmp("sha384", "sha3-384")     = 11
+01:01:25.984197 strcmp("sha384", "sha3-512")     = 11
+01:01:25.984364 strcmp("sha384", "shake128")     = -56
+01:01:25.984545 strcmp("sha512", "shake128")     = -54
+01:01:25.984720 strcmp("sha512-224", "shake128") = -54
+01:01:25.984917 strcmp("sha512-256", "shake128") = -54
+01:01:25.985086 strcmp("shake256", "rmd160")     = 1
+01:01:25.985242 strcmp("blake2s256", "sm3")      = -17
+01:01:25.985394 strcmp("blake2b512", "blake2s256") = -17
+01:01:25.985564 strcmp("rmd160", "blake2b512")   = 16
+01:01:25.985711 strcmp("rmd160", "blake2s256")   = 16
+01:01:25.985862 strcmp("rmd160", "sm3")          = -1
+01:01:25.986032 strcmp("shake256", "sm3")        = -5
+01:01:25.986193 strcmp("aes-128-cbc", "aes-128-ecb") = -2
+01:01:25.986366 strcmp("aes-192-ecb", "aes-256-cbc") = -1
+01:01:25.986552 strcmp("aes-192-cbc", "aes-192-ecb") = -2
+01:01:25.986745 strcmp("aes-128-cbc", "aes-192-cbc") = -7
+01:01:25.986922 strcmp("aes-128-ecb", "aes-192-cbc") = -7
+01:01:25.987112 strcmp("sha3-224", "blake2b512") = 17
+01:01:25.987273 strcmp("sha3-224", "blake2s256") = 17
+01:01:25.987441 strcmp("sha3-224", "rmd160")     = 1
+01:01:25.987596 strcmp("sha3-224", "shake256")   = -56
+01:01:25.987761 strcmp("sha3-256", "shake256")   = -56
+01:01:25.987931 strcmp("sha3-384", "shake256")   = -56
+01:01:25.988083 strcmp("sha3-512", "shake256")   = -56
+01:01:25.988241 strcmp("sha384", "shake256")     = -56
+01:01:25.988392 strcmp("sha512", "shake256")     = -54
+01:01:25.988541 strcmp("sha512-224", "shake256") = -54
+01:01:25.988702 strcmp("sha512-256", "shake256") = -54
+01:01:25.988875 strcmp("shake128", "shake256")   = -1
+01:01:25.989039 strcmp("gost", "blake2b512")     = 5
+01:01:25.989216 strcmp("gost", "blake2s256")     = 5
+01:01:25.989393 strcmp("gost", "rmd160")         = -11
+01:01:25.989534 strcmp("md4", "rmd160")          = -5
+01:01:25.989673 strcmp("md5", "rmd160")          = -5
+01:01:25.989813 strcmp("sha1", "rmd160")         = 1
+01:01:25.989980 strcmp("sha1", "sha3-224")       = -2
+01:01:25.990133 strcmp("sha224", "sha3-224")     = -1
+01:01:25.990293 strcmp("sha256", "sha3-224")     = -1
+01:01:25.990451 strcmp("asn1parse", "s_server")  = -18
+01:01:25.990627 strcmp("ca", "s_server")         = -16
+01:01:25.990788 strcmp("ciphers", "s_server")    = -16
+01:01:25.990940 strcmp("cms", "s_server")        = -16
+01:01:25.991064 strcmp("crl", "s_server")        = -16
+01:01:25.991185 strcmp("crl2pkcs7", "s_server")  = -16
+01:01:25.991315 strcmp("dgst", "s_server")       = -15
+01:01:25.991438 strcmp("dhparam", "s_server")    = -15
+01:01:25.991572 strcmp("dsa", "s_server")        = -15
+01:01:25.991693 strcmp("dsaparam", "s_server")   = -15
+01:01:25.991835 strcmp("ec", "s_server")         = -14
+01:01:25.991988 strcmp("ecparam", "s_server")    = -14
+01:01:25.992155 strcmp("enc", "s_server")        = -14
+01:01:25.992295 strcmp("engine", "s_server")     = -14
+01:01:25.992457 strcmp("errstr", "s_server")     = -14
+01:01:25.992621 strcmp("gendsa", "s_server")     = -12
+01:01:25.992786 strcmp("genpkey", "s_server")    = -12
+01:01:25.992950 strcmp("genrsa", "s_server")     = -12
+01:01:25.993116 strcmp("help", "s_server")       = -11
+01:01:25.993282 strcmp("list", "s_server")       = -7
+01:01:25.993457 strcmp("nseq", "s_server")       = -5
+01:01:25.993665 strcmp("ocsp", "s_server")       = -4
+01:01:25.993826 strcmp("passwd", "s_server")     = -3
+01:01:25.994063 strcmp("pkcs12", "s_server")     = -3
+01:01:25.994220 strcmp("pkcs7", "s_server")      = -3
+01:01:25.994352 strcmp("pkcs8", "s_server")      = -3
+01:01:25.994495 strcmp("pkey", "s_server")       = -3
+01:01:25.994635 strcmp("pkeyparam", "s_server")  = -3
+01:01:25.994795 strcmp("pkeyutl", "s_server")    = -3
+01:01:25.994974 strcmp("prime", "s_server")      = -3
+01:01:25.995179 strcmp("rand", "s_server")       = -1
+01:01:25.995367 strcmp("rehash", "s_server")     = -1
+01:01:25.995533 strcmp("req", "s_server")        = -1
+01:01:25.995688 strcmp("rsa", "s_server")        = -1
+01:01:25.995858 strcmp("rsautl", "s_server")     = -1
+01:01:25.996024 strcmp("s_client", "s_server")   = -16
+01:01:25.996191 strcmp("aes-256-ecb", "aria-128-cbc") = -13
+01:01:25.996348 strcmp("aria-128-cfb", "aria-128-ctr") = -14
+01:01:25.996506 strcmp("aes-256-ecb", "aria-128-cfb") = -13
+01:01:25.996658 strcmp("aria-128-cbc", "aria-128-cfb") = -4
+01:01:25.996811 strcmp("aria-128-ecb", "aria-128-ofb") = -10
+01:01:25.997037 strcmp("aria-128-cfb8", "aria-192-cbc") = -7
+01:01:25.997223 strcmp("aria-128-cfb1", "aria-128-cfb8") = -7
+01:01:25.997392 strcmp("aria-128-ecb", "aria-128-cfb1") = 2
+01:01:25.997595 strcmp("aria-128-ecb", "aria-128-cfb8") = 2
+01:01:25.997778 strcmp("aria-128-ecb", "aria-192-cbc") = -7
+01:01:25.997944 strcmp("aria-128-ofb", "aria-192-cbc") = -7
+01:01:25.998115 strcmp("aes-256-ecb", "aria-128-cfb1") = -13
+01:01:25.998298 strcmp("aria-128-cbc", "aria-128-cfb1") = -4
+01:01:25.998489 strcmp("aria-128-cfb", "aria-128-cfb1") = -49
+01:01:25.998659 strcmp("aria-128-ctr", "aria-128-cfb1") = 14
+01:01:25.998824 strcmp("aria-128-ctr", "aria-128-cfb8") = 14
+01:01:25.998991 strcmp("aria-128-ctr", "aria-128-ecb") = -2
+01:01:25.999175 strcmp("aria-192-cfb", "aria-192-ctr") = -14
+01:01:25.999334 strcmp("aria-192-ecb", "aria-192-ofb") = -10
+01:01:25.999506 strcmp("aria-192-cfb", "aria-192-ecb") = -2
+01:01:25.999673 strcmp("aria-192-ctr", "aria-192-ecb") = -2
+01:01:25.999846 strcmp("aria-192-cfb1", "aria-192-cfb8") = -7
+01:01:26.000015 strcmp("aria-256-cfb", "aria-256-ctr") = -14
+01:01:26.000182 strcmp("aria-256-cbc", "aria-256-cfb") = -4
+01:01:26.000355 strcmp("aria-192-cfb1", "aria-256-cbc") = -1
+01:01:26.000532 strcmp("aria-192-cfb8", "aria-256-cbc") = -1
+01:01:26.000771 strcmp("aria-192-cfb", "aria-192-cfb1") = -49
+01:01:26.000970 strcmp("aria-192-ctr", "aria-192-cfb1") = 14
+01:01:26.001161 strcmp("aria-192-ctr", "aria-192-cfb8") = 14
+01:01:26.001366 strcmp("aria-192-ctr", "aria-256-cbc") = -1
+01:01:26.001629 strcmp("aria-192-ecb", "aria-256-cbc") = -1
+01:01:26.001839 strcmp("aria-192-ofb", "aria-256-cbc") = -1
+01:01:26.002061 strcmp("aes-256-ecb", "aria-192-cfb") = -13
+01:01:26.002237 strcmp("aria-128-cbc", "aria-192-cfb") = -7
+01:01:26.002447 strcmp("aria-128-cfb", "aria-192-cfb") = -7
+01:01:26.002639 strcmp("aria-128-cfb1", "aria-192-cfb") = -7
+01:01:26.002817 strcmp("aria-128-cfb8", "aria-192-cfb") = -7
+01:01:26.002994 strcmp("aria-128-ctr", "aria-192-cfb") = -7
+01:01:26.003165 strcmp("aria-128-ecb", "aria-192-cfb") = -7
+01:01:26.003352 strcmp("aria-128-ofb", "aria-192-cfb") = -7
+01:01:26.003534 strcmp("aria-192-cbc", "aria-192-cfb") = -4
+01:01:26.003715 strcmp("aria-256-ecb", "aria-256-ofb") = -10
+01:01:26.003915 strcmp("aria-256-cfb1", "aria-256-cfb8") = -7
+01:01:26.004111 strcmp("aria-256-ecb", "aria-256-cfb1") = 2
+01:01:26.004298 strcmp("aria-256-ecb", "aria-256-cfb8") = 2
+01:01:26.004485 strcmp("camellia-128-cbc", "camellia-128-ecb") = -2
+01:01:26.004688 strcmp("camellia-192-ecb", "camellia-256-cbc") = -1
+01:01:26.005594 strcmp("camellia-192-cbc", "camellia-192-ecb") = -2
+01:01:26.005869 strcmp("camellia-128-cbc", "camellia-192-cbc") = -7
+01:01:26.006081 strcmp("camellia-128-ecb", "camellia-192-cbc") = -7
+01:01:26.006288 strcmp("aria-256-cfb1", "camellia-128-cbc") = -2
+01:01:26.006480 strcmp("aria-256-cfb8", "camellia-128-cbc") = -2
+01:01:26.006674 strcmp("aria-256-ecb", "camellia-128-cbc") = -2
+01:01:26.006918 strcmp("aria-256-ofb", "camellia-128-cbc") = -2
+01:01:26.007155 strcmp("camellia-256-ecb", "base64") = 1
+01:01:26.007359 strcmp("des3", "desx")           = -69
+01:01:26.007526 strcmp("des", "des3")            = -51
+01:01:26.007687 strcmp("base64", "des")          = -2
+01:01:26.007896 strcmp("camellia-256-ecb", "des") = -1
+01:01:26.008098 strcmp("seed", "rc4")            = 1
+01:01:26.008256 strcmp("rc2", "bf")              = 16
+01:01:26.008412 strcmp("rc4-40", "bf")           = 16
+01:01:26.008579 strcmp("rc4-40", "rc2")          = 2
+01:01:26.008756 strcmp("rc4", "bf")              = 16
+01:01:26.008934 strcmp("rc4", "rc2")             = 2
+01:01:26.009097 strcmp("rc4", "rc4-40")          = -45
+01:01:26.009285 strcmp("seed", "rc4-40")         = 1
+01:01:26.009498 strcmp("base64", "bf")           = -5
+01:01:26.009698 strcmp("camellia-256-ecb", "bf") = 1
+01:01:26.009980 strcmp("camellia-256-ecb", "rc2") = -15
+01:01:26.010211 strcmp("des", "rc2")             = -14
+01:01:26.010449 strcmp("des3", "rc2")            = -14
+01:01:26.010597 strcmp("desx", "rc2")            = -14
+01:01:26.010918 strcmp("aria-256-cfb1", "base64") = -1
+01:01:26.011163 strcmp("aria-256-cfb8", "base64") = -1
+01:01:26.011335 strcmp("aria-256-ecb", "base64") = -1
+01:01:26.011524 strcmp("aria-256-ofb", "base64") = -1
+01:01:26.011691 strcmp("camellia-128-cbc", "base64") = 1
+01:01:26.011865 strcmp("camellia-128-cbc", "bf") = 1
+01:01:26.013014 strcmp("camellia-128-cbc", "camellia-256-ecb") = -1
+01:01:26.013271 strcmp("camellia-128-ecb", "camellia-256-ecb") = -1
+01:01:26.013480 strcmp("camellia-192-cbc", "camellia-256-ecb") = -1
+01:01:26.013686 strcmp("camellia-192-ecb", "camellia-256-ecb") = -1
+01:01:26.013896 strcmp("camellia-256-cbc", "camellia-256-ecb") = -2
+01:01:26.014096 strcmp("aes-256-ecb", "aria-256-cfb1") = -13
+01:01:26.014281 strcmp("aria-128-cbc", "aria-256-cfb1") = -1
+01:01:26.014465 strcmp("aria-128-cfb", "aria-256-cfb1") = -1
+01:01:26.014645 strcmp("aria-128-cfb1", "aria-256-cfb1") = -1
+01:01:26.014847 strcmp("aria-128-cfb8", "aria-256-cfb1") = -1
+01:01:26.015041 strcmp("aria-128-ctr", "aria-256-cfb1") = -1
+01:01:26.015233 strcmp("aria-128-ecb", "aria-256-cfb1") = -1
+01:01:26.015418 strcmp("aria-128-ofb", "aria-256-cfb1") = -1
+01:01:26.015603 strcmp("aria-192-cbc", "aria-256-cfb1") = -1
+01:01:26.015790 strcmp("aria-192-cfb", "aria-256-cfb1") = -1
+01:01:26.015980 strcmp("aria-192-cfb1", "aria-256-cfb1") = -1
+01:01:26.016154 strcmp("aria-192-cfb8", "aria-256-cfb1") = -1
+01:01:26.016334 strcmp("aria-192-ctr", "aria-256-cfb1") = -1
+01:01:26.016508 strcmp("aria-192-ecb", "aria-256-cfb1") = -1
+01:01:26.016684 strcmp("aria-192-ofb", "aria-256-cfb1") = -1
+01:01:26.016882 strcmp("aria-256-cbc", "aria-256-cfb1") = -4
+01:01:26.017072 strcmp("aria-256-cfb", "aria-256-cfb1") = -49
+01:01:26.017262 strcmp("aria-256-ctr", "aria-256-cfb1") = 14
+01:01:26.017450 strcmp("aria-256-ctr", "aria-256-cfb8") = 14
+01:01:26.017636 strcmp("aria-256-ctr", "aria-256-ecb") = -2
+01:01:26.017827 strcmp("cast", "des-ecb")        = -1
+01:01:26.017985 strcmp("des-ede", "des-ede3")    = -51
+01:01:26.018134 strcmp("cast", "des-ede")        = -1
+01:01:26.018273 strcmp("des-ecb", "des-ede")     = -1
+01:01:26.018419 strcmp("des-cbc", "des-ede-cbc") = -2
+01:01:26.018574 strcmp("des-cfb", "des-ede-cfb") = -2
+01:01:26.018726 strcmp("des-ede3-cbc", "des-cfb") = 2
+01:01:26.018910 strcmp("des-ede3-cbc", "des-ede-cfb") = 6
+01:01:26.019091 strcmp("des-cbc", "des-cfb")     = -4
+01:01:26.019256 strcmp("des-ede-cbc", "des-cfb") = 2
+01:01:26.019431 strcmp("des-ede-cbc", "des-ede-cfb") = -4
+01:01:26.019616 strcmp("cast", "des-cbc")        = -1
+01:01:26.019775 strcmp("des-ecb", "des-cbc")     = 2
+01:01:26.019966 strcmp("des-ecb", "des-cfb")     = 2
+01:01:26.020118 strcmp("des-ecb", "des-ede-cbc") = -1
+01:01:26.020257 strcmp("des-ede", "des-ede-cbc") = -45
+01:01:26.020401 strcmp("des-ede3", "des-ede-cbc") = 6
+01:01:26.020535 strcmp("des-ede3", "des-ede-cfb") = 6
+01:01:26.020675 strcmp("des-ede3", "des-ede3-cbc") = -45
+01:01:26.020842 strcmp("des-ede3-cfb", "des-ofb") = -10
+01:01:26.020987 strcmp("des-ede-ofb", "des-ede3-ofb") = -6
+01:01:26.021139 strcmp("des-ede3-cfb", "des-ede-ofb") = 6
+01:01:26.021334 strcmp("des-ede3-cfb", "des-ede3-ofb") = -12
+01:01:26.021518 strcmp("des-ofb", "des-ede3-ofb") = 10
+01:01:26.021679 strcmp("seed-cbc", "seed-ecb")   = -2
+01:01:26.021845 strcmp("seed-ofb", "rc2-cbc")    = 1
+01:01:26.022032 strcmp("seed-cfb", "rc2-cbc")    = 1
+01:01:26.022185 strcmp("seed-cfb", "seed-ofb")   = -12
+01:01:26.022332 strcmp("seed-cbc", "rc2-cbc")    = 1
+01:01:26.022481 strcmp("seed-cbc", "seed-cfb")   = -4
+01:01:26.022624 strcmp("seed-ecb", "seed-cfb")   = 2
+01:01:26.022766 strcmp("seed-ecb", "seed-ofb")   = -10
+01:01:26.022915 strcmp("des-ede-ofb", "rc2-cbc") = -14
+01:01:26.023055 strcmp("des-ede3-cfb", "rc2-cbc") = -14
+01:01:26.023197 strcmp("des-ede3-ofb", "rc2-cbc") = -14
+01:01:26.023340 strcmp("des-ofb", "rc2-cbc")     = -14
+01:01:26.023800 strcmp("cast", "des-ede-ofb")    = -1
+01:01:26.023966 strcmp("des-cbc", "des-ede-ofb") = -2
+01:01:26.024112 strcmp("des-cfb", "des-ede-ofb") = -2
+01:01:26.024258 strcmp("des-ecb", "des-ede-ofb") = -1
+01:01:26.024403 strcmp("des-ede", "des-ede-ofb") = -45
+01:01:26.024549 strcmp("des-ede-cbc", "des-ede-ofb") = -12
+01:01:26.024703 strcmp("des-ede-cfb", "des-ede-ofb") = -12
+01:01:26.024891 strcmp("des-ede3", "des-ede-ofb") = 6
+01:01:26.025199 strcmp("des-ede3", "des-ede3-cfb") = -45
+01:01:26.025363 strcmp("des-ede3-cbc", "des-ede3-cfb") = -4
+01:01:26.025536 strcmp("rc2-ecb", "rc2-cfb")     = 2
+01:01:26.025687 strcmp("rc2-ofb", "rc2-64-cbc")  = 57
+01:01:26.025853 strcmp("rc2-cfb", "rc2-64-cbc")  = 45
+01:01:26.026018 strcmp("rc2-cfb", "rc2-ofb")     = -12
+01:01:26.026158 strcmp("rc2-ecb", "rc2-ofb")     = -10
+01:01:26.026702 strcmp("rc2-40-cbc", "bf-cbc")   = 16
+01:01:26.026855 strcmp("bf-cfb", "bf-ofb")       = -12
+01:01:26.026989 strcmp("bf-ecb", "bf-cfb")       = 2
+01:01:26.027122 strcmp("bf-ecb", "bf-ofb")       = -10
+01:01:26.027257 strcmp("bf-cbc", "bf-cfb")       = -4
+01:01:26.027389 strcmp("rc2-40-cbc", "bf-cfb")   = 16
+01:01:26.027529 strcmp("rc2-40-cbc", "bf-ecb")   = 16
+01:01:26.027673 strcmp("rc2-40-cbc", "bf-ofb")   = 16
+01:01:26.027833 strcmp("rc2-64-cbc", "bf-cbc")   = 16
+01:01:26.027989 strcmp("rc2-64-cbc", "bf-cfb")   = 16
+01:01:26.028145 strcmp("rc2-64-cbc", "bf-ecb")   = 16
+01:01:26.028298 strcmp("rc2-64-cbc", "bf-ofb")   = 16
+01:01:26.028448 strcmp("rc2-64-cbc", "rc2-40-cbc") = 2
+01:01:26.028603 strcmp("cast5-cbc", "cast5-ecb") = -2
+01:01:26.028756 strcmp("cast5-ofb", "cast-cbc")  = 8
+01:01:26.032993 strcmp("cast5-cfb", "cast-cbc")  = 8
+01:01:26.033249 strcmp("cast5-cfb", "cast5-ofb") = -12
+01:01:26.033473 strcmp("cast5-cbc", "cast-cbc")  = 8
+01:01:26.033684 strcmp("cast5-cbc", "cast5-cfb") = -4
+01:01:26.033912 strcmp("cast5-ecb", "cast5-cfb") = 2
+01:01:26.034080 strcmp("cast5-ecb", "cast5-ofb") = -10
+01:01:26.034255 strcmp("sm4-cbc", "sm4-ecb")     = -2
+01:01:26.034410 strcmp("sm4-ofb", "sm4-ctr")     = 12
+01:01:26.034568 strcmp("sm4-cfb", "sm4-ctr")     = -14
+01:01:26.034722 strcmp("sm4-cbc", "sm4-cfb")     = -4
+01:01:26.034905 strcmp("sm4-ecb", "sm4-cfb")     = 2
+01:01:26.035104 strcmp("sm4-ecb", "sm4-ctr")     = 2
+01:01:26.035300 strcmp("sm4-ecb", "sm4-ofb")     = -10
+01:01:26.035533 strcmp("cast-cbc", "sm4-cbc")    = -16
+01:01:26.035712 strcmp("cast5-cbc", "sm4-cbc")   = -16
+01:01:26.035928 strcmp("cast5-cfb", "sm4-cbc")   = -16
+01:01:26.036108 strcmp("cast5-ecb", "sm4-cbc")   = -16
+01:01:26.036283 strcmp("cast5-ofb", "sm4-cbc")   = -16
+01:01:26.036453 strcmp("bf-cbc", "cast-cbc")     = -1
+01:01:26.036618 strcmp("bf-cfb", "cast-cbc")     = -1
+01:01:26.036791 strcmp("bf-ecb", "cast-cbc")     = -1
+01:01:26.036990 strcmp("bf-ofb", "cast-cbc")     = -1
+01:01:26.037169 strcmp("rc2-40-cbc", "cast-cbc") = 15
+01:01:26.037358 strcmp("rc2-40-cbc", "cast5-cbc") = 15
+01:01:26.037554 strcmp("rc2-40-cbc", "cast5-cfb") = 15
+01:01:26.037747 strcmp("rc2-40-cbc", "cast5-ecb") = 15
+01:01:26.037946 strcmp("rc2-40-cbc", "cast5-ofb") = 15
+01:01:26.038130 strcmp("rc2-40-cbc", "sm4-cbc")  = -1
+01:01:26.038312 strcmp("rc2-64-cbc", "sm4-cbc")  = -1
+01:01:26.038486 strcmp("rc2-cfb", "sm4-cbc")     = -1
+01:01:26.038658 strcmp("rc2-ecb", "sm4-cbc")     = -1
+01:01:26.038840 strcmp("rc2-ofb", "sm4-cbc")     = -1
+01:01:26.039019 strcmp("cast", "bf-cbc")         = 1
+01:01:26.039192 strcmp("cast", "bf-cfb")         = 1
+01:01:26.039364 strcmp("cast", "bf-ecb")         = 1
+01:01:26.039527 strcmp("cast", "bf-ofb")         = 1
+01:01:26.039711 strcmp("cast", "cast-cbc")       = -45
+01:01:26.039894 strcmp("des-cbc", "cast-cbc")    = 1
+01:01:26.040066 strcmp("des-cbc", "cast5-cbc")   = 1
+01:01:26.040235 strcmp("des-cbc", "cast5-cfb")   = 1
+01:01:26.040403 strcmp("des-cbc", "cast5-ecb")   = 1
+01:01:26.040574 strcmp("des-cbc", "cast5-ofb")   = 1
+01:01:26.040753 strcmp("des-cbc", "rc2-40-cbc")  = -14
+01:01:26.040973 strcmp("des-cfb", "rc2-40-cbc")  = -14
+01:01:26.041165 strcmp("des-ecb", "rc2-40-cbc")  = -14
+01:01:26.041351 strcmp("des-ede", "rc2-40-cbc")  = -14
+01:01:26.041532 strcmp("des-ede-cbc", "rc2-40-cbc") = -14
+01:01:26.041729 strcmp("des-ede-cfb", "rc2-40-cbc") = -14
+01:01:26.041935 strcmp("des-ede-ofb", "rc2-40-cbc") = -14
+01:01:26.042122 strcmp("des-ede3", "rc2-40-cbc") = -14
+01:01:26.042292 strcmp("des-ede3-cbc", "rc2-40-cbc") = -14
+01:01:26.042454 strcmp("des-ede3-cfb", "rc2-40-cbc") = -14
+01:01:26.042599 strcmp("des-ede3-ofb", "rc2-40-cbc") = -14
+01:01:26.042815 strcmp("des-ofb", "rc2-40-cbc")  = -14
+01:01:26.042987 strcmp("rc2-cbc", "rc2-40-cbc")  = 47
+01:01:26.043182 strcmp("rc2-cbc", "rc2-64-cbc")  = 45
+01:01:26.043328 strcmp("rc2-cbc", "rc2-cfb")     = -4
+01:01:26.043487 strcmp("seed-cbc", "rc2-cfb")    = 1
+01:01:26.043644 strcmp("seed-cbc", "rc2-ecb")    = 1
+01:01:26.043786 strcmp("seed-cbc", "rc2-ofb")    = 1
+01:01:26.043923 strcmp("seed-cbc", "sm4-cbc")    = -8
+01:01:26.044036 strcmp("seed-cfb", "sm4-cbc")    = -8
+01:01:26.044149 strcmp("seed-ecb", "sm4-cbc")    = -8
+01:01:26.044261 strcmp("seed-ofb", "sm4-cbc")    = -8
+01:01:26.044380 strcmp("aes-256-ecb", "bf-cbc")  = -1
+01:01:26.044517 strcmp("aria-128-cbc", "bf-cbc") = -1
+01:01:26.044670 strcmp("aria-128-cfb", "bf-cbc") = -1
+01:01:26.044967 strcmp("aria-128-cfb1", "bf-cbc") = -1
+01:01:26.045164 strcmp("aria-128-cfb8", "bf-cbc") = -1
+01:01:26.045333 strcmp("aria-128-ctr", "bf-cbc") = -1
+01:01:26.045484 strcmp("aria-128-ecb", "bf-cbc") = -1
+01:01:26.045593 strcmp("aria-128-ofb", "bf-cbc") = -1
+01:01:26.045697 strcmp("aria-192-cbc", "bf-cbc") = -1
+01:01:26.045849 strcmp("aria-192-cfb", "bf-cbc") = -1
+01:01:26.046023 strcmp("aria-192-cfb1", "bf-cbc") = -1
+01:01:26.046219 strcmp("aria-192-cfb8", "bf-cbc") = -1
+01:01:26.046390 strcmp("aria-192-ctr", "bf-cbc") = -1
+01:01:26.046560 strcmp("aria-192-ecb", "bf-cbc") = -1
+01:01:26.046795 strcmp("aria-192-ofb", "bf-cbc") = -1
+01:01:26.046978 strcmp("aria-256-cbc", "bf-cbc") = -1
+01:01:26.047142 strcmp("aria-256-cfb", "bf-cbc") = -1
+01:01:26.047289 strcmp("aria-256-cfb1", "bf-cbc") = -1
+01:01:26.047465 strcmp("aria-256-cfb8", "bf-cbc") = -1
+01:01:26.047629 strcmp("aria-256-ctr", "bf-cbc") = -1
+01:01:26.047776 strcmp("aria-256-ecb", "bf-cbc") = -1
+01:01:26.047980 strcmp("aria-256-ofb", "bf-cbc") = -1
+01:01:26.048161 strcmp("base64", "bf-cbc")       = -5
+01:01:26.048349 strcmp("bf", "bf-cbc")           = -45
+01:01:26.048561 strcmp("camellia-128-cbc", "bf-cbc") = 1
+01:01:26.048736 strcmp("camellia-128-cbc", "bf-cfb") = 1
+01:01:26.048974 strcmp("camellia-128-cbc", "bf-ecb") = 1
+01:01:26.049134 strcmp("camellia-128-cbc", "bf-ofb") = 1
+01:01:26.049545 strcmp("camellia-128-cbc", "cast") = -6
+01:01:26.049750 strcmp("camellia-128-ecb", "cast") = -6
+01:01:26.049948 strcmp("camellia-192-cbc", "cast") = -6
+01:01:26.050134 strcmp("camellia-192-ecb", "cast") = -6
+01:01:26.050286 strcmp("camellia-256-cbc", "cast") = -6
+01:01:26.050439 strcmp("camellia-256-ecb", "cast") = -6
+01:01:26.050626 strcmp("des", "cast")            = 1
+01:01:26.050773 strcmp("des", "cast-cbc")        = 1
+01:01:26.050929 strcmp("des", "cast5-cbc")       = 1
+01:01:26.051072 strcmp("des", "cast5-cfb")       = 1
+01:01:26.051241 strcmp("des", "cast5-ecb")       = 1
+01:01:26.051397 strcmp("des", "cast5-ofb")       = 1
+01:01:26.051541 strcmp("des", "des-cbc")         = -45
+01:01:26.051688 strcmp("des3", "des-cbc")        = 6
+01:01:26.051871 strcmp("des3", "des-cfb")        = 6
+01:01:26.052025 strcmp("des3", "des-ecb")        = 6
+01:01:26.052184 strcmp("des3", "des-ede")        = 6
+01:01:26.052339 strcmp("des3", "des-ede-cbc")    = 6
+01:01:26.052521 strcmp("des3", "des-ede-cfb")    = 6
+01:01:26.052697 strcmp("des3", "des-ede-ofb")    = 6
+01:01:26.052896 strcmp("des3", "des-ede3")       = 6
+01:01:26.053063 strcmp("des3", "des-ede3-cbc")   = 6
+01:01:26.053224 strcmp("des3", "des-ede3-cfb")   = 6
+01:01:26.053380 strcmp("des3", "des-ede3-ofb")   = 6
+01:01:26.053542 strcmp("des3", "des-ofb")        = 6
+01:01:26.053686 strcmp("des3", "rc2-40-cbc")     = -14
+01:01:26.053863 strcmp("desx", "rc2-40-cbc")     = -14
+01:01:26.054002 strcmp("rc2", "rc2-40-cbc")      = -45
+01:01:26.054139 strcmp("rc4", "rc2-40-cbc")      = 2
+01:01:26.054272 strcmp("rc4", "rc2-64-cbc")      = 2
+01:01:26.054425 strcmp("rc4", "rc2-cbc")         = 2
+01:01:26.054563 strcmp("rc4", "rc2-cfb")         = 2
+01:01:26.054702 strcmp("rc4", "rc2-ecb")         = 2
+01:01:26.054852 strcmp("rc4", "rc2-ofb")         = 2
+01:01:26.054997 strcmp("rc4", "seed-cbc")        = -1
+01:01:26.055137 strcmp("rc4-40", "seed-cbc")     = -1
+01:01:26.055286 strcmp("seed", "seed-cbc")       = -45
+01:01:26.055435 strcmp("aes-128-cbc", "aes-256-ecb") = -1
+01:01:26.055601 strcmp("aes-128-ecb", "aes-256-ecb") = -1
+01:01:26.055766 strcmp("aes-192-cbc", "aes-256-ecb") = -1
+01:01:26.055931 strcmp("aes-192-ecb", "aes-256-ecb") = -1
+01:01:26.056083 strcmp("aes-256-cbc", "aes-256-ecb") = -2
+01:01:26.056236 <... qsort resumed> )            = <void>
+01:01:26.056269 OPENSSL_LH_new(0x5613d5f65a40, 0x5613d5f65a20, 0x1e220, 0) = 0x5613d77fb9e0
+01:01:26.056429 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9140, 128, 0 <unfinished ...>
+01:01:26.056551 OPENSSL_LH_strhash(0x5613d5fa5224, 0x5613d5fc9140, 0x7ffcf1213440, 0) = 0x22b57d55
+01:01:26.056676 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.056713 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9160, 0, 0x5613d77fd7a0 <unfinished ...>
+01:01:26.056798 OPENSSL_LH_strhash(0x5613d5fb41e1, 0x5613d5fc9160, 0x7ffcf1213440, 0x5613d77fd7a0) = 0x3dd391c
+01:01:26.056968 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.057004 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9180, 0, 0x5613d78012c0 <unfinished ...>
+01:01:26.057109 OPENSSL_LH_strhash(0x5613d5f9f2ba, 0x5613d5fc9180, 0x7ffcf1213440, 0x5613d78012c0) = 0x318a6a5a
+01:01:26.057228 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.057264 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc91a0, 0, 0x5613d77ffb50 <unfinished ...>
+01:01:26.057351 OPENSSL_LH_strhash(0x5613d5fa522e, 0x5613d5fc91a0, 0x7ffcf1213440, 0x5613d77ffb50) = 0x781f1d89
+01:01:26.057450 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.057478 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc91c0, 0, 0x5613d78003f0 <unfinished ...>
+01:01:26.057546 OPENSSL_LH_strhash(0x5613d5f9fc83, 0x5613d5fc91c0, 0x7ffcf1213440, 0x5613d78003f0) = 0x8bd65c7b
+01:01:26.057638 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.057668 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc91e0, 0, 0x5613d7800e10 <unfinished ...>
+01:01:26.057735 OPENSSL_LH_strhash(0x5613d5fa5232, 0x5613d5fc91e0, 0x7ffcf1213440, 0x5613d7800e10) = 0x7898180d
+01:01:26.057825 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.057851 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9200, 0, 0 <unfinished ...>
+01:01:26.057928 OPENSSL_LH_strhash(0x5613d5fa523c, 0x5613d5fc9200, 0x7ffcf1213440, 0) = 0x66a321f6
+01:01:26.058014 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.058038 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9220, 0, 0x7f9283f9bc10 <unfinished ...>
+01:01:26.058101 OPENSSL_LH_strhash(0x5613d5fa5241, 0x5613d5fc9220, 0x7ffcf1213440, 0x7f9283f9bc10) = 0x238f1239
+01:01:26.058186 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.058210 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9240, 0, 0 <unfinished ...>
+01:01:26.058272 OPENSSL_LH_strhash(0x5613d5fae36f, 0x5613d5fc9240, 0x7ffcf1213440, 0) = 0x1bf422da
+01:01:26.058360 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.058387 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9260, 0, 97 <unfinished ...>
+01:01:26.058450 OPENSSL_LH_strhash(0x5613d5fa1619, 0x5613d5fc9260, 0x7ffcf1213440, 97) = 0x8eff4da
+01:01:26.058535 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.058560 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9280, 0, 65 <unfinished ...>
+01:01:26.058623 OPENSSL_LH_strhash(0x5613d5fb3738, 0x5613d5fc9280, 0x7ffcf1213440, 65) = 0xf8b75c2
+01:01:26.058708 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.058732 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc92a0, 0, 16 <unfinished ...>
+01:01:26.058795 OPENSSL_LH_strhash(0x5613d5fa5249, 0x5613d5fc92a0, 0x7ffcf1213440, 16) = 0x12ab1d39
+01:01:26.058892 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.058915 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc92c0, 0, 113 <unfinished ...>
+01:01:26.058975 OPENSSL_LH_strhash(0x5613d5fa2265, 0x5613d5fc92c0, 0x7ffcf1213440, 113) = 0xdee886a0
+01:01:26.059059 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.059082 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc92e0, 0, 48 <unfinished ...>
+01:01:26.059142 OPENSSL_LH_strhash(0x5613d5fa7a67, 0x5613d5fc92e0, 0x7ffcf1213440, 48) = 0x641d496
+01:01:26.059223 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.059246 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9300, 0, 49 <unfinished ...>
+01:01:26.059314 OPENSSL_LH_strhash(0x5613d5fa5251, 0x5613d5fc9300, 0x7ffcf1213440, 49) = 0x153de020
+01:01:26.059395 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.059419 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9320, 0, 145 <unfinished ...>
+01:01:26.059487 OPENSSL_LH_strhash(0x5613d5fa5258, 0x5613d5fc9320, 0x7ffcf1213440, 145) = 0xe09c1de7
+01:01:26.059570 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.059595 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9340, 0, 80 <unfinished ...>
+01:01:26.059667 OPENSSL_LH_strhash(0x5613d5fa525f, 0x5613d5fc9340, 0x7ffcf1213440, 0) = 0x3fd0bdd7
+01:01:26.059760 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.059786 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9360, 0, 48 <unfinished ...>
+01:01:26.059849 OPENSSL_LH_strhash(0x5613d5fa5267, 0x5613d5fc9360, 0x7ffcf1213440, 48) = 0x68e5801d
+01:01:26.059949 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.059975 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9380, 0, 49 <unfinished ...>
+01:01:26.060039 OPENSSL_LH_strhash(0x5613d5fa4f2b, 0x5613d5fc9380, 0x7ffcf1213440, 0) = 0x6582298f
+01:01:26.060125 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.060150 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc93a0, 0, 225 <unfinished ...>
+01:01:26.060221 OPENSSL_LH_strhash(0x5613d5fa2f29, 0x5613d5fc93a0, 0x7ffcf1213440, 225) = 0x86d815ab
+01:01:26.060310 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.060339 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc93c0, 0, 160 <unfinished ...>
+01:01:26.060406 OPENSSL_LH_strhash(0x5613d5fa526e, 0x5613d5fc93c0, 0x7ffcf1213440, 0) = 0x20a3f6bc
+01:01:26.060492 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.060539 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc93e0, 0, 128 <unfinished ...>
+01:01:26.060602 OPENSSL_LH_strhash(0x5613d5fa5273, 0x5613d5fc93e0, 0x7ffcf1213440, 128) = 0xf6ca7218
+01:01:26.060706 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.060731 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9400, 0, 96 <unfinished ...>
+01:01:26.060809 OPENSSL_LH_strhash(0x5613d5fa5278, 0x5613d5fc9400, 0x7ffcf1213440, 0) = 0x75db6598
+01:01:26.060921 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.060959 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9420, 0, 64 <unfinished ...>
+01:01:26.061058 OPENSSL_LH_strhash(0x5613d5fa527f, 0x5613d5fc9420, 0x7ffcf1213440, 64) = 0x8e3f159f
+01:01:26.061206 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.061261 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9440, 0, 65 <unfinished ...>
+01:01:26.061358 OPENSSL_LH_strhash(0x5613d5fa5236, 0x5613d5fc9440, 0x7ffcf1213440, 0) = 0xdd2af59b
+01:01:26.061554 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.061612 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9460, 0, 16 <unfinished ...>
+01:01:26.061704 OPENSSL_LH_strhash(0x5613d5fa5286, 0x5613d5fc9460, 0x7ffcf1213440, 16) = 0xdc8201e
+01:01:26.061878 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.061936 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9480, 0, 241 <unfinished ...>
+01:01:26.062044 OPENSSL_LH_strhash(0x5613d5fa5262, 0x5613d5fc9480, 0x7ffcf1213440, 0) = 0xd01e3da0
+01:01:26.062187 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.062243 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc94a0, 0, 176 <unfinished ...>
+01:01:26.062363 OPENSSL_LH_strhash(0x5613d5fa528c, 0x5613d5fc94a0, 0x7ffcf1213440, 176) = 0x372dc97c
+01:01:26.062507 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.062554 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc94c0, 0, 144 <unfinished ...>
+01:01:26.062656 OPENSSL_LH_strhash(0x5613d5fa5296, 0x5613d5fc94c0, 0x7ffcf1213440, 0) = 0x6d4c2e2c
+01:01:26.062810 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.062884 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc94e0, 0, 112 <unfinished ...>
+01:01:26.063002 OPENSSL_LH_strhash(0x5613d5fa7163, 0x5613d5fc94e0, 0x7ffcf1213440, 112) = 0xe5afe4e6
+01:01:26.063141 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.063181 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9500, 0, 80 <unfinished ...>
+01:01:26.063291 OPENSSL_LH_strhash(0x5613d5f9dd9b, 0x5613d5fc9500, 0x7ffcf1213440, 0) = 0xfb7f2cce
+01:01:26.063422 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.063461 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9520, 0, 48 <unfinished ...>
+01:01:26.063560 OPENSSL_LH_strhash(0x5613d5fa529e, 0x5613d5fc9520, 0x7ffcf1213440, 48) = 0xcbcbb6dd
+01:01:26.063694 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.063780 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9540, 0, 49 <unfinished ...>
+01:01:26.063891 OPENSSL_LH_strhash(0x5613d5fb1e59, 0x5613d5fc9540, 0x7ffcf1213440, 0) = 0x3f70ccbc
+01:01:26.064009 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.064051 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9560, 0, 257 <unfinished ...>
+01:01:26.064148 OPENSSL_LH_strhash(0x5613d5fa526a, 0x5613d5fc9560, 0x7ffcf1213440, 257) = 0xcff4f523
+01:01:26.064272 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.064312 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9580, 0, 192 <unfinished ...>
+01:01:26.064410 OPENSSL_LH_strhash(0x5613d5fa52a5, 0x5613d5fc9580, 0x7ffcf1213440, 0) = 0x44185f8
+01:01:26.064533 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.064573 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc95a0, 0, 160 <unfinished ...>
+01:01:26.064673 OPENSSL_LH_strhash(0x5613d5fa52ac, 0x5613d5fc95a0, 0x7ffcf1213440, 160) = 0x942b4e0
+01:01:26.064798 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.064838 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc95c0, 0, 128 <unfinished ...>
+01:01:26.064948 OPENSSL_LH_strhash(0x5613d5fa52b5, 0x5613d5fc95c0, 0x7ffcf1213440, 0) = 0xcbd815a1
+01:01:26.065084 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.065129 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc95e0, 0, 96 <unfinished ...>
+01:01:26.065251 OPENSSL_LH_strhash(0x5613d5fa52be, 0x5613d5fc95e0, 0x7ffcf1213440, 96) = 0xc9edb695
+01:01:26.065384 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.065425 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9600, 0, 64 <unfinished ...>
+01:01:26.065525 OPENSSL_LH_strhash(0x5613d5fa52c5, 0x5613d5fc9600, 0x7ffcf1213440, 0) = 0xa12fbea7
+01:01:26.065654 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.065691 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9620, 0, 65 <unfinished ...>
+01:01:26.065787 OPENSSL_LH_strhash(0x5613d5fa52cd, 0x5613d5fc9620, 0x7ffcf1213440, 65) = 0xb81f2198
+01:01:26.065929 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.065972 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9640, 0, 16 <unfinished ...>
+01:01:26.066078 OPENSSL_LH_strhash(0x5613d5fa52d3, 0x5613d5fc9640, 0x7ffcf1213440, 0) = 0xe80af017
+01:01:26.066234 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.066287 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9660, 0, 305 <unfinished ...>
+01:01:26.066397 OPENSSL_LH_strhash(0x5613d5f9dcfb, 0x5613d5fc9660, 0x7ffcf1213440, 305) = 0x52ef6df0
+01:01:26.066528 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.066567 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9680, 0, 240 <unfinished ...>
+01:01:26.066654 OPENSSL_LH_strhash(0x5613d5faff3e, 0x5613d5fc9680, 0x7ffcf1213440, 0) = 0xfba762c1
+01:01:26.066839 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.066887 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc96a0, 0, 208 <unfinished ...>
+01:01:26.067015 OPENSSL_LH_strhash(0x5613d5fa52d9, 0x5613d5fc96a0, 0x7ffcf1213440, 208) = 0xfe4067da
+01:01:26.067159 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.067208 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc96c0, 0, 176 <unfinished ...>
+01:01:26.067323 OPENSSL_LH_strhash(0x5613d5fb3e71, 0x5613d5fc96c0, 0x7ffcf1213440, 0) = 0xe4df1e5
+01:01:26.067467 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.067528 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc96e0, 0, 144 <unfinished ...>
+01:01:26.067645 OPENSSL_LH_strhash(0x5613d5fa10f7, 0x5613d5fc96e0, 0x7ffcf1213440, 144) = 0x53061bc7
+01:01:26.067789 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.067837 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9700, 0, 112 <unfinished ...>
+01:01:26.067941 OPENSSL_LH_strhash(0x5613d5fad6e7, 0x5613d5fc9700, 0x7ffcf1213440, 0) = 0x64dc8d0b
+01:01:26.068072 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.068119 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9720, 0, 80 <unfinished ...>
+01:01:26.068236 OPENSSL_LH_strhash(0x5613d5fa52e2, 0x5613d5fc9720, 0x7ffcf1213440, 80) = 0xf2cdb718
+01:01:26.068400 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.068450 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9740, 0, 48 <unfinished ...>
+01:01:26.068553 OPENSSL_LH_strhash(0x5613d5fa534a, 0x5613d5fc9740, 0x7ffcf1213440, 0) = 0xeeb9bd37
+01:01:26.068670 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.068710 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9760, 0, 49 <unfinished ...>
+01:01:26.068805 OPENSSL_LH_strhash(0x5613d5fa5355, 0x5613d5fc9760, 0x7ffcf1213440, 49) = 0x2586f2ea
+01:01:26.068951 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.068999 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9780, 0, 353 <unfinished ...>
+01:01:26.069086 OPENSSL_LH_strhash(0x5613d5fa52eb, 0x5613d5fc9780, 0x7ffcf1213440, 0) = 0x26d8bad3
+01:01:26.069205 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.069248 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc97a0, 0, 288 <unfinished ...>
+01:01:26.069342 OPENSSL_LH_strhash(0x5613d5fa52e7, 0x5613d5fc97a0, 0x7ffcf1213440, 288) = 0x11247336
+01:01:26.069451 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.069487 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc97c0, 0, 256 <unfinished ...>
+01:01:26.069568 OPENSSL_LH_strhash(0x5613d5fa5a23, 0x5613d5fc97c0, 0x7ffcf1213440, 0) = 0x89d5025
+01:01:26.069703 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.069747 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc97e0, 0, 224 <unfinished ...>
+01:01:26.069848 OPENSSL_LH_strhash(0x5613d5fa5343, 0x5613d5fc97e0, 0x7ffcf1213440, 224) = 0xa4b5557c
+01:01:26.069955 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.069989 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9800, 0, 192 <unfinished ...>
+01:01:26.070069 OPENSSL_LH_strhash(0x5613d5fb3c8d, 0x5613d5fc9800, 0x7ffcf1213440, 0) = 0x5449e642
+01:01:26.070180 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.070221 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9820, 0, 160 <unfinished ...>
+01:01:26.070302 OPENSSL_LH_strhash(0x5613d5fa52f0, 0x5613d5fc9820, 0x7ffcf1213440, 160) = 0xbd891ff6
+01:01:26.070414 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.070450 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9840, 0, 128 <unfinished ...>
+01:01:26.070528 OPENSSL_LH_strhash(0x5613d5fb3cbe, 0x5613d5fc9840, 0x7ffcf1213440, 0) = 0x20443e2e
+01:01:26.070630 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.070662 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9860, 0, 96 <unfinished ...>
+01:01:26.070742 OPENSSL_LH_strhash(0x5613d5fa530d, 0x5613d5fc9860, 0x7ffcf1213440, 96) = 0xfede1e6
+01:01:26.070865 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.070901 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9880, 0, 64 <unfinished ...>
+01:01:26.070980 OPENSSL_LH_strhash(0x5613d5fa5316, 0x5613d5fc9880, 0x7ffcf1213440, 0) = 0x2946d8ea
+01:01:26.071084 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.071117 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc98a0, 0, 65 <unfinished ...>
+01:01:26.071194 OPENSSL_LH_strhash(0x5613d5fa531f, 0x5613d5fc98a0, 0x7ffcf1213440, 65) = 0x87b0887
+01:01:26.071301 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.071339 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc98c0, 0, 16 <unfinished ...>
+01:01:26.071428 OPENSSL_LH_strhash(0x5613d5fa5328, 0x5613d5fc98c0, 0x7ffcf1213440, 0) = 0xc713d506
+01:01:26.071542 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.071575 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc98e0, 0, 353 <unfinished ...>
+01:01:26.071659 OPENSSL_LH_strhash(0x5613d5fb3ce6, 0x5613d5fc98e0, 0x7ffcf1213440, 353) = 0xa19e73b6
+01:01:26.071783 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.071831 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9900, 0, 288 <unfinished ...>
+01:01:26.071928 OPENSSL_LH_strhash(0x5613d5fb3d0e, 0x5613d5fc9900, 0x7ffcf1213440, 0) = 0xae6b1436
+01:01:26.072049 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.072087 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9920, 0, 48 <unfinished ...>
+01:01:26.072181 OPENSSL_LH_strhash(0x5613d5fa52f7, 0x5613d5fc9920, 0x7ffcf1213440, 48) = 0x10cef399
+01:01:26.072302 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.072340 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9940, 0, 49 <unfinished ...>
+01:01:26.072431 OPENSSL_LH_strhash(0x5613d5fa5302, 0x5613d5fc9940, 0x7ffcf1213440, 0) = 0xddd481ae
+01:01:26.072561 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.072604 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9960, 0, 289 <unfinished ...>
+01:01:26.072693 OPENSSL_LH_strhash(0x5613d5fa5331, 0x5613d5fc9960, 0x7ffcf1213440, 289) = 0x82bf28fe
+01:01:26.072826 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.072909 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9980, 0, 224 <unfinished ...>
+01:01:26.073005 OPENSSL_LH_strhash(0x5613d5fa533a, 0x5613d5fc9980, 0x7ffcf1213440, 0) = 0x49f9becb
+01:01:26.073124 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.073160 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc99a0, 0, 192 <unfinished ...>
+01:01:26.073264 OPENSSL_LH_strhash(0x5613d5fa5360, 0x5613d5fc99a0, 0x7ffcf1213440, 192) = 0xc41e7876
+01:01:26.073383 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.073419 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc99c0, 0, 160 <unfinished ...>
+01:01:26.073507 OPENSSL_LH_strhash(0x5613d5fa5364, 0x5613d5fc99c0, 0x7ffcf1213440, 0) = 0xdd70fc23
+01:01:26.073615 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.073650 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc99e0, 0, 128 <unfinished ...>
+01:01:26.073730 OPENSSL_LH_strhash(0x5613d5fa5370, 0x5613d5fc99e0, 0x7ffcf1213440, 128) = 0x81537bea
+01:01:26.073856 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.073892 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9a00, 0, 96 <unfinished ...>
+01:01:26.073973 OPENSSL_LH_strhash(0x5613d5fa537c, 0x5613d5fc9a00, 0x7ffcf1213440, 0) = 0x93a6ff8f
+01:01:26.074079 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.074116 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9a20, 0, 64 <unfinished ...>
+01:01:26.074199 OPENSSL_LH_strhash(0x5613d5fa5388, 0x5613d5fc9a20, 0x7ffcf1213440, 64) = 0x1cff7cb2
+01:01:26.074304 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.074335 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9a40, 0, 65 <unfinished ...>
+01:01:26.074420 OPENSSL_LH_strhash(0x5613d5fa5394, 0x5613d5fc9a40, 0x7ffcf1213440, 0) = 0xbb664d4c
+01:01:26.074530 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.074569 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9a60, 0, 16 <unfinished ...>
+01:01:26.074648 OPENSSL_LH_strhash(0x5613d5fa53a0, 0x5613d5fc9a60, 0x7ffcf1213440, 16) = 0x4d7e1935
+01:01:26.074745 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.074777 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9a80, 0, 353 <unfinished ...>
+01:01:26.074861 OPENSSL_LH_strhash(0x5613d5fa53ac, 0x5613d5fc9a80, 0x7ffcf1213440, 0) = 0x49914f00
+01:01:26.074963 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.075006 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9aa0, 0, 288 <unfinished ...>
+01:01:26.075093 OPENSSL_LH_strhash(0x5613d5fa53b9, 0x5613d5fc9aa0, 0x7ffcf1213440, 288) = 0x5f6f172d
+01:01:26.075201 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.075242 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9ac0, 0, 256 <unfinished ...>
+01:01:26.075368 OPENSSL_LH_strhash(0x5613d5fa53ed, 0x5613d5fc9ac0, 0x7ffcf1213440, 0) = 0xe9a6a12a
+01:01:26.075483 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.075514 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9ae0, 0, 224 <unfinished ...>
+01:01:26.075593 OPENSSL_LH_strhash(0x5613d5fa53fb, 0x5613d5fc9ae0, 0x7ffcf1213440, 224) = 0xdb7c77ab
+01:01:26.075702 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.075734 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9b00, 0, 192 <unfinished ...>
+01:01:26.075829 OPENSSL_LH_strhash(0x5613d5fa53c6, 0x5613d5fc9b00, 0x7ffcf1213440, 0) = 0xddaf1c3a
+01:01:26.075941 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.075978 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9b20, 0, 160 <unfinished ...>
+01:01:26.076065 OPENSSL_LH_strhash(0x5613d5fa53d3, 0x5613d5fc9b20, 0x7ffcf1213440, 160) = 0x64509317
+01:01:26.076178 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.076213 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9b40, 0, 128 <unfinished ...>
+01:01:26.076300 OPENSSL_LH_strhash(0x5613d5fa53e0, 0x5613d5fc9b40, 0x7ffcf1213440, 0) = 0x44bfd035
+01:01:26.076417 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.076457 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9b60, 0, 96 <unfinished ...>
+01:01:26.076541 OPENSSL_LH_strhash(0x5613d5fa5409, 0x5613d5fc9b60, 0x7ffcf1213440, 96) = 0xbe25f62b
+01:01:26.076651 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.076691 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9b80, 0, 64 <unfinished ...>
+01:01:26.076776 OPENSSL_LH_strhash(0x5613d5fa5416, 0x5613d5fc9b80, 0x7ffcf1213440, 0) = 0x242b8596
+01:01:26.076905 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.076953 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9ba0, 0, 65 <unfinished ...>
+01:01:26.077035 OPENSSL_LH_strhash(0x5613d5fa544a, 0x5613d5fc9ba0, 0x7ffcf1213440, 65) = 0x7499d37d
+01:01:26.077151 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.077191 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9bc0, 0, 16 <unfinished ...>
+01:01:26.077267 OPENSSL_LH_strhash(0x5613d5fa5458, 0x5613d5fc9bc0, 0x7ffcf1213440, 0) = 0xa46d94f
+01:01:26.077381 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.077475 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9be0, 0, 353 <unfinished ...>
+01:01:26.077549 OPENSSL_LH_strhash(0x5613d5fa5423, 0x5613d5fc9be0, 0x7ffcf1213440, 353) = 0x37ef894
+01:01:26.077645 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.077684 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9c00, 0, 288 <unfinished ...>
+01:01:26.077756 OPENSSL_LH_strhash(0x5613d5fa5430, 0x5613d5fc9c00, 0x7ffcf1213440, 0) = 0x8b38e140
+01:01:26.077881 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.077921 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9c20, 0, 256 <unfinished ...>
+01:01:26.078006 OPENSSL_LH_strhash(0x5613d5fa543d, 0x5613d5fc9c20, 0x7ffcf1213440, 256) = 0xba49a710
+01:01:26.078130 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.078165 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9c40, 0, 224 <unfinished ...>
+01:01:26.078249 OPENSSL_LH_strhash(0x5613d5fa5466, 0x5613d5fc9c40, 0x7ffcf1213440, 0) = 0x9806c265
+01:01:26.078360 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.078405 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9c60, 0, 192 <unfinished ...>
+01:01:26.078488 OPENSSL_LH_strhash(0x5613d5fa5473, 0x5613d5fc9c60, 0x7ffcf1213440, 192) = 0x461ac175
+01:01:26.078599 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.078640 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9c80, 0, 160 <unfinished ...>
+01:01:26.078718 OPENSSL_LH_strhash(0x5613d5fa54a7, 0x5613d5fc9c80, 0x7ffcf1213440, 0) = 0x5043bbe1
+01:01:26.078835 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.078871 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9ca0, 0, 128 <unfinished ...>
+01:01:26.078965 OPENSSL_LH_strhash(0x5613d5fa54b5, 0x5613d5fc9ca0, 0x7ffcf1213440, 128) = 0x860fe19e
+01:01:26.079073 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.079120 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9cc0, 0, 96 <unfinished ...>
+01:01:26.079226 OPENSSL_LH_strhash(0x5613d5fa5480, 0x5613d5fc9cc0, 0x7ffcf1213440, 0) = 0x9bf229ac
+01:01:26.079347 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.079382 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9ce0, 0, 64 <unfinished ...>
+01:01:26.079468 OPENSSL_LH_strhash(0x5613d5fa548d, 0x5613d5fc9ce0, 0x7ffcf1213440, 64) = 0xc77e89dc
+01:01:26.079579 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.079615 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9d00, 0, 65 <unfinished ...>
+01:01:26.079714 OPENSSL_LH_strhash(0x5613d5fa549a, 0x5613d5fc9d00, 0x7ffcf1213440, 0) = 0x1e8d6199
+01:01:26.079845 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.081032 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9d20, 0, 16 <unfinished ...>
+01:01:26.081949 OPENSSL_LH_strhash(0x5613d5fa2cdb, 0x5613d5fc9d20, 0x7ffcf1213440, 16) = 0x9b934c75
+01:01:26.082167 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.082220 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9d40, 0, 353 <unfinished ...>
+01:01:26.082335 OPENSSL_LH_strhash(0x5613d5fa5542, 0x5613d5fc9d40, 0x7ffcf1213440, 0) = 0xf4c73463
+01:01:26.082483 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.082527 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9d60, 0, 288 <unfinished ...>
+01:01:26.082665 OPENSSL_LH_strhash(0x5613d5fa5620, 0x5613d5fc9d60, 0x7ffcf1213440, 288) = 0x1f3ecbc4
+01:01:26.082824 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.082873 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9d80, 0, 256 <unfinished ...>
+01:01:26.082986 OPENSSL_LH_strhash(0x5613d5fa562e, 0x5613d5fc9d80, 0x7ffcf1213440, 0) = 0xf9193fa2
+01:01:26.083142 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.083192 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9da0, 0, 224 <unfinished ...>
+01:01:26.083307 OPENSSL_LH_strhash(0x5613d5fa5627, 0x5613d5fc9da0, 0x7ffcf1213440, 224) = 0xeced0ea8
+01:01:26.083474 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.083525 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9dc0, 0, 192 <unfinished ...>
+01:01:26.083651 OPENSSL_LH_strhash(0x5613d5fa5635, 0x5613d5fc9dc0, 0x7ffcf1213440, 0) = 0xb085fdcb
+01:01:26.083793 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.083849 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9de0, 0, 160 <unfinished ...>
+01:01:26.083978 OPENSSL_LH_strhash(0x5613d5fa54c3, 0x5613d5fc9de0, 0x7ffcf1213440, 160) = 0xb9b6e8cd
+01:01:26.084124 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.084187 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9e00, 0, 128 <unfinished ...>
+01:01:26.084440 OPENSSL_LH_strhash(0x5613d5fa54d4, 0x5613d5fc9e00, 0x7ffcf1213440, 0) = 0xe00065b4
+01:01:26.084590 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.084636 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9e20, 0, 96 <unfinished ...>
+01:01:26.084745 OPENSSL_LH_strhash(0x5613d5fa54e5, 0x5613d5fc9e20, 0x7ffcf1213440, 96) = 0xebdbf574
+01:01:26.084908 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.084955 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9e40, 0, 64 <unfinished ...>
+01:01:26.085106 OPENSSL_LH_strhash(0x5613d5fa54f6, 0x5613d5fc9e40, 0x7ffcf1213440, 0) = 0x44da5ec6
+01:01:26.085288 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.085334 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9e60, 0, 65 <unfinished ...>
+01:01:26.085441 OPENSSL_LH_strhash(0x5613d5fa5507, 0x5613d5fc9e60, 0x7ffcf1213440, 65) = 0x510cd91d
+01:01:26.085575 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.085616 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9e80, 0, 16 <unfinished ...>
+01:01:26.085714 OPENSSL_LH_strhash(0x5613d5fa5518, 0x5613d5fc9e80, 0x7ffcf1213440, 0) = 0x31750614
+01:01:26.085878 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.085945 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9ea0, 0, 481 <unfinished ...>
+01:01:26.086085 OPENSSL_LH_strhash(0x5613d5fa5545, 0x5613d5fc9ea0, 0x7ffcf1213440, 481) = 0xd6db8d71
+01:01:26.086243 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.086295 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9ec0, 0, 416 <unfinished ...>
+01:01:26.086410 OPENSSL_LH_strhash(0x5613d5fa5664, 0x5613d5fc9ec0, 0x7ffcf1213440, 0) = 0x4ba61bab
+01:01:26.086562 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.086610 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9ee0, 0, 384 <unfinished ...>
+01:01:26.086728 OPENSSL_LH_strhash(0x5613d5fa563c, 0x5613d5fc9ee0, 0x7ffcf1213440, 384) = 0xeb5f79d9
+01:01:26.086897 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.086939 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9f00, 0, 352 <unfinished ...>
+01:01:26.087038 OPENSSL_LH_strhash(0x5613d5fa5650, 0x5613d5fc9f00, 0x7ffcf1213440, 0) = 0x88c0fd98
+01:01:26.087168 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.087210 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9f20, 0, 320 <unfinished ...>
+01:01:26.087308 OPENSSL_LH_strhash(0x5613d5fa5646, 0x5613d5fc9f20, 0x7ffcf1213440, 320) = 0x2367959
+01:01:26.087435 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.087477 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9f40, 0, 288 <unfinished ...>
+01:01:26.087569 OPENSSL_LH_strhash(0x5613d5fa565a, 0x5613d5fc9f40, 0x7ffcf1213440, 0) = 0xa27b2079
+01:01:26.087698 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.087741 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9f60, 0, 256 <unfinished ...>
+01:01:26.087851 OPENSSL_LH_strhash(0x5613d5fb3f45, 0x5613d5fc9f60, 0x7ffcf1213440, 256) = 0x5de73734
+01:01:26.087995 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.088047 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9f80, 0, 224 <unfinished ...>
+01:01:26.088157 OPENSSL_LH_strhash(0x5613d5fa5563, 0x5613d5fc9f80, 0x7ffcf1213440, 0) = 0xb531dde7
+01:01:26.088294 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.088335 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9fa0, 0, 192 <unfinished ...>
+01:01:26.088428 OPENSSL_LH_strhash(0x5613d5fa5584, 0x5613d5fc9fa0, 0x7ffcf1213440, 192) = 0xad493522
+01:01:26.088549 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.088590 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9fc0, 0, 160 <unfinished ...>
+01:01:26.088680 OPENSSL_LH_strhash(0x5613d5fa554a, 0x5613d5fc9fc0, 0x7ffcf1213440, 0) = 0x6ba87bf3
+01:01:26.088802 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.088865 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fc9fe0, 0, 128 <unfinished ...>
+01:01:26.088948 OPENSSL_LH_strhash(0x5613d5fa5552, 0x5613d5fc9fe0, 0x7ffcf1213440, 128) = 0x63cf61b
+01:01:26.089059 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.089094 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fca000, 0, 96 <unfinished ...>
+01:01:26.089177 OPENSSL_LH_strhash(0x5613d5fa556b, 0x5613d5fca000, 0x7ffcf1213440, 0) = 0x58b305d2
+01:01:26.089286 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.089322 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fca020, 0, 64 <unfinished ...>
+01:01:26.089404 OPENSSL_LH_strhash(0x5613d5fa558c, 0x5613d5fca020, 0x7ffcf1213440, 64) = 0xd5ee86db
+01:01:26.089513 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.089550 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fca040, 0, 65 <unfinished ...>
+01:01:26.089633 OPENSSL_LH_strhash(0x5613d5fa55ad, 0x5613d5fca040, 0x7ffcf1213440, 0) = 0xe3ec8850
+01:01:26.089741 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.089777 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fca060, 0, 16 <unfinished ...>
+01:01:26.089875 OPENSSL_LH_strhash(0x5613d5fa555a, 0x5613d5fca060, 0x7ffcf1213440, 16) = 0x7850c167
+01:01:26.089992 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.090032 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fca080, 0, 513 <unfinished ...>
+01:01:26.090119 OPENSSL_LH_strhash(0x5613d5fa5577, 0x5613d5fca080, 0x7ffcf1213440, 0) = 0x514f6e49
+01:01:26.090236 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.090280 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fca0a0, 0, 448 <unfinished ...>
+01:01:26.090367 OPENSSL_LH_strhash(0x5613d5fa5598, 0x5613d5fca0a0, 0x7ffcf1213440, 448) = 0xd28c03bf
+01:01:26.090572 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.090614 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fca0c0, 0, 416 <unfinished ...>
+01:01:26.090705 OPENSSL_LH_strhash(0x5613d5fa55b9, 0x5613d5fca0c0, 0x7ffcf1213440, 0) = 0xa7a4f41c
+01:01:26.090823 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.090866 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fca0e0, 0, 384 <unfinished ...>
+01:01:26.090957 OPENSSL_LH_strhash(0x5613d5fa55a5, 0x5613d5fca0e0, 0x7ffcf1213440, 384) = 0x2ecd7f22
+01:01:26.091074 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.091113 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fca100, 0, 352 <unfinished ...>
+01:01:26.091202 OPENSSL_LH_strhash(0x5613d5fa5529, 0x5613d5fca100, 0x7ffcf1213440, 0) = 0xb578b9a2
+01:01:26.091331 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.091370 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fca120, 0, 353 <unfinished ...>
+01:01:26.091458 OPENSSL_LH_strhash(0x5613d5fa552e, 0x5613d5fca120, 0x7ffcf1213440, 353) = 0x79c9355e
+01:01:26.091574 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.091612 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fca140, 0, 288 <unfinished ...>
+01:01:26.091707 OPENSSL_LH_strhash(0x5613d5fa553e, 0x5613d5fca140, 0x7ffcf1213440, 0) = 0xe4989570
+01:01:26.091824 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.091874 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fca160, 0, 256 <unfinished ...>
+01:01:26.091958 OPENSSL_LH_strhash(0x5613d5fa5615, 0x5613d5fca160, 0x7ffcf1213440, 256) = 0xcbd6547c
+01:01:26.092073 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.092111 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fca180, 0, 224 <unfinished ...>
+01:01:26.092195 OPENSSL_LH_strhash(0x5613d5fa560a, 0x5613d5fca180, 0x7ffcf1213440, 0) = 0xd380f4b2
+01:01:26.092308 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.092348 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fca1a0, 0, 192 <unfinished ...>
+01:01:26.092435 OPENSSL_LH_strhash(0x5613d5fa55ea, 0x5613d5fca1a0, 0x7ffcf1213440, 192) = 0xeaf74ccf
+01:01:26.092547 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.092588 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fca1c0, 0, 160 <unfinished ...>
+01:01:26.092682 OPENSSL_LH_strhash(0x5613d5fa55fa, 0x5613d5fca1c0, 0x7ffcf1213440, 0) = 0x512527ab
+01:01:26.092816 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.092870 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fca1e0, 0, 128 <unfinished ...>
+01:01:26.092991 OPENSSL_LH_strhash(0x5613d5fa55f2, 0x5613d5fca1e0, 0x7ffcf1213440, 128) = 0xd42559a2
+01:01:26.093135 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.093179 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fca200, 0, 96 <unfinished ...>
+01:01:26.093286 OPENSSL_LH_strhash(0x5613d5fa5602, 0x5613d5fca200, 0x7ffcf1213440, 0) = 0xe5356d07
+01:01:26.093426 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.093470 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fca220, 0, 64 <unfinished ...>
+01:01:26.093577 OPENSSL_LH_strhash(0x5613d5fa5533, 0x5613d5fca220, 0x7ffcf1213440, 64) = 0x672eb79f
+01:01:26.093719 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.093762 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fca240, 0, 65 <unfinished ...>
+01:01:26.093895 OPENSSL_LH_strhash(0x5613d5fa5537, 0x5613d5fca240, 0x7ffcf1213440, 0) = 0xc716fabf
+01:01:26.094040 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.094081 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fca260, 0, 16 <unfinished ...>
+01:01:26.094194 OPENSSL_LH_strhash(0x5613d5fa2c51, 0x5613d5fca260, 0x7ffcf1213440, 16) = 0xc2eb9bad
+01:01:26.094336 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.094381 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fca280, 0, 401 <unfinished ...>
+01:01:26.094493 OPENSSL_LH_strhash(0x5613d5fa55c6, 0x5613d5fca280, 0x7ffcf1213440, 0) = 0x47a6acae
+01:01:26.094635 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.094682 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fca2a0, 0, 336 <unfinished ...>
+01:01:26.094867 OPENSSL_LH_strhash(0x5613d5fa55d8, 0x5613d5fca2a0, 0x7ffcf1213440, 336) = 0xe47de5f6
+01:01:26.095026 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.095075 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fca2c0, 0, 304 <unfinished ...>
+01:01:26.095248 OPENSSL_LH_strhash(0x5613d5fa55cf, 0x5613d5fca2c0, 0x7ffcf1213440, 0) = 0xd4be8095
+01:01:26.095385 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.095424 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fca2e0, 0, 272 <unfinished ...>
+01:01:26.095518 OPENSSL_LH_strhash(0x5613d5fa55e1, 0x5613d5fca2e0, 0x7ffcf1213440, 272) = 0xafedbbaa
+01:01:26.095640 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.095679 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fca300, 0, 240 <unfinished ...>
+01:01:26.095767 OPENSSL_LH_strhash(0x5613d5fa566d, 0x5613d5fca300, 0x7ffcf1213440, 0) = 0xa6ff22f
+01:01:26.095895 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.095933 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fca320, 0, 208 <unfinished ...>
+01:01:26.096015 OPENSSL_LH_strhash(0x5613d5fa567d, 0x5613d5fca320, 0x7ffcf1213440, 208) = 0x58a0c9a0
+01:01:26.096125 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.096158 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fca340, 0, 176 <unfinished ...>
+01:01:26.096239 OPENSSL_LH_strhash(0x5613d5fa568d, 0x5613d5fca340, 0x7ffcf1213440, 0) = 0x57c61929
+01:01:26.096447 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.096500 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fca360, 0, 144 <unfinished ...>
+01:01:26.096615 OPENSSL_LH_strhash(0x5613d5fa5675, 0x5613d5fca360, 0x7ffcf1213440, 144) = 0x15152463
+01:01:26.096752 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.096788 OPENSSL_LH_insert(0x5613d77fb9e0, 0x5613d5fca380, 0, 112 <unfinished ...>
+01:01:26.096902 OPENSSL_LH_strhash(0x5613d5fa5685, 0x5613d5fca380, 0x7ffcf1213440, 0) = 0xf9267adb
+01:01:26.097005 <... OPENSSL_LH_insert resumed> ) = 0
+01:01:26.097042 strlen("openssl")                = 7
+01:01:26.097160 strncpy(0x5613d5fd2360, "openssl", 39) = 0x5613d5fd2360
+01:01:26.097272 OPENSSL_LH_retrieve(0x5613d77fb9e0, 0x7ffcf12134b0, 0, 0x6c7373 <unfinished ...>
+01:01:26.097351 OPENSSL_LH_strhash(0x5613d5fd2360, 0x7ffcf12134b0, 0x7ffcf1213480, 0x6c7373) = 0x12d061d4
+01:01:26.097457 <... OPENSSL_LH_retrieve resumed> ) = 0
+01:01:26.097492 OPENSSL_LH_retrieve(0x5613d77fb9e0, 0x7ffcf1213440, 0x7ffcf1213a10, 64 <unfinished ...>
+01:01:26.097568 OPENSSL_LH_strhash(0x7ffcf1213f13, 0x7ffcf1213440, 0x7ffcf1213420, 64) = 0x942b4e0
+01:01:26.097663 strncmp("s_client", "s_client", 8) = 0
+01:01:26.097795 <... OPENSSL_LH_retrieve resumed> ) = 0x5613d5fc95a0
+01:01:26.097847 TLS_client_method(4, 0x7ffcf1213a10, 0, 0xfffa7f00) = 0x7f9284349420
+01:01:26.097954 CRYPTO_strdup(0x5613d5fad9f2, 0x5613d5fa8814, 904, 0xfffa7f00) = 0x5613d7800960
+01:01:26.098079 strlen("s_client")               = 8
+01:01:26.098199 strncpy(0x5613d5fd2360, "s_client", 39) = 0x5613d5fd2360
+01:01:26.098341 X509_VERIFY_PARAM_new(0x5613d5fd2369, 0x7ffcf1213f13, 0, 0x746e65696c635f73) = 0x5613d77fb8d0
+01:01:26.098470 SSL_CONF_CTX_new(0x5613d77fb8d0, 0, 112, 0x5613d77fd040) = 0x5613d7800130
+01:01:26.098588 CRYPTO_malloc(8192, 0x5613d5fb20af, 957, 0x5613d7800180) = 0x5613d7801b80
+01:01:26.098741 CRYPTO_malloc(8192, 0x5613d5fb20af, 957, 0x5613d7803b80) = 0x5613d7803b90
+01:01:26.098913 CRYPTO_malloc(8192, 0x5613d5fb20af, 957, 0x5613d7805b90) = 0x5613d7805ba0
+01:01:26.099038 SSL_CONF_CTX_set_flags(0x5613d7800130, 5, 8209, 0x5613d7807ba0) = 5
+01:01:26.099165 strlen("s_client")               = 8
+01:01:26.099298 strncpy(0x5613d5fd2360, "s_client", 39) = 0x5613d5fd2360
+01:01:26.099437 strchr("showcerts", '=')         = nil
+01:01:26.099582 strcmp("showcerts", "help")      = 11
+01:01:26.099725 strcmp("showcerts", "host")      = 11
+01:01:26.099860 strcmp("showcerts", "port")      = 3
+01:01:26.099989 strcmp("showcerts", "connect")   = 16
+01:01:26.100131 strcmp("showcerts", "bind")      = 17
+01:01:26.100266 strcmp("showcerts", "proxy")     = 3
+01:01:26.100408 strcmp("showcerts", "unix")      = -2
+01:01:26.100539 strcmp("showcerts", "4")         = 63
+01:01:26.100649 strcmp("showcerts", "6")         = 61
+01:01:26.100772 strcmp("showcerts", "verify")    = -3
+01:01:26.100941 strcmp("showcerts", "cert")      = 16
+01:01:26.101086 strcmp("showcerts", "certform")  = 16
+01:01:26.101252 strcmp("showcerts", "nameopt")   = 5
+01:01:26.101415 strcmp("showcerts", "key")       = 8
+01:01:26.101566 strcmp("showcerts", "keyform")   = 8
+01:01:26.101749 strcmp("showcerts", "pass")      = 3
+01:01:26.101916 strcmp("showcerts", "CApath")    = 48
+01:01:26.102041 strcmp("showcerts", "CAfile")    = 48
+01:01:26.102154 strcmp("showcerts", "no-CAfile") = 5
+01:01:26.102287 strcmp("showcerts", "no-CApath") = 5
+01:01:26.102424 strcmp("showcerts", "requestCAfile") = 1
+01:01:26.102608 strcmp("showcerts", "dane_tlsa_domain") = 15
+01:01:26.102785 strcmp("showcerts", "dane_tlsa_rrdata") = 15
+01:01:26.102964 strcmp("showcerts", "dane_ee_no_namechecks") = 15
+01:01:26.104644 strcmp("showcerts", "reconnect") = 1
+01:01:26.104835 strcmp("showcerts", "showcerts") = 0
+01:01:26.105034 strchr("connect", '=')           = nil
+01:01:26.105229 strcmp("connect", "help")        = -5
+01:01:26.105406 strcmp("connect", "host")        = -5
+01:01:26.105549 strcmp("connect", "port")        = -13
+01:01:26.105760 strcmp("connect", "connect")     = 0
+01:01:26.105963 CRYPTO_free(0, 0x5613d5fa8814, 844, 0) = 0
+01:01:26.106129 CRYPTO_strdup(0x7ffcf1213f30, 0x5613d5fa8814, 847, 0) = 0x5613d7800980
+01:01:26.106309 BIO_parse_hostserv(0x5613d7800980, 0x7ffcf12131b0, 0x7ffcf12131b8, 0) = 1
+01:01:26.106503 CRYPTO_free(0, 0x5613d5fa8814, 1598, 0x3334) = 0
+01:01:26.106633 CRYPTO_free(0x5613d7800960, 0x5613d5fa8814, 1600, 0x3334) = 0
+01:01:26.106782 BIO_new_fp(0x7f9283f9c6c0, 16, 0x7ffcf12131d0, 0) = 0x5613d77fd040
+01:01:26.106952 getenv("HARNESS_OSSL_PREFIX")    = nil
+01:01:26.107178 SSL_CTX_new(0x7f9284349420, 0, 0x7ffcf1213210, 0) = 0x5613d77e5110
+01:01:26.108296 SSL_CTX_ctrl(0x5613d77e5110, 78, 4, 0) = 0
+01:01:26.108495 SSL_CONF_CTX_set_ssl_ctx(0x5613d7800130, 0x5613d77e5110, 0x5613d77e5110, 0) = 0x5613d780a30c
+01:01:26.108683 OPENSSL_sk_num(0, 0x5613d77e5270, 0x5613d77e5110, 0) = 0xffffffff
+01:01:26.108883 SSL_CONF_CTX_finish(0x5613d7800130, 0x5613d77e5270, 0x5613d77e5110, 0) = 1
+01:01:26.109093 X509_STORE_free(0, 0, 0, 0)      = 0
+01:01:26.109261 X509_STORE_free(0, 0, 0, 0)      = 0
+01:01:26.109446 SSL_CTX_set_default_ctlog_list_file(0x5613d77e5110, 0, 0, 0) = 0
+01:01:26.109664 ERR_clear_error(1, 0x5613d77df010, 0, 2) = 0
+01:01:26.109849 SSL_CTX_set_verify(0x5613d77e5110, 0, 0x5613d5f99640, 1) = 0
+01:01:26.110122 SSL_CTX_set_default_verify_file(0x5613d77e5110, 0, 0, 0) = 1
+01:01:26.110401 SSL_CTX_set_default_verify_dir(0x5613d77e5110, 0x5613d77df010, 4, 1) = 1
+01:01:26.110615 SSL_CTX_get_cert_store(0x5613d77e5110, 0, 0, 0x5613d780c2d0) = 0x5613d78015a0
+01:01:26.110838 OPENSSL_sk_num(0, 0, 0, 0x5613d780c2d0) = 0xffffffff
+01:01:26.111025 SSL_CTX_callback_ctrl(0x5613d77e5110, 53, 0x5613d5f74600, 0) = 1
+01:01:26.111195 SSL_CTX_ctrl(0x5613d77e5110, 54, 0, 0x7ffcf1213200) = 1
+01:01:26.111372 SSL_CTX_ctrl(0x5613d77e5110, 44, 513, 0) = 2
+01:01:26.111552 SSL_CTX_sess_set_new_cb(0x5613d77e5110, 0x5613d5f73010, 513, 0) = 2
+01:01:26.111679 BIO_free_all(0, 0, 513, 0)       = 2
+01:01:26.111829 SSL_new(0x5613d77e5110, 0, 513, 0) = 0x5613d780c300
+01:01:26.112016 strlen("8.8.8.8")                = 7
+01:01:26.112237 BIO_sock_init(0x7ffcf121318c, 0x5613d78001f0, 0x5613d7800210, 0) = 1
+01:01:26.112474 BIO_lookup_ex(0x5613d78001f0, 0x5613d7800210, 0, 0) = 1
+01:01:26.113107 BIO_ADDRINFO_socktype(0x5613d7801160, 0x5613d7801190, 16, 1) = 1
+01:01:26.113305 BIO_ADDRINFO_protocol(0x5613d7801160, 0x5613d7801190, 0, 1) = 6
+01:01:26.113488 BIO_ADDRINFO_socktype(0x5613d7801160, 0x5613d7801190, 0, 1) = 1
+01:01:26.113682 BIO_ADDRINFO_family(0x5613d7801160, 0x5613d7801190, 0, 1) = 2
+01:01:26.113861 BIO_socket(2, 1, 6, 0)           = 3
+01:01:26.114060 BIO_ADDRINFO_address(0x5613d7801160, 1, 6, 0x7f9283edc3b7) = 0x5613d7801190
+01:01:26.114226 BIO_connect(3, 0x5613d7801190, 0, 0x7f9283edc3b7) = 1
+01:01:26.119094 ERR_clear_error(3, 0x5613d7801190, 16, 0x7f9283fb92e3) = 0x5613d77e3ac0
+01:01:26.119255 BIO_ADDRINFO_free(0x5613d7801160, 1, 0x7f9283fc3340, 0x7f9283fb92e3) = 0
+01:01:26.119421 BIO_printf(0x5613d77fd040, 0x5613d5fa8c5e, 3, 0) = 20
+01:01:26.119613 BIO_new_socket(3, 0, 0, 4096)    = 0x5613d780f960
+01:01:26.119797 SSL_set_bio(0x5613d780c300, 0x5613d780f960, 0x5613d780f960, 0x7ffcf1212f24) = 0
+01:01:26.120080 SSL_set_connect_state(0x5613d780c300, 0x5613d780f960, 0x5613d780f960, 0x7ffcf1212f24) = 0
+01:01:26.120239 fileno(0x7f9283f9b9a0)           = 0
+01:01:26.120396 SSL_get_fd(0x5613d780c300, 0x7f9284220327, 57, 0x7ffcf1212f24) = 3
+01:01:26.120631 SSL_get_fd(0x5613d780c300, 105, 0, 0x7ffcf1212f44) = 3
+01:01:26.120839 SSL_is_dtls(0x5613d780c300, 105, 0, 0) = 0
+01:01:26.121050 SSL_is_init_finished(0x5613d780c300, 105, 0, 0) = 0
+01:01:26.121246 SSL_ctrl(0x5613d780c300, 12, 0, 0) = 0
+01:01:26.121485 SSL_get_key_update_type(0x5613d780c300, 9, 0, 0) = 0xffffffff
+01:01:26.121715 SSL_has_pending(0x5613d780c300, 9, 0, 0) = 0
+01:01:26.121898 SSL_get_fd(0x5613d780c300, 9, 0, 0) = 3
+01:01:26.122047 SSL_get_fd(0x5613d780c300, 105, 0, 0x7ffcf1212f44) = 3
+01:01:26.122197 __fdelt_chk(3, 105, 0, 0x7ffcf1212f44) = 0
+01:01:26.122376 SSL_get_fd(0x5613d780c300, 105, 0, 3) = 3
+01:01:26.122585 SSL_get_fd(0x5613d780c300, 105, 0, 0x7ffcf1212f44) = 3
+01:01:26.122761 __fdelt_chk(3, 105, 0, 0x7ffcf1212f44) = 0
+01:01:26.122974 select(4, 0x7ffcf1213230, 0x7ffcf12132b0, 0) = 1
+01:01:26.123170 SSL_is_dtls(0x5613d780c300, 0x7ffcf1213230, 0x7ffcf12132b0, 0x7f9283ed26c4) = 0
+01:01:26.123371 SSL_get_fd(0x5613d780c300, 0x7ffcf1213230, 0x7ffcf12132b0, 0x7f9283ed26c4) = 3
+01:01:26.123563 __fdelt_chk(3, 105, 0, 0x7ffcf1212f44) = 0
+01:01:26.123741 SSL_get_fd(0x5613d780c300, 105, 0, 0x7ffcf1212f44) = 3
+01:01:26.123954 SSL_write(0x5613d780c300, 0x5613d7801b80, 0, 0x7ffcf1212f44 <unfinished ...>
+01:01:26.133864 SSL_get_servername(0x5613d780c300, 0, 0x7ffcf1213200, 0x5613d5f74600) = 0
+01:01:26.134034 SSL_get_servername_type(0x5613d780c300, 0, 0x7f928434a940, 38) = 0xffffffff
+01:01:26.134192 BIO_printf(0x5613d77df4d0, 0x5613d5fa8a98, 0x7f928434a940, 38Can't use SSL_get_servername
+) = 29
+01:01:26.135109 X509_STORE_CTX_get_current_cert(0x5613d78248b0, 0x5613d78248b0, 0, 2) = 0x5613d7827ae0
+01:01:26.135334 X509_STORE_CTX_get_error(0x5613d78248b0, 0x5613d78248b0, 0, 2) = 0
+01:01:26.135503 X509_STORE_CTX_get_error_depth(0x5613d78248b0, 0x5613d78248b0, 0, 2) = 2
+01:01:26.135745 BIO_printf(0x5613d77df4d0, 0x5613d5fb34f1, 2, 2depth=2 ) = 8
+01:01:26.135991 X509_get_subject_name(0x5613d7827ae0, 0x7ffcf12121b0, 0, 0x7f9283ecbd53) = 0x5613d78262f0
+01:01:26.136154 X509_NAME_print_ex(0x5613d77df4d0, 0x5613d78262f0, 0, 0x82031fC = US, O = Google Trust Services LLC, CN = GTS Root R1) = 55
+01:01:26.138271 BIO_puts(0x5613d77df4d0, 0x5613d5fa4f4e, 0x5613d77df4d0, 0x7f928408c70c
+) = 1
+01:01:26.138559 BIO_printf(0x5613d77df4d0, 0x5613d5fb3527, 1, 0x7f9283ecbd53verify return:1
+) = 16
+01:01:26.139000 X509_STORE_CTX_get_current_cert(0x5613d78248b0, 0x5613d78248b0, 0, 7) = 0x5613d7821ef0
+01:01:26.139265 X509_STORE_CTX_get_error(0x5613d78248b0, 0x5613d78248b0, 0, 7) = 0
+01:01:26.139456 X509_STORE_CTX_get_error_depth(0x5613d78248b0, 0x5613d78248b0, 0, 7) = 1
+01:01:26.139612 BIO_printf(0x5613d77df4d0, 0x5613d5fb34f1, 1, 7depth=1 ) = 8
+01:01:26.139836 X509_get_subject_name(0x5613d7821ef0, 0x7ffcf12121b0, 0, 0x7f9283ecbd53) = 0x5613d7822160
+01:01:26.140003 X509_NAME_print_ex(0x5613d77df4d0, 0x5613d7822160, 0, 0x82031fC = US, O = Google Trust Services LLC, CN = GTS CA 1C3) = 54
+01:01:26.141693 BIO_puts(0x5613d77df4d0, 0x5613d5fa4f4e, 0x5613d77df4d0, 0x7f928408c70c
+) = 1
+01:01:26.141972 BIO_printf(0x5613d77df4d0, 0x5613d5fb3527, 1, 0x7f9283ecbd53verify return:1
+) = 16
+01:01:26.142270 X509_STORE_CTX_get_current_cert(0x5613d78248b0, 0x5613d78248b0, 0, 7) = 0x5613d78206b0
+01:01:26.142429 X509_STORE_CTX_get_error(0x5613d78248b0, 0x5613d78248b0, 0, 7) = 0
+01:01:26.142609 X509_STORE_CTX_get_error_depth(0x5613d78248b0, 0x5613d78248b0, 0, 7) = 0
+01:01:26.142929 BIO_printf(0x5613d77df4d0, 0x5613d5fb34f1, 0, 7depth=0 ) = 8
+01:01:26.143136 X509_get_subject_name(0x5613d78206b0, 0x7ffcf12121b0, 0, 0x7f9283ecbd53) = 0x5613d781fa60
+01:01:26.143278 X509_NAME_print_ex(0x5613d77df4d0, 0x5613d781fa60, 0, 0x82031fCN = dns.google) = 15
+01:01:26.143866 BIO_puts(0x5613d77df4d0, 0x5613d5fa4f4e, 0x5613d77df4d0, 0x7f928408c70c
+) = 1
+01:01:26.144149 BIO_printf(0x5613d77df4d0, 0x5613d5fb3527, 1, 0x7f9283ecbd53verify return:1
+) = 16
+01:01:26.144631 <... SSL_write resumed> )        = 0
+01:01:26.144690 SSL_get_error(0x5613d780c300, 0, 0, 0) = 5
+01:01:26.144861 SSL_is_dtls(0x5613d780c300, 0x7f928421f8ec, 0x5613d5f77d38, 0) = 0
+01:01:26.145043 SSL_is_init_finished(0x5613d780c300, 0x7f928421f8ec, 0x5613d5f77d38, 0) = 1
+01:01:26.145193 SSL_version(0x5613d780c300, 0x5613d780c300, 1, 0) = 772
+01:01:26.145372 SSL_get_SSL_CTX(0x5613d780c300, 0x5613d780c300, 1, 0) = 0x5613d77e5110
+01:01:26.145576 SSL_get_peer_cert_chain(0x5613d780c300, 0x5613d780c300, 1, 0) = 0x5613d781f410
+01:01:26.145756 BIO_printf(0x5613d77fd040, 0x5613d5fa88b2, 1, 0) = 22
+01:01:26.145931 OPENSSL_sk_num(0x5613d781f410, 0x7ffcf12125c0, 0, 3072) = 3
+01:01:26.146065 BIO_printf(0x5613d77fd040, 0x5613d5fa88c9, 0, 3072) = 5
+01:01:26.146195 OPENSSL_sk_value(0x5613d781f410, 0, 0, 0x3a732030) = 0x5613d78206b0
+01:01:26.146322 X509_get_subject_name(0x5613d78206b0, 0, 0, 0x3a732030) = 0x5613d781fa60
+01:01:26.146451 X509_NAME_print_ex(0x5613d77fd040, 0x5613d781fa60, 0, 0x82031f) = 15
+01:01:26.146580 BIO_puts(0x5613d77fd040, 0x5613d5fa4f4e, 0x5613d77fd040, 0x7f928408c70c) = 1
+01:01:26.146710 BIO_printf(0x5613d77fd040, 0x5613d5fa88d0, 0, 10) = 5
+01:01:26.146838 OPENSSL_sk_value(0x5613d781f410, 0, 0, 0x3a692020) = 0x5613d78206b0
+01:01:26.146968 X509_get_issuer_name(0x5613d78206b0, 0, 0, 0x3a692020) = 0x5613d781f440
+01:01:26.147095 X509_NAME_print_ex(0x5613d77fd040, 0x5613d781f440, 0, 0x82031f) = 54
+01:01:26.147225 BIO_puts(0x5613d77fd040, 0x5613d5fa4f4e, 0x5613d77fd040, 0x7f928408c70c) = 1
+01:01:26.147350 OPENSSL_sk_value(0x5613d781f410, 0, 0, 10) = 0x5613d78206b0
+01:01:26.147473 PEM_write_bio_X509(0x5613d77fd040, 0x5613d78206b0, 0, 10) = 1
+01:01:26.147614 OPENSSL_sk_num(0x5613d781f410, 0, 0x7f9283f9bc00, 0x5613d781d880) = 3
+01:01:26.147741 BIO_printf(0x5613d77fd040, 0x5613d5fa88c9, 1, 0x5613d781d880) = 5
+01:01:26.147872 OPENSSL_sk_value(0x5613d781f410, 1, 0, 0x3a732031) = 0x5613d7821ef0
+01:01:26.147996 X509_get_subject_name(0x5613d7821ef0, 1, 0, 0x3a732031) = 0x5613d7822160
+01:01:26.148123 X509_NAME_print_ex(0x5613d77fd040, 0x5613d7822160, 0, 0x82031f) = 54
+01:01:26.148251 BIO_puts(0x5613d77fd040, 0x5613d5fa4f4e, 0x5613d77fd040, 0x7f928408c70c) = 1
+01:01:26.148375 BIO_printf(0x5613d77fd040, 0x5613d5fa88d0, 0, 10) = 5
+01:01:26.148499 OPENSSL_sk_value(0x5613d781f410, 1, 0, 0x3a692020) = 0x5613d7821ef0
+01:01:26.148625 X509_get_issuer_name(0x5613d7821ef0, 1, 0, 0x3a692020) = 0x5613d7821120
+01:01:26.148752 X509_NAME_print_ex(0x5613d77fd040, 0x5613d7821120, 0, 0x82031f) = 55
+01:01:26.148914 BIO_puts(0x5613d77fd040, 0x5613d5fa4f4e, 0x5613d77fd040, 0x7f928408c70c) = 1
+01:01:26.149071 OPENSSL_sk_value(0x5613d781f410, 1, 0, 10) = 0x5613d7821ef0
+01:01:26.149218 PEM_write_bio_X509(0x5613d77fd040, 0x5613d7821ef0, 0, 10CONNECTED(00000003)
+---
+Certificate chain
+ 0 s:CN = dns.google
+   i:C = US, O = Google Trust Services LLC, CN = GTS CA 1C3
+-----BEGIN CERTIFICATE-----
+MIIF4zCCBMugAwIBAgIRAJ//HVFoLHbQCgAAAAErgaAwDQYJKoZIhvcNAQELBQAw
+RjELMAkGA1UEBhMCVVMxIjAgBgNVBAoTGUdvb2dsZSBUcnVzdCBTZXJ2aWNlcyBM
+TEMxEzARBgNVBAMTCkdUUyBDQSAxQzMwHhcNMjExMjI3MDgxMzUxWhcNMjIwMzIx
+MDgxMzUwWjAVMRMwEQYDVQQDEwpkbnMuZ29vZ2xlMIIBIjANBgkqhkiG9w0BAQEF
+AAOCAQ8AMIIBCgKCAQEAxJMwOeAnKA80ld2ubu0PULISlcdaXMN5w79XpWASRxQb
+c5G8zzqkgvmgP3Uk+gGkPhGECXbA9XuC2J7DpL+aeZShBAkLo5+Q4frvYPdJwSA5
+2CtcJLGG4JTYsSJa46+h5jqk+r93gdmimPaeb8kDt4I96hwQZ5dnakfeiJ7SpvVv
+mYqQhi5oKeBl/+XXJrrnaqYSBJY4LNKMOBX1RV3PQlJww/i4+JsbC7whRXVHlSCm
+EgjWLjoeM/UiCn+pKdOZ91zwgGh7D/rkIWO1/pxblo4D/cNtxJS+NzYG51468rdb
+EKWM/Nt5DGyS5OOiBfdBPCsdhINsfTMG64Q+2C4O7wIDAQABo4IC+zCCAvcwDgYD
+VR0PAQH/BAQDAgWgMBMGA1UdJQQMMAoGCCsGAQUFBwMBMAwGA1UdEwEB/wQCMAAw
+HQYDVR0OBBYEFCIEx5jXaS80yZ6DUiI+Z7ST2wpUMB8GA1UdIwQYMBaAFIp0f6+F
+ze6VzT2c0OJGFPNxNR0nMGoGCCsGAQUFBwEBBF4wXDAnBggrBgEFBQcwAYYbaHR0
+cDovL29jc3AucGtpLmdvb2cvZ3RzMWMzMDEGCCsGAQUFBzAChiVodHRwOi8vcGtp
+Lmdvb2cvcmVwby9jZXJ0cy9ndHMxYzMuZGVyMIGsBgNVHREEgaQwgaGCCmRucy5n
+b29nbGWCDmRucy5nb29nbGUuY29tghAqLmRucy5nb29nbGUuY29tggs4ODg4Lmdv
+b2dsZYIQZG5zNjQuZG5zLmdvb2dsZYcECAgICIcECAgEBIcQIAFIYEhgAAAAAAAA
+AACIiIcQIAFIYEhgAAAAAAAAAACIRIcQIAFIYEhgAAAAAAAAAABkZIcQIAFIYEhg
+AAAAAAAAAAAAZDAhBgNVHSAEGjAYMAgGBmeBDAECATAMBgorBgEEAdZ5AgUDMDwG
+A1UdHwQ1MDMwMaAvoC2GK2h0dHA6Ly9jcmxzLnBraS5nb29nL2d0czFjMy9tb1ZE
+ZklTaWEyay5jcmwwggEEBgorBgEEAdZ5AgQCBIH1BIHyAPAAdgBGpVXrdfqRIDC1
+oolp9PN9ESxBdL79SbiFq/L8cP5tRwAAAX37KuxVAAAEAwBHMEUCIDX2Zt0hwofx
+wP1jzKN4A7tzZQWVCcVlQlKNrc/ngEEBAiEA+GCaH5jEh0N6UlU20JrPrYroSANo
+7P3/xVZvr85nAZsAdgBRo7D1/QF5nFZtuDd4jwykeswbJ8v3nohCmg3+1IsF5QAA
+AX37KuyTAAAEAwBHMEUCIQCP+qXa5LwxWzhvYORpPMvahhAUlZSWiJiedCYm8hd4
+CgIgCSfrJEycJroZkyv+n+lr7cS2fp3i6XI+nQ/PtjFD1AgwDQYJKoZIhvcNAQEL
+BQADggEBAJDcetHAsFI570CH2ls5Xvy0mT9/wgc1OaFbjQopLr9FIQ4GJ+H7Cy89
+BPXnK4xvAwz7UxsNJMlMjKu0oYS9mfX50Hc58ajF+f+XBqnmPHzXHRvjyeHRLvHf
+xYJnbvWi8JyTA0TqcSlK0PXChcQxc+Y2AhuGSwNvS2gx0cO5rUl5msarPWyPW0l1
+uxHSr1eFn2dhOxg77/u3dS2kJOCDVfREnuc3hS07WwRM4dv0r1vWselptLgnyx9Y
+u7Ny47vouikICmiR/Z6Y9cujF/hUHtY5Wtmc0PqL2ZtFrDSwZHFHvJGqDOuOG1kz
+2wSSX6ZPsal/Oh/b7DC8Y4SvOrU7tqM=
+-----END CERTIFICATE-----
+ 1 s:C = US, O = Google Trust Services LLC, CN = GTS CA 1C3
+   i:C = US, O = Google Trust Services LLC, CN = GTS Root R1
+-----BEGIN CERTIFICATE-----
+MIIFljCCA36gAwIBAgINAgO8U1lrNMcY9QFQZjANBgkqhkiG9w0BAQsFADBHMQsw
+CQYDVQQGEwJVUzEiMCAGA1UEChMZR29vZ2xlIFRydXN0IFNlcnZpY2VzIExMQzEU
+MBIGA1UEAxMLR1RTIFJvb3QgUjEwHhcNMjAwODEzMDAwMDQyWhcNMjcwOTMwMDAw
+MDQyWjBGMQswCQYDVQQGEwJVUzEiMCAGA1UEChMZR29vZ2xlIFRydXN0IFNlcnZp
+Y2VzIExMQzETMBEGA1UEAxMKR1RTIENBIDFDMzCCASIwDQYJKoZIhvcNAQEBBQAD
+ggEPADCCAQoCggEBAPWI3+dijB43+DdCkH9sh9D7ZYIl/ejLa6T/belaI+KZ9hzp
+kgOZE3wJCor6QtZeViSqejOEH9Hpabu5dOxXTGZok3c3VVP+ORBNtzS7XyV3NzsX
+lOo85Z3VvMO0Q+sup0fvsEQRY9i0QYXdQTBIkxu/t/bgRQIh4JZCF8/ZK2VWNAcm
+BA2o/X3KLu/qSHw3TT8An4Pf73WELnlXXPxXbhqW//yMmqaZviXZf5YsBvcRKgKA
+gOtjGDxQSYflispfGStZloEAoPtR28p3CwvJlk/vcEnHXG0g/Zm0tOLKLnf9LdwL
+tmsTDIwZKxeWmLnwi/agJ7u2441Rj72ux5uxiZ0CAwEAAaOCAYAwggF8MA4GA1Ud
+DwEB/wQEAwIBhjAdBgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIwEgYDVR0T
+AQH/BAgwBgEB/wIBADAdBgNVHQ4EFgQUinR/r4XN7pXNPZzQ4kYU83E1HScwHwYD
+VR0jBBgwFoAU5K8rJnEaK0gnhS9SZizv8IkTcT4waAYIKwYBBQUHAQEEXDBaMCYG
+CCsGAQUFBzABhhpodHRwOi8vb2NzcC5wa2kuZ29vZy9ndHNyMTAwBggrBgEFBQcw
+AoYkaHR0cDovL3BraS5nb29nL3JlcG8vY2VydHMvZ3RzcjEuZGVyMDQGA1UdHwQt
+MCswKaAnoCWGI2h0dHA6Ly9jcmwucGtpLmdvb2cvZ3RzcjEvZ3RzcjEuY3JsMFcG
+A1UdIARQME4wOAYKKwYBBAHWeQIFAzAqMCgGCCsGAQUFBwIBFhxodHRwczovL3Br
+aS5nb29nL3JlcG9zaXRvcnkvMAgGBmeBDAECATAIBgZngQwBAgIwDQYJKoZIhvcN
+AQELBQADggIBAIl9rCBcDDy+mqhXlRu0rvqrpXJxtDaV/d9AEQNMwkYUuxQkq/BQ
+cSLbrcRuf8/xam/IgxvYzolfh2yHuKkMo5uhYpSTld9brmYZCwKWnvy15xBpPnrL
+RklfRuFBsdeYTWU0AIAaP0+fbH9JAIFTQaSSIYKCGvGjRFsqUBITTcFTNvNCCK9U
++o53UxtkOCcXCb1YyRt8OS1b887U7ZfbFAO/CVMkH8IMBHmYJvJh8VNS/UKMG2Yr
+PxWhu//2m+OBmgEGcYk1KCTd4b3rGS3hSMs9WYNRtHTGnXzGsYZbr8w0xNPM1IER
+lQCh9BIiAfq0g3GvjLeMcySsN1PCAJA/Ef5c7TaUEDu9Ka7ixzpiO2xj2YC/WXGs
+Yye5TBeg2vZzFb8q3o/zpWwygTMD0IZRcZk0upONXbVRWPeyk+gB9lm+cZv9TSjO
+z23HFtz30dZGm6fKa+l3D/2gthsjgx0Q) = 1
+01:01:26.149463 OPENSSL_sk_num(0x5613d781f410, 0, 0x7f9283f9bc00, 0x5613d781d830) = 3
+01:01:26.149629 BIO_printf(0x5613d77fd040, 0x5613d5fa88c9, 2, 0x5613d781d830) = 5
+01:01:26.149769 OPENSSL_sk_value(0x5613d781f410, 2, 0, 0x3a732032) = 0x5613d7823310
+01:01:26.149930 X509_get_subject_name(0x5613d7823310, 2, 0, 0x3a732032) = 0x5613d7823480
+01:01:26.150078 X509_NAME_print_ex(0x5613d77fd040, 0x5613d7823480, 0, 0x82031f) = 55
+01:01:26.150224 BIO_puts(0x5613d77fd040, 0x5613d5fa4f4e, 0x5613d77fd040, 0x7f928408c70c) = 1
+01:01:26.150367 BIO_printf(0x5613d77fd040, 0x5613d5fa88d0, 0, 10) = 5
+01:01:26.150511 OPENSSL_sk_value(0x5613d781f410, 2, 0, 0x3a692020) = 0x5613d7823310
+01:01:26.150653 X509_get_issuer_name(0x5613d7823310, 2, 0, 0x3a692020) = 0x5613d78226e0
+01:01:26.150793 X509_NAME_print_ex(0x5613d77fd040, 0x5613d78226e0, 0, 0x82031f) = 67
+01:01:26.150953 BIO_puts(0x5613d77fd040, 0x5613d5fa4f4e, 0x5613d77fd040, 0x7f928408c70c) = 1
+01:01:26.151080 OPENSSL_sk_value(0x5613d781f410, 2, 0, 10) = 0x5613d7823310
+01:01:26.151201 PEM_write_bio_X509(0x5613d77fd040, 0x5613d7823310, 0, 10) = 1
+01:01:26.151346 OPENSSL_sk_num(0x5613d781f410, 0, 0x7f9283f9bc00, 0x5613d781d800) = 3
+01:01:26.151535 BIO_printf(0x5613d77fd040, 0x5613d5fa891d, 0x7f9283f9bc00, 0x5613d781d800) = 4
+01:01:26.151689 SSL_get_peer_certificate(0x5613d780c300, 0xa2d2d2d, 0, 0xa2d2d2d) = 0x5613d78206b0
+01:01:26.151833 BIO_printf(0x5613d77fd040, 0x5613d5fa88d6, 0, 0xa2d2d2d) = 19
+01:01:26.152063 X509_get_subject_name(0x5613d78206b0, 0x5613d78206b0, 0, 3072) = 0x5613d781fa60
+01:01:26.152270 BIO_puts(0x5613d77fd040, 0x5613d5fa77da, 0x5613d781fa60, 0x82031f) = 8
+01:01:26.152410 X509_NAME_print_ex(0x5613d77fd040, 0x5613d781fa60, 0, 0x82031f) = 15
+01:01:26.152579 BIO_puts(0x5613d77fd040, 0x5613d5fa4f4e, 0x5613d77fd040, 0x7f928408c70c) = 1
+01:01:26.152760 BIO_puts(0x5613d77fd040, 0x5613d5fa4f4e, 0, 10) = 1
+01:01:26.152942 X509_get_issuer_name(0x5613d78206b0, 0x5613d5fa4f4e, 0, 10) = 0x5613d781f440
+01:01:26.153117 BIO_puts(0x5613d77fd040, 0x5613d5fa0a27, 0x5613d781f440, 0x82031f) = 7
+01:01:26.153347 X509_NAME_print_ex(0x5613d77fd040, 0x5613d781f440, 0, 0x82031f) = 54
+01:01:26.153541 BIO_puts(0x5613d77fd040, 0x5613d5fa4f4e, 0x5613d77fd040, 0x7f928408c70c) = 1
+01:01:26.153695 BIO_puts(0x5613d77fd040, 0x5613d5fa4f4e, 0, 10) = 1
+01:01:26.153823 SSL_is_server(0x5613d780c300, 0x5613d780c300, 0, 10) = 0
+01:01:26.153971 SSL_get0_peer_CA_list(0x5613d780c300, 0x5613d780c300, 0x5613d5fa9013, 10) = 0
+01:01:26.154186 SSL_is_server(0x5613d780c300, 0x5613d780c300, 0x5613d5fa9013, 10) = 0
+01:01:26.154380 BIO_printf(0x5613d77fd040, 0x5613d5fb46c0, 0x5613d5fa52ae, 10) = 40
+01:01:26.154553 SSL_is_server(0x5613d780c300, 0x5613d780c300, 0, 3072) = 0
+01:01:26.154717 SSL_ctrl(0x5613d780c300, 103, 0, 0x7ffcf1212e80) = 0
+01:01:26.154898 SSL_is_server(0x5613d780c300, 0x5613d780c300, 0, 0) = 0
+01:01:26.155060 SSL_get_sigalgs(0x5613d780c300, 0xffffffff, 0, 0) = 0
+01:01:26.155192 SSL_is_server(0x5613d780c300, 0x5613d780c300, 1, 0) = 0
+01:01:26.155355 SSL_get_shared_sigalgs(0x5613d780c300, 0, 0, 0) = 0
+01:01:26.155529 SSL_ctrl(0x5613d780c300, 108, 0, 0x7ffcf1212e80) = 1
+01:01:26.155702 OBJ_nid2sn(672, 105, 0, 0x7ffcf1212e80) = 0x7f92842258b0
+01:01:26.155905 BIO_printf(0x5613d77fd040, 0x5613d5fb3598, 0x7f92842258b0, 0x7ffcf1212e80) = 28
+01:01:26.156050 SSL_get_peer_signature_type_nid(0x5613d780c300, 0x7ffcf1212e80, 0, 3072) = 1
+01:01:26.156218 BIO_printf(0x5613d77fd040, 0x5613d5fb35b1, 0x5613d5fb33d0, 3072) = 29
+01:01:26.156385 SSL_ctrl(0x5613d780c300, 109, 0, 0x7ffcf1212ea0) = 1
+01:01:26.156544 BIO_puts(0x5613d77fd040, 0x5613d5fb3666, 0, 0x7ffcf1212ea0) = 17
+01:01:26.156685 EVP_PKEY_id(0x5613d7820390, 0x5613d5fb3666, 0, 3072) = 1034
+01:01:26.156860 EVP_PKEY_bits(0x5613d7820390, 0x5613d5fb3666, 0, 3072) = 253
+01:01:26.156979 EVP_PKEY_id(0x5613d7820390, 0x5613d5fb3666, 0, 3072) = 1034
+01:01:26.157120 OBJ_nid2sn(1034, 0x5613d5fb3666, 0, 3072) = 0x7f928421ee5d
+01:01:26.157312 BIO_printf(0x5613d77fd040, 0x5613d5fb3699, 0x7f928421ee5d, 253) = 17
+01:01:26.157486 EVP_PKEY_free(0x5613d7820390, 0x7ffcf1212590, 0, 3072) = 1
+01:01:26.157651 SSL_session_reused(0x5613d780c300, 0x7ffcf1212590, 0, 3072) = 0
+01:01:26.157807 SSL_ct_is_enabled(0x5613d780c300, 0x7ffcf1212590, 0, 3072) = 0
+01:01:26.158001 SSL_get_wbio(0x5613d780c300, 0x7ffcf1212590, 0, 3072) = 0x5613d780f960
+01:01:26.158247 BIO_number_written(0x5613d780f960, 0x7ffcf1212590, 0, 3072) = 373
+01:01:26.158414 SSL_get_rbio(0x5613d780c300, 0x7ffcf1212590, 0, 3072) = 0x5613d780f960
+01:01:26.158587 BIO_number_read(0x5613d780f960, 0x7ffcf1212590, 0, 3072) = 4827
+01:01:26.158781 BIO_printf(0x5613d77fd040, 0x5613d5fa9a48, 4827, 373) = 60
+01:01:26.158937 SSL_get_verify_result(0x5613d780c300, 0x5613d77fd040, 0, 3072) = 0
+01:01:26.159098 SSL_get0_peername(0x5613d780c300, 0x5613d77fd040, 0, 3072) = 0
+01:01:26.159252 BIO_printf(0x5613d77fd040, 0x5613d5fb38bd, 0, 3072) = 17
+01:01:26.159423 SSL_get0_dane_authority(0x5613d780c300, 0, 0x7ffcf1212e70, 3072) = 0xffffffff
+01:01:26.159593 SSL_session_reused(0x5613d780c300, 0, 0x7ffcf1212e70, 3072) = 0
+01:01:26.159754 BIO_printf(0x5613d77fd040, 0x5613d5fa8922, 0x7ffcf1212e70, 3072) = 9
+01:01:26.159885 SSL_get_current_cipher(0x5613d780c300, 0x2c77654e0a2d2d2d, 0, 0x202c77654e0a2d2d) = 0x7f928434f470
+01:01:26.160051 SSL_CIPHER_get_name(0x7f928434f470, 0x2c77654e0a2d2d2d, 0, 0x202c77654e0a2d2d) = 0x7f92843292cf
+01:01:26.160268 SSL_CIPHER_get_version(0x7f928434f470, 0x2c77654e0a2d2d2d, 0, 0x202c77654e0a2d2d) = 0x7f928432b6b5
+01:01:26.160422 BIO_printf(0x5613d77fd040, 0x5613d5fa892c, 0x7f928432b6b5, 0x7f92843292cf) = 42
+01:01:26.160626 X509_get0_pubkey(0x5613d78206b0, 0x7ffcf12125c0, 0, 3072) = 0x5613d7821390
+01:01:26.160799 EVP_PKEY_bits(0x5613d7821390, 0x5613d7820860, 0, 3072) = 2048
+01:01:26.160981 BIO_printf(0x5613d77fd040, 0x5613d5fa893e, 2048, 15) = 30
+01:01:26.161132 SSL_ctrl(0x5613d780c300, 76, 0, 0) = 0
+01:01:26.161304 BIO_printf(0x5613d77fd040, 0x5613d5fa9a88, 0x5613d5fa88ad, 0) = 38
+01:01:26.161469 SSL_get_current_compression(0x5613d780c300, 0x7ffcf12125c0, 0, 3072) = 0
+01:01:26.161616 SSL_get_current_expansion(0x5613d780c300, 0x7ffcf12125c0, 0, 3072) = 0
+01:01:26.161816 BIO_printf(0x5613d77fd040, 0x5613d5fa895b, 0x5613d5fa0a60, 3072) = 18
+01:01:26.162002 BIO_printf(0x5613d77fd040, 0x5613d5fa896c, 0x5613d5fa0a60, 3072) = 16
+01:01:26.162230 SSL_get0_alpn_selected(0x5613d780c300, 0x7ffcf1212f10, 0x7ffcf1212f0c, 3072) = 0
+01:01:26.162448 BIO_printf(0x5613d77fd040, 0x5613d5fa89a0, 0x7ffcf1212f0c, 0) = 19
+01:01:26.162676 SSL_get_selected_srtp_profile(0x5613d780c300, 0x7ffcf12125c0, 0, 3072) = 0
+01:01:26.162848 SSL_get_early_data_status(0x5613d780c300, 0x7ffcf12125c0, 0, 3072) = 0
+01:01:26.162991 BIO_printf(0x5613d77fd040, 0x5613d5fa89b4, 0, 3072) = 24
+01:01:26.163200 SSL_get_verify_result(0x5613d780c300, 0x7ffcf12125c0, 0, 3072) = 0
+01:01:26.163350 X509_verify_cert_error_string(0, 0x7ffcf12125c0, 0, 3072) = 0x7f9284235ea2
+01:01:26.163530 BIO_printf(0x5613d77fd040, 0x5613d5fa89ff, 0, 0x7f9284235ea2) = 27
+01:01:26.163706 SSL_get_session(0x5613d780c300, 0x7ffcf12125c0, 0, 3072) = 0x5613d781f470
+01:01:26.163895 BIO_printf(0x5613d77fd040, 0x5613d5fa891d, 0, 3072) = 4
+01:01:26.164088 BIO_ctrl(0x5613d77fd040, 11, 0, 0GtkJAITgRNOidSOzNIb2ILCkXhAd4FJG
+AJ2xDx8hcFH1mt0G/FX0Kw4zd8NLQsLxdxP8c4CU6x+7Nz/OAipmsHMdMqUybDKw
+juDEI/9bfU1lcKwrmz3O2+BtjjKAvpafkmO8l7tdufThcV4q5O8DIrGKZTqPwJNl
+1IXNDw9bg1kWRxYtnCQ6yICmJhSFm/Y3m6xv+cXDBlHz4n/FsRC6UfTd
+-----END CERTIFICATE-----
+ 2 s:C = US, O = Google Trust Services LLC, CN = GTS Root R1
+   i:C = BE, O = GlobalSign nv-sa, OU = Root CA, CN = GlobalSign Root CA
+-----BEGIN CERTIFICATE-----
+MIIFYjCCBEqgAwIBAgIQd70NbNs2+RrqIQ/E8FjTDTANBgkqhkiG9w0BAQsFADBX
+MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEQMA4GA1UE
+CxMHUm9vdCBDQTEbMBkGA1UEAxMSR2xvYmFsU2lnbiBSb290IENBMB4XDTIwMDYx
+OTAwMDA0MloXDTI4MDEyODAwMDA0MlowRzELMAkGA1UEBhMCVVMxIjAgBgNVBAoT
+GUdvb2dsZSBUcnVzdCBTZXJ2aWNlcyBMTEMxFDASBgNVBAMTC0dUUyBSb290IFIx
+MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAthECix7joXebO9y/lD63
+ladAPKH9gvl9MgaCcfb2jH/76Nu8ai6Xl6OMS/kr9rH5zoQdsfnFl97vufKj6bwS
+iV6nqlKr+CMny6SxnGPb15l+8Ape62im9MZaRw1NEDPjTrETo8gYbEvs/AmQ351k
+KSUjB6G00j0uYODP0gmHu81I8E3CwnqIiru6z1kZ1q+PsAewnjHxgsHA3y6mbWwZ
+DrXYfiYaRQM9sHmklCitD38m5agI/pboPGiUU+6DOogrFZYJsuB6jC511pzrp1Zk
+j5ZPaK49l8KEj8C8QMALXL32h7M1bKwYUH+E4EzNktMg6TO8UpmvMrUpsyUqtEj5
+cuHKZPfmghCN6J3Cioj6OGaK/GP5Afl4/Xtcd/p2h/rs37EOeZVXtL0m79YB0esW
+CruOC7XFxYpVq9Os6pFLKcwZpDIlTirxZUTQAs6qzkm06p98g7BAe+dDq6dso499
+iYH6TKX/1Y7DzkvgtdizjkXPdsDtQCv9Uw+wp9U7DbGKogPeMa3Md+pvez7W35Ei
+Eua++tgy/BBjFFFy3l3WFpO9KWgz7zpm7AeKJt8T11dleCfeXkkUAKIAf5qoIbap
+sZWwpbkNFhHax2xIPEDgfg1azVY80ZcFuctL7TlLnMQ/0lUTbiSw1nH69MG6zO0b
+9f6BQdgAmD06yK56mDcYBZUCAwEAAaOCATgwggE0MA4GA1UdDwEB/wQEAwIBhjAP
+BgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBTkrysmcRorSCeFL1JmLO/wiRNxPjAf
+BgNVHSMEGDAWgBRge2YaRQ2XyolQL30EzTSo//z9SzBgBggrBgEFBQcBAQRUMFIw
+JQYIKwYBBQUHMAGGGWh0dHA6Ly9vY3NwLnBraS5nb29nL2dzcjEwKQYIKwYBBQUH
+MAKGHWh0dHA6Ly9wa2kuZ29vZy9nc3IxL2dzcjEuY3J0MDIGA1UdHwQrMCkwJ6Al
+oCOGIWh0dHA6Ly9jcmwucGtpLmdvb2cvZ3NyMS9nc3IxLmNybDA7BgNVHSAENDAy
+MAgGBmeBDAECATAIBgZngQwBAgIwDQYLKwYBBAHWeQIFAwIwDQYLKwYBBAHWeQIF
+AwMwDQYJKoZIhvcNAQELBQADggEBADSkHrEoo9C0dhemMXoh6dFSPsjbdBZBiLg9
+NR3t5P+T4Vxfq7vqfM/b5A3Ri1fyJm9bvhdGaJQ3b2t6yMAYN/olUazsaL+yyEn9
+WprKASOshIArAoyZl+tJaox118fessmXn1hIVw41oeQa1v1vg4Fv74zPl6/AhSrw
+9U5pCZEt4Wi4wStz6dTZ/CLANx8LZh1J7QJVj2fhMtfTJr9w4z30Z209fOU0iOMy
++qduBmpvvYuR7hZL6Dupszfnw0Skfths18dG9ZKb59UhvmaSGZRVbNQpsg3BZlvi
+d0lIKO2d1xozclOzgjXPYovJJIultzkMu34qQb9Sz/yilrbCgj8=
+-----END CERTIFICATE-----
+---
+Server certificate
+subject=CN = dns.google
+
+issuer=C = US, O = Google Trust Services LLC, CN = GTS CA 1C3
+
+---
+No client certificate CA names sent
+Peer signing digest: SHA256
+Peer signature type: RSA-PSS
+Server Temp Key: X25519, 253 bits
+---
+SSL handshake has read 4827 bytes and written 373 bytes
+Verification: OK
+---
+New, TLSv1.3, Cipher is TLS_AES_256_GCM_SHA384
+Server public key is 2048 bit
+Secure Renegotiation IS NOT supported
+Compression: NONE
+Expansion: NONE
+No ALPN negotiated
+Early data was not sent
+Verify return code: 0 (ok)
+---
+) = 1
+01:01:26.164302 SSL_has_pending(0x5613d780c300, 0, 0, 0x7f9283ecbd53) = 0
+01:01:26.164476 fileno(0x7f9283f9b9a0)           = 0
+01:01:26.164622 fileno(0x7f9283f9b9a0)           = 0
+01:01:26.164737 __fdelt_chk(0, 0, 1, 1)          = 0
+01:01:26.164894 SSL_get_fd(0x5613d780c300, 0, 1, 0) = 3
+01:01:26.165007 SSL_get_fd(0x5613d780c300, 105, 0, 0x7ffcf1212f44) = 3
+01:01:26.165117 __fdelt_chk(3, 105, 0, 0x7ffcf1212f44) = 0
+01:01:26.165225 select(4, 0x7ffcf1213230, 0x7ffcf12132b0, 0
