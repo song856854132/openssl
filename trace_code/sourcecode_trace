@@ -1,0 +1,3437 @@
+pwndbg> r
+Starting program: /home/song856854132/iii/openssl/apps/openssl s_client -showcerts -connect 8.8.8.8:443
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+Connecting to 8.8.8.8
+CONNECTED(00000003)
+Can't use SSL_get_servername
+
+Breakpoint 1, verify_chain (ctx=0x555555703710) at crypto/x509/x509_vfy.c:216
+216	    if ((ok = build_chain(ctx)) <= 0
+
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/crypto/x509/x509_vfy.c
+   211 static int verify_chain(X509_STORE_CTX *ctx)
+   212 {
+   213     int err;
+   214     int ok;
+   215 
+ ► 216     if ((ok = build_chain(ctx)) <= 0
+   217         || (ok = check_extensions(ctx)) <= 0
+   218         || (ok = check_auth_level(ctx)) <= 0
+   219         || (ok = check_id(ctx)) <= 0
+   220         || (ok = X509_get_pubkey_parameters(NULL, ctx->chain) ? 1 : -1) <= 0
+   221         || (ok = ctx->check_revocation(ctx)) <= 0)
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d58ab0 verify_chain
+   f 1   0x7ffff7d59b6e X509_verify_cert+190
+   f 2   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 3   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 4   0x7ffff7f62f9d state_machine.part+1965
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 7   0x7ffff7f32135 SSL_write+21
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> n
+
+Breakpoint 5, verify_cb_cert (err=20, depth=<optimized out>, x=0x0, ctx=0x555555703710) at crypto/x509/x509_vfy.c:156
+156	    if (depth < 0)
+x58
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/crypto/x509/x509_vfy.c
+   151  *
+   152  * Returns 0 to abort verification with an error, non-zero to continue.
+   153  */
+   154 static int verify_cb_cert(X509_STORE_CTX *ctx, X509 *x, int depth, int err)
+   155 {
+ ► 156     if (depth < 0)
+   157         depth = ctx->error_depth;
+   158     else
+   159         ctx->error_depth = depth;
+   160     ctx->current_cert = (x != NULL) ? x : sk_X509_value(ctx->chain, depth);
+   161     if (err != X509_V_OK)
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d575c1 build_chain+2097
+   f 1   0x7ffff7d575c1 build_chain+2097
+   f 2   0x7ffff7d58ac6 verify_chain+22
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> n
+159	        ctx->error_depth = depth;
+x58
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/crypto/x509/x509_vfy.c
+   154 static int verify_cb_cert(X509_STORE_CTX *ctx, X509 *x, int depth, int err)
+   155 {
+   156     if (depth < 0)
+   157         depth = ctx->error_depth;
+   158     else
+ ► 159         ctx->error_depth = depth;
+   160     ctx->current_cert = (x != NULL) ? x : sk_X509_value(ctx->chain, depth);
+   161     if (err != X509_V_OK)
+   162         ctx->error = err;
+   163     return ctx->verify_cb(0, ctx);
+   164 }
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d575ca build_chain+2106
+   f 1   0x7ffff7d575ca build_chain+2106
+   f 2   0x7ffff7d58ac6 verify_chain+22
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> n
+160	    ctx->current_cert = (x != NULL) ? x : sk_X509_value(ctx->chain, depth);
+x58
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/crypto/x509/x509_vfy.c
+   155 {
+   156     if (depth < 0)
+   157         depth = ctx->error_depth;
+   158     else
+   159         ctx->error_depth = depth;
+ ► 160     ctx->current_cert = (x != NULL) ? x : sk_X509_value(ctx->chain, depth);
+   161     if (err != X509_V_OK)
+   162         ctx->error = err;
+   163     return ctx->verify_cb(0, ctx);
+   164 }
+   165 
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d575d1 build_chain+2113
+   f 1   0x7ffff7d575d1 build_chain+2113
+   f 2   0x7ffff7d58ac6 verify_chain+22
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> n
+build_chain (ctx=0x555555703710) at crypto/x509/x509_vfy.c:3296
+3296	            return verify_cb_cert(ctx, NULL, num - 1, ctx->error);
+
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/crypto/x509/x509_vfy.c
+   3291         case X509_V_ERR_CERT_NOT_YET_VALID:
+   3292         case X509_V_ERR_ERROR_IN_CERT_NOT_AFTER_FIELD:
+   3293         case X509_V_ERR_CERT_HAS_EXPIRED:
+   3294             return 0; /* Callback already issued by ossl_x509_check_cert_time() */
+   3295         default: /* A preliminary error has become final */
+ ► 3296             return verify_cb_cert(ctx, NULL, num - 1, ctx->error);
+   3297         case X509_V_OK:
+   3298             break;
+   3299         }
+   3300         CB_FAIL_IF(num > max_depth,
+   3301                    ctx, NULL, num - 1, X509_V_ERR_CERT_CHAIN_TOO_LONG);
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d575ee build_chain+2142
+   f 1   0x7ffff7d58ac6 verify_chain+22
+   f 2   0x7ffff7d59b6e X509_verify_cert+190
+   f 3   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 4   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f50e0c ssl3_write_bytes+924
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> n
+verify_callback (ok=0, ctx=0x555555703710) at apps/lib/s_cb.c:53
+53	    err_cert = X509_STORE_CTX_get_current_cert(ctx);
+URCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/apps/lib/s_cb.c
+   48 int verify_callback(int ok, X509_STORE_CTX *ctx)
+   49 {
+   50     X509 *err_cert;
+   51     int err, depth;
+   52 // X509_STORE_CTX_get_current_cert(0x55929b2897d0, 0x55929b2897d0, 0, 2) = 0x55929b28ca00
+ ► 53     err_cert = X509_STORE_CTX_get_current_cert(ctx);
+   54 // X509_STORE_CTX_get_error(0x55d996efe7d0, 0x55d996efe7d0, 0, 7) = 0
+   55     err = X509_STORE_CTX_get_error(ctx);
+   56 // X509_STORE_CTX_get_error_depth(0x55d996efe7d0, 0x55d996efe7d0, 0, 7) = 0
+   57     depth = X509_STORE_CTX_get_error_depth(ctx);
+   58 
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x5555555f86e0 verify_callback
+   f 1   0x7ffff7d58ac6 verify_chain+22
+   f 2   0x7ffff7d59b6e X509_verify_cert+190
+   f 3   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 4   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f50e0c ssl3_write_bytes+924
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> n
+55	    err = X509_STORE_CTX_get_error(ctx);
+
+   0x5555555f8720 <verify_callback+64>    je     verify_callback+104 <verify_callback+104>
+ 
+   0x5555555f8722 <verify_callback+66>    test   ebx, ebx
+   0x5555555f8724 <verify_callback+68>    je     verify_callback+104 <verify_callback+104>
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/apps/lib/s_cb.c
+   50     X509 *err_cert;
+   51     int err, depth;
+   52 // X509_STORE_CTX_get_current_cert(0x55929b2897d0, 0x55929b2897d0, 0, 2) = 0x55929b28ca00
+   53     err_cert = X509_STORE_CTX_get_current_cert(ctx);
+   54 // X509_STORE_CTX_get_error(0x55d996efe7d0, 0x55d996efe7d0, 0, 7) = 0
+ ► 55     err = X509_STORE_CTX_get_error(ctx);
+   56 // X509_STORE_CTX_get_error_depth(0x55d996efe7d0, 0x55d996efe7d0, 0, 7) = 0
+   57     depth = X509_STORE_CTX_get_error_depth(ctx);
+   58 
+   59     if (!verify_args.quiet || !ok) {
+   60 // BIO_printf(0x55d996eb94d0, 0x55d99644a4f1, 0, 7depth=0 ) = 8
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x5555555f8701 verify_callback+33
+   f 1   0x7ffff7d58ac6 verify_chain+22
+   f 2   0x7ffff7d59b6e X509_verify_cert+190
+   f 3   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 4   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f50e0c ssl3_write_bytes+924
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> p ctx
+$1 = (X509_STORE_CTX *) 0x555555703710
+pwndbg> p *ctx
+$2 = {
+  store = 0x555555665c40,
+  cert = 0x5555557231c0,
+  untrusted = 0x555555722a60,
+  crls = 0x0,
+  param = 0x55555573a300,
+  other_ctx = 0x0,
+  verify = 0x7ffff7d578d0 <internal_verify>,
+  verify_cb = 0x5555555f86e0 <verify_callback>,
+  get_issuer = 0x7ffff7d52f90 <X509_STORE_CTX_get1_issuer>,
+  check_issued = 0x7ffff7d55a50 <check_issued>,
+  check_revocation = 0x7ffff7d585f0 <check_revocation>,
+  get_crl = 0x0,
+  check_crl = 0x7ffff7d5b020 <check_crl>,
+  cert_crl = 0x7ffff7d55c30 <cert_crl>,
+  check_policy = 0x7ffff7d560c0 <check_policy>,
+  lookup_certs = 0x7ffff7d529e0 <X509_STORE_CTX_get1_certs>,
+  lookup_crls = 0x7ffff7d52b30 <X509_STORE_CTX_get1_crls>,
+  cleanup = 0x0,
+  valid = 0,
+  num_untrusted = 3,
+  chain = 0x55555573a240,
+  tree = 0x0,
+  explicit_policy = 0,
+  error_depth = 2,
+  error = 20,
+  current_cert = 0x555555739b70,
+  current_issuer = 0x0,
+  current_crl = 0x0,
+  current_crl_score = 0,
+  current_reasons = 0,
+  parent = 0x0,
+  ex_data = {
+    ctx = 0x0,
+    sk = 0x555555739d00
+  },
+  dane = 0x0,
+  bare_ta_signed = 0,
+  libctx = 0x0,
+  propq = 0x0
+}
+pwndbg> p *ctx->lookup_certs 
+$3 = {struct stack_st_X509 *(X509_STORE_CTX *, const X509_NAME *)} 0x7ffff7d529e0 <X509_STORE_CTX_get1_certs>
+pwndbg> p *(*ctx->lookup_certs) 
+$4 = {struct stack_st_X509 *(X509_STORE_CTX *, const X509_NAME *)} 0x7ffff7d529e0 <X509_STORE_CTX_get1_certs>
+pwndbg> n
+57	    depth = X509_STORE_CTX_get_error_depth(ctx);
+
+   0x5555555f8720 <verify_callback+64>    je     verify_callback+104 <verify_callback+104>
+ 
+   0x5555555f8722 <verify_callback+66>    test   ebx, ebx
+   0x5555555f8724 <verify_callback+68>    je     verify_callback+104 <verify_callback+104>
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/apps/lib/s_cb.c
+   52 // X509_STORE_CTX_get_current_cert(0x55929b2897d0, 0x55929b2897d0, 0, 2) = 0x55929b28ca00
+   53     err_cert = X509_STORE_CTX_get_current_cert(ctx);
+   54 // X509_STORE_CTX_get_error(0x55d996efe7d0, 0x55d996efe7d0, 0, 7) = 0
+   55     err = X509_STORE_CTX_get_error(ctx);
+   56 // X509_STORE_CTX_get_error_depth(0x55d996efe7d0, 0x55d996efe7d0, 0, 7) = 0
+ ► 57     depth = X509_STORE_CTX_get_error_depth(ctx);
+   58 
+   59     if (!verify_args.quiet || !ok) {
+   60 // BIO_printf(0x55d996eb94d0, 0x55d99644a4f1, 0, 7depth=0 ) = 8
+   61         BIO_printf(bio_err, "depth=%d ", depth);
+   62         if (err_cert != NULL) {
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x5555555f870c verify_callback+44
+   f 1   0x7ffff7d58ac6 verify_chain+22
+   f 2   0x7ffff7d59b6e X509_verify_cert+190
+   f 3   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 4   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f50e0c ssl3_write_bytes+924
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> n
+59	    if (!verify_args.quiet || !ok) {
+
+   0x5555555f8748 <verify_callback+104>    lea    r14, [rip + 0x4cc69] <0x5555556453b8>
+   0x5555555f874f <verify_callback+111>    xor    eax, eax
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/apps/lib/s_cb.c
+   54 // X509_STORE_CTX_get_error(0x55d996efe7d0, 0x55d996efe7d0, 0, 7) = 0
+   55     err = X509_STORE_CTX_get_error(ctx);
+   56 // X509_STORE_CTX_get_error_depth(0x55d996efe7d0, 0x55d996efe7d0, 0, 7) = 0
+   57     depth = X509_STORE_CTX_get_error_depth(ctx);
+   58 
+ ► 59     if (!verify_args.quiet || !ok) {
+   60 // BIO_printf(0x55d996eb94d0, 0x55d99644a4f1, 0, 7depth=0 ) = 8
+   61         BIO_printf(bio_err, "depth=%d ", depth);
+   62         if (err_cert != NULL) {
+   63 // X509_NAME_print_ex(0x55d996eb94d0, 0x55d996ef9980, 0, 0x82031fCN = dns.google) = 15
+   64             X509_NAME_print_ex(bio_err,
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x5555555f8714 verify_callback+52
+   f 1   0x7ffff7d58ac6 verify_chain+22
+   f 2   0x7ffff7d59b6e X509_verify_cert+190
+   f 3   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 4   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f50e0c ssl3_write_bytes+924
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> n
+61	        BIO_printf(bio_err, "depth=%d ", depth);
+
+   0x5555555f8771 <verify_callback+145>    mov    rdi, r13
+   0x5555555f8774 <verify_callback+148>    mov    qword ptr [rsp + 8], rax
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/apps/lib/s_cb.c
+   56 // X509_STORE_CTX_get_error_depth(0x55d996efe7d0, 0x55d996efe7d0, 0, 7) = 0
+   57     depth = X509_STORE_CTX_get_error_depth(ctx);
+   58 
+   59     if (!verify_args.quiet || !ok) {
+   60 // BIO_printf(0x55d996eb94d0, 0x55d99644a4f1, 0, 7depth=0 ) = 8
+ ► 61         BIO_printf(bio_err, "depth=%d ", depth);
+   62         if (err_cert != NULL) {
+   63 // X509_NAME_print_ex(0x55d996eb94d0, 0x55d996ef9980, 0, 0x82031fCN = dns.google) = 15
+   64             X509_NAME_print_ex(bio_err,
+   65 // X509_get_subject_name(0x55d996efa5d0, 0x7fff319db360, 0, 0x7f65dd840d53) = 0x55d996ef9980
+   66                                X509_get_subject_name(err_cert),
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x5555555f8748 verify_callback+104
+   f 1   0x7ffff7d58ac6 verify_chain+22
+   f 2   0x7ffff7d59b6e X509_verify_cert+190
+   f 3   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 4   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f50e0c ssl3_write_bytes+924
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> n
+depth=2 62	        if (err_cert != NULL) {
+
+   0x5555555f8774 <verify_callback+148>    mov    qword ptr [rsp + 8], rax
+   0x5555555f8779 <verify_callback+153>    call   X509_get_subject_name@plt <X509_get_subject_name@plt>
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/apps/lib/s_cb.c
+   57     depth = X509_STORE_CTX_get_error_depth(ctx);
+   58 
+   59     if (!verify_args.quiet || !ok) {
+   60 // BIO_printf(0x55d996eb94d0, 0x55d99644a4f1, 0, 7depth=0 ) = 8
+   61         BIO_printf(bio_err, "depth=%d ", depth);
+ ► 62         if (err_cert != NULL) {
+   63 // X509_NAME_print_ex(0x55d996eb94d0, 0x55d996ef9980, 0, 0x82031fCN = dns.google) = 15
+   64             X509_NAME_print_ex(bio_err,
+   65 // X509_get_subject_name(0x55d996efa5d0, 0x7fff319db360, 0, 0x7f65dd840d53) = 0x55d996ef9980
+   66                                X509_get_subject_name(err_cert),
+   67                                0, get_nameopt());
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x5555555f8763 verify_callback+131
+   f 1   0x7ffff7d58ac6 verify_chain+22
+   f 2   0x7ffff7d59b6e X509_verify_cert+190
+   f 3   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 4   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f50e0c ssl3_write_bytes+924
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> n
+64	            X509_NAME_print_ex(bio_err,
+
+   0x5555555f8779 <verify_callback+153>    call   X509_get_subject_name@plt <X509_get_subject_name@plt>
+ 
+   0x5555555f877e <verify_callback+158>    mov    rdi, qword ptr [r14]
+   0x5555555f8781 <verify_callback+161>    mov    rcx, qword ptr [rsp + 8]
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/apps/lib/s_cb.c
+   59     if (!verify_args.quiet || !ok) {
+   60 // BIO_printf(0x55d996eb94d0, 0x55d99644a4f1, 0, 7depth=0 ) = 8
+   61         BIO_printf(bio_err, "depth=%d ", depth);
+   62         if (err_cert != NULL) {
+   63 // X509_NAME_print_ex(0x55d996eb94d0, 0x55d996ef9980, 0, 0x82031fCN = dns.google) = 15
+ ► 64             X509_NAME_print_ex(bio_err,
+   65 // X509_get_subject_name(0x55d996efa5d0, 0x7fff319db360, 0, 0x7f65dd840d53) = 0x55d996ef9980
+   66                                X509_get_subject_name(err_cert),
+   67                                0, get_nameopt());
+   68 // BIO_puts(0x55d996eb94d0, 0x55d99643bf4e, 0x55d996eb94d0, 0x7f65dda0170c)
+   69             BIO_puts(bio_err, "\n");
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x5555555f876c verify_callback+140
+   f 1   0x7ffff7d58ac6 verify_chain+22
+   f 2   0x7ffff7d59b6e X509_verify_cert+190
+   f 3   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 4   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f50e0c ssl3_write_bytes+924
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> n
+C=US, O=Google Trust Services LLC, CN=GTS Root R169	            BIO_puts(bio_err, "\n");
+
+   0x5555555f87b1 <verify_callback+209>    lea    rsi, [rip + 0x2581c]
+   0x5555555f87b8 <verify_callback+216>    mov    rcx, rax
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/apps/lib/s_cb.c
+   64             X509_NAME_print_ex(bio_err,
+   65 // X509_get_subject_name(0x55d996efa5d0, 0x7fff319db360, 0, 0x7f65dd840d53) = 0x55d996ef9980
+   66                                X509_get_subject_name(err_cert),
+   67                                0, get_nameopt());
+   68 // BIO_puts(0x55d996eb94d0, 0x55d99643bf4e, 0x55d996eb94d0, 0x7f65dda0170c)
+ ► 69             BIO_puts(bio_err, "\n");
+   70         } else {
+   71             BIO_puts(bio_err, "<no cert>\n");
+   72         }
+   73     }
+   74     if (!ok) {
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x5555555f8790 verify_callback+176
+   f 1   0x7ffff7d58ac6 verify_chain+22
+   f 2   0x7ffff7d59b6e X509_verify_cert+190
+   f 3   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 4   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f50e0c ssl3_write_bytes+924
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> nn
+Undefined command: "nn".  Try "help".
+pwndbg> n
+
+74	    if (!ok) {
+
+   0x5555555f87b1 <verify_callback+209>    lea    rsi, [rip + 0x2581c]
+   0x5555555f87b8 <verify_callback+216>    mov    rcx, rax
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/apps/lib/s_cb.c
+   69             BIO_puts(bio_err, "\n");
+   70         } else {
+   71             BIO_puts(bio_err, "<no cert>\n");
+   72         }
+   73     }
+ ► 74     if (!ok) {
+   75         BIO_printf(bio_err, "verify error:num=%d:%s\n", err,
+   76                    X509_verify_cert_error_string(err));
+   77         if (verify_args.depth < 0 || verify_args.depth >= depth) {
+   78             if (!verify_args.return_error)
+   79                 ok = 1;
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x5555555f879f verify_callback+191
+   f 1   0x7ffff7d58ac6 verify_chain+22
+   f 2   0x7ffff7d59b6e X509_verify_cert+190
+   f 3   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 4   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f50e0c ssl3_write_bytes+924
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> n
+75	        BIO_printf(bio_err, "verify error:num=%d:%s\n", err,
+
+   0x5555555f87b1 <verify_callback+209>    lea    rsi, [rip + 0x2581c]
+   0x5555555f87b8 <verify_callback+216>    mov    rcx, rax
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/apps/lib/s_cb.c
+   70         } else {
+   71             BIO_puts(bio_err, "<no cert>\n");
+   72         }
+   73     }
+   74     if (!ok) {
+ ► 75         BIO_printf(bio_err, "verify error:num=%d:%s\n", err,
+   76                    X509_verify_cert_error_string(err));
+   77         if (verify_args.depth < 0 || verify_args.depth >= depth) {
+   78             if (!verify_args.return_error)
+   79                 ok = 1;
+   80             verify_args.error = err;
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x5555555f87a3 verify_callback+195
+   f 1   0x7ffff7d58ac6 verify_chain+22
+   f 2   0x7ffff7d59b6e X509_verify_cert+190
+   f 3   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 4   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f50e0c ssl3_write_bytes+924
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> n
+verify error:num=20:unable to get local issuer certificate
+77	        if (verify_args.depth < 0 || verify_args.depth >= depth) {
+
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/apps/lib/s_cb.c
+   72         }
+   73     }
+   74     if (!ok) {
+   75         BIO_printf(bio_err, "verify error:num=%d:%s\n", err,
+   76                    X509_verify_cert_error_string(err));
+ ► 77         if (verify_args.depth < 0 || verify_args.depth >= depth) {
+   78             if (!verify_args.return_error)
+   79                 ok = 1;
+   80             verify_args.error = err;
+   81         } else {
+   82             ok = 0;
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x5555555f87c2 verify_callback+226
+   f 1   0x7ffff7d58ac6 verify_chain+22
+   f 2   0x7ffff7d59b6e X509_verify_cert+190
+   f 3   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 4   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f50e0c ssl3_write_bytes+924
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> n
+78	            if (!verify_args.return_error)
+
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/apps/lib/s_cb.c
+   73     }
+   74     if (!ok) {
+   75         BIO_printf(bio_err, "verify error:num=%d:%s\n", err,
+   76                    X509_verify_cert_error_string(err));
+   77         if (verify_args.depth < 0 || verify_args.depth >= depth) {
+ ► 78             if (!verify_args.return_error)
+   79                 ok = 1;
+   80             verify_args.error = err;
+   81         } else {
+   82             ok = 0;
+   83             verify_args.error = X509_V_ERR_CERT_CHAIN_TOO_LONG;
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x5555555f87d8 verify_callback+248
+   f 1   0x7ffff7d58ac6 verify_chain+22
+   f 2   0x7ffff7d59b6e X509_verify_cert+190
+   f 3   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 4   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f50e0c ssl3_write_bytes+924
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> n
+86	    switch (err) { // error = 0 
+
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/apps/lib/s_cb.c
+   81         } else {
+   82             ok = 0;
+   83             verify_args.error = X509_V_ERR_CERT_CHAIN_TOO_LONG;
+   84         }
+   85     }
+ ► 86     switch (err) { // error = 0 
+   87     case X509_V_ERR_UNABLE_TO_GET_ISSUER_CERT:
+   88         BIO_puts(bio_err, "issuer= ");
+   89         X509_NAME_print_ex(bio_err, X509_get_issuer_name(err_cert),
+   90                            0, get_nameopt());
+   91         BIO_puts(bio_err, "\n");
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x5555555f87ef verify_callback+271
+   f 1   0x7ffff7d58ac6 verify_chain+22
+   f 2   0x7ffff7d59b6e X509_verify_cert+190
+   f 3   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 4   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f50e0c ssl3_write_bytes+924
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> n
+113	    if (ok && !verify_args.quiet) // both ok==1 and verify_args.quiet==0
+word ptr [rax]
+   0x5555555f88b5 <verify_callback+469>    xor    eax, eax
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/apps/lib/s_cb.c
+   108         break;
+   109     }
+   110     if (err == X509_V_OK && ok == 2 && !verify_args.quiet)
+   111         policies_print(ctx);
+   112 // VERIFY_CB_ARGS verify_args = { -1, 0, X509_V_OK, 0 };
+ ► 113     if (ok && !verify_args.quiet) // both ok==1 and verify_args.quiet==0
+   114 // BIO_printf(0x55d996eb94d0, 0x55d99644a527, 1, 0x7f65dd840d53verify return:1
+   115         BIO_printf(bio_err, "verify return:%d\n", ok);
+   116     return ok; // return 1
+   117 }
+   118 
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x5555555f884f verify_callback+367
+   f 1   0x7ffff7d58ac6 verify_chain+22
+   f 2   0x7ffff7d59b6e X509_verify_cert+190
+   f 3   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 4   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f50e0c ssl3_write_bytes+924
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> n
+115	        BIO_printf(bio_err, "verify return:%d\n", ok);
+
+   0x5555555f88bc <verify_callback+476>    jmp    verify_callback+372 <verify_callback+372>
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/apps/lib/s_cb.c
+   110     if (err == X509_V_OK && ok == 2 && !verify_args.quiet)
+   111         policies_print(ctx);
+   112 // VERIFY_CB_ARGS verify_args = { -1, 0, X509_V_OK, 0 };
+   113     if (ok && !verify_args.quiet) // both ok==1 and verify_args.quiet==0
+   114 // BIO_printf(0x55d996eb94d0, 0x55d99644a527, 1, 0x7f65dd840d53verify return:1
+ ► 115         BIO_printf(bio_err, "verify return:%d\n", ok);
+   116     return ok; // return 1
+   117 }
+   118 
+   119 int set_cert_stuff(SSL_CTX *ctx, char *cert_file, char *key_file)
+   120 {
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x5555555f88a1 verify_callback+449
+   f 1   0x7ffff7d58ac6 verify_chain+22
+   f 2   0x7ffff7d59b6e X509_verify_cert+190
+   f 3   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 4   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f50e0c ssl3_write_bytes+924
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> n
+verify return:1
+verify_chain (ctx=0x555555703710) at crypto/x509/x509_vfy.c:217
+217	        || (ok = check_extensions(ctx)) <= 0
+], 0
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/crypto/x509/x509_vfy.c
+   212 {
+   213     int err;
+   214     int ok;
+   215 
+   216     if ((ok = build_chain(ctx)) <= 0
+ ► 217         || (ok = check_extensions(ctx)) <= 0
+   218         || (ok = check_auth_level(ctx)) <= 0
+   219         || (ok = check_id(ctx)) <= 0
+   220         || (ok = X509_get_pubkey_parameters(NULL, ctx->chain) ? 1 : -1) <= 0
+   221         || (ok = ctx->check_revocation(ctx)) <= 0)
+   222         return ok;
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d58ace verify_chain+30
+   f 1   0x7ffff7d59b6e X509_verify_cert+190
+   f 2   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 3   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 4   0x7ffff7f62f9d state_machine.part+1965
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 7   0x7ffff7f32135 SSL_write+21
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> n
+218	        || (ok = check_auth_level(ctx)) <= 0
+
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/crypto/x509/x509_vfy.c
+   213     int err;
+   214     int ok;
+   215 
+   216     if ((ok = build_chain(ctx)) <= 0
+   217         || (ok = check_extensions(ctx)) <= 0
+ ► 218         || (ok = check_auth_level(ctx)) <= 0
+   219         || (ok = check_id(ctx)) <= 0
+   220         || (ok = X509_get_pubkey_parameters(NULL, ctx->chain) ? 1 : -1) <= 0
+   221         || (ok = ctx->check_revocation(ctx)) <= 0)
+   222         return ok;
+   223 
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d58e41 verify_chain+913
+   f 1   0x7ffff7d59b6e X509_verify_cert+190
+   f 2   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 3   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 4   0x7ffff7f62f9d state_machine.part+1965
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 7   0x7ffff7f32135 SSL_write+21
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> n
+211	static int verify_chain(X509_STORE_CTX *ctx)
+word ptr [r14 + 0x30]
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/crypto/x509/x509_vfy.c
+   206     }
+   207     return 1;
+   208 }
+   209 
+   210 /* Returns -1 on internal error */
+ ► 211 static int verify_chain(X509_STORE_CTX *ctx)
+   212 {
+   213     int err;
+   214     int ok;
+   215 
+   216     if ((ok = build_chain(ctx)) <= 0
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d59615 verify_chain+2917
+   f 1   0x7ffff7d59b6e X509_verify_cert+190
+   f 2   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 3   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 4   0x7ffff7f62f9d state_machine.part+1965
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 7   0x7ffff7f32135 SSL_write+21
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> n
+
+Breakpoint 3, internal_verify (ctx=0x555555703710) at crypto/x509/x509_vfy.c:1739
+1739	    int n = sk_X509_num(ctx->chain) - 1;
+
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/crypto/x509/x509_vfy.c
+   1734  * Verify the issuer signatures and cert times of ctx->chain.
+   1735  * Sadly, returns 0 also on internal error.
+   1736  */
+   1737 static int internal_verify(X509_STORE_CTX *ctx)
+   1738 {
+ ► 1739     int n = sk_X509_num(ctx->chain) - 1;
+   1740     X509 *xi = sk_X509_value(ctx->chain, n);
+   1741     X509 *xs = xi;
+   1742 
+   1743     ctx->error_depth = n;
+   1744     if (ctx->bare_ta_signed) {
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d578d0 internal_verify
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> p ctx
+$5 = (X509_STORE_CTX *) 0x555555703710
+pwndbg> p *ctx->chain
+$6 = <incomplete type>
+pwndbg> p ctx->ch
+chain             check_crl         check_issued      check_policy      check_revocation  
+pwndbg> p ctx->chain
+$7 = (struct stack_st_X509 *) 0x55555573a240
+pwndbg> p *(ctx->chain)
+$8 = <incomplete type>
+pwndbg> n
+1740	    X509 *xi = sk_X509_value(ctx->chain, n);
+
+ 
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/crypto/x509/x509_vfy.c
+   1735  * Sadly, returns 0 also on internal error.
+   1736  */
+   1737 static int internal_verify(X509_STORE_CTX *ctx)
+   1738 {
+   1739     int n = sk_X509_num(ctx->chain) - 1;
+ ► 1740     X509 *xi = sk_X509_value(ctx->chain, n);
+   1741     X509 *xs = xi;
+   1742 
+   1743     ctx->error_depth = n;
+   1744     if (ctx->bare_ta_signed) {
+   1745         /*
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d578f8 internal_verify+40
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> n
+1744	    if (ctx->bare_ta_signed) {
+
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/crypto/x509/x509_vfy.c
+   1739     int n = sk_X509_num(ctx->chain) - 1;
+   1740     X509 *xi = sk_X509_value(ctx->chain, n);
+   1741     X509 *xs = xi;
+   1742 
+   1743     ctx->error_depth = n;
+ ► 1744     if (ctx->bare_ta_signed) {
+   1745         /*
+   1746          * With DANE-verified bare public key TA signatures,
+   1747          * on the top certificate we check only the timestamps.
+   1748          * We report the issuer as NULL because all we have is a bare key.
+   1749          */
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d5790b internal_verify+59
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> p *xi
+$9 = {
+  cert_info = {
+    version = 0x555555739480,
+    serialNumber = {
+      length = 16,
+      type = 2,
+      data = 0x5555557393c0 "w\275\rl\333\066\371\032\352!\017\304\360X\323\r\020\223sUUU",
+      flags = 128
+    },
+    signature = {
+      algorithm = 0x7ffff7eb78e0 <nid_objs+26720>,
+      parameter = 0x555555738c20
+    },
+    issuer = 0x555555738b40,
+    validity = {
+      notBefore = 0x555555739300,
+      notAfter = 0x555555739460
+    },
+    subject = 0x555555739390,
+    key = 0x5555557370f0,
+    issuerUID = 0x0,
+    subjectUID = 0x0,
+    extensions = 0x555555739dc0,
+    enc = {
+      enc = 0x55555573b740 "0\202\004J\240\003\002\001\002\002\020w\275\rl\333\066\371\032\352!\017\304\360X\323\r0\r\006\t*\206H\206\367\r\001\001\v\005",
+      len = 1102,
+      modified = 0
+    }
+  },
+  sig_alg = {
+    algorithm = 0x7ffff7eb78e0 <nid_objs+26720>,
+    parameter = 0x55555573b130
+  },
+  signature = {
+    length = 256,
+    type = 3,
+    data = 0x55555573bba0 "4\244\036\261(\243дv\027\246\061z!\351\321R>\310\333t\026A\210\270=5\035\355\344\377\223\341\\_\253\273\352|\317\333\344\rыW\362&o[\276\027Fh\224\067okz\310\300\030\067\372%Q\254\354h\277\262\310I\375Z\232\312\001#\254\204\200+\002\214\231\227\353Ij\214u\327\307\336\262ɗ\237XHW\016\065\241\344\032\326\375o\203\201o\357\214ϗ\257\300\205*\360\365Ni\t\221-\341h\270\301+s\351\324\331\374\"\300\067\037\vf\035I\355\002U\217g\341\062\327\323&\277p\343=\364gm=|\345\064\210\343\062\372\247n\006jo\275\213\221\356\026K\350;\251\263\067\347\303D\244~\330l\327\307", <incomplete sequence \365\222\233>...,
+    flags = 136
+  },
+  siginf = {
+    mdnid = 672,
+    pknid = 6,
+    secbits = 128,
+    flags = 3
+  },
+  references = 2,
+  ex_data = {
+    ctx = 0x0,
+    sk = 0x0
+  },
+  ex_pathlen = -1,
+  ex_pcpathlen = -1,
+  ex_flags = 65811,
+  ex_kusage = 134,
+  ex_xkusage = 0,
+  ex_nscert = 0,
+  skid = 0x555555745030,
+  akid = 0x555555745930,
+  policy_cache = 0x0,
+  crldp = 0x5555557450a0,
+  altname = 0x0,
+  nc = 0x0,
+  rfc3779_addr = 0x0,
+  rfc3779_asid = 0x0,
+  sha1_hash = "\btT\207\350\221\301\236\060x\301\362\240~E)P\357", <incomplete sequence \366>,
+  aux = 0x0,
+  lock = 0x555555738fd0,
+  ex_cached = 1,
+  distinguishing_id = 0x0,
+  libctx = 0x0,
+  propq = 0x0
+}
+pwndbg> p n
+$10 = 2
+pwndbg> n
+1751	    } else if (ossl_x509_likely_issued(xi, xi) != X509_V_OK
+
+ 
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/crypto/x509/x509_vfy.c
+   1746          * With DANE-verified bare public key TA signatures,
+   1747          * on the top certificate we check only the timestamps.
+   1748          * We report the issuer as NULL because all we have is a bare key.
+   1749          */
+   1750         xi = NULL;
+ ► 1751     } else if (ossl_x509_likely_issued(xi, xi) != X509_V_OK
+   1752                /* exceptional case: last cert in the chain is not self-issued */
+   1753                && ((ctx->param->flags & X509_V_FLAG_PARTIAL_CHAIN) == 0)) {
+   1754         if (n > 0) {
+   1755             n--;
+   1756             ctx->error_depth = n;
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d57aa0 internal_verify+464
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> n
+1754	        if (n > 0) {
+word ptr [rbx + 0x98]
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/crypto/x509/x509_vfy.c
+   1749          */
+   1750         xi = NULL;
+   1751     } else if (ossl_x509_likely_issued(xi, xi) != X509_V_OK
+   1752                /* exceptional case: last cert in the chain is not self-issued */
+   1753                && ((ctx->param->flags & X509_V_FLAG_PARTIAL_CHAIN) == 0)) {
+ ► 1754         if (n > 0) {
+   1755             n--;
+   1756             ctx->error_depth = n;
+   1757             xs = sk_X509_value(ctx->chain, n);
+   1758         } else {
+   1759             CB_FAIL_IF(1, ctx, xi, 0,
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d57ab9 internal_verify+489
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> n
+1755	            n--;
+
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/crypto/x509/x509_vfy.c
+   1750         xi = NULL;
+   1751     } else if (ossl_x509_likely_issued(xi, xi) != X509_V_OK
+   1752                /* exceptional case: last cert in the chain is not self-issued */
+   1753                && ((ctx->param->flags & X509_V_FLAG_PARTIAL_CHAIN) == 0)) {
+   1754         if (n > 0) {
+ ► 1755             n--;
+   1756             ctx->error_depth = n;
+   1757             xs = sk_X509_value(ctx->chain, n);
+   1758         } else {
+   1759             CB_FAIL_IF(1, ctx, xi, 0,
+   1760                        X509_V_ERR_UNABLE_TO_VERIFY_LEAF_SIGNATURE);
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d57abd internal_verify+493
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> n
+1756	            ctx->error_depth = n;
+
+ 
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/crypto/x509/x509_vfy.c
+   1751     } else if (ossl_x509_likely_issued(xi, xi) != X509_V_OK
+   1752                /* exceptional case: last cert in the chain is not self-issued */
+   1753                && ((ctx->param->flags & X509_V_FLAG_PARTIAL_CHAIN) == 0)) {
+   1754         if (n > 0) {
+   1755             n--;
+ ► 1756             ctx->error_depth = n;
+   1757             xs = sk_X509_value(ctx->chain, n);
+   1758         } else {
+   1759             CB_FAIL_IF(1, ctx, xi, 0,
+   1760                        X509_V_ERR_UNABLE_TO_VERIFY_LEAF_SIGNATURE);
+   1761         }
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d57ac1 internal_verify+497
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> n
+1757	            xs = sk_X509_value(ctx->chain, n);
+
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/crypto/x509/x509_vfy.c
+   1752                /* exceptional case: last cert in the chain is not self-issued */
+   1753                && ((ctx->param->flags & X509_V_FLAG_PARTIAL_CHAIN) == 0)) {
+   1754         if (n > 0) {
+   1755             n--;
+   1756             ctx->error_depth = n;
+ ► 1757             xs = sk_X509_value(ctx->chain, n);
+   1758         } else {
+   1759             CB_FAIL_IF(1, ctx, xi, 0,
+   1760                        X509_V_ERR_UNABLE_TO_VERIFY_LEAF_SIGNATURE);
+   1761         }
+   1762         /*
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d57ad1 internal_verify+513
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> n
+1772	    while (n >= 0) {
+
+ 
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/crypto/x509/x509_vfy.c
+   1767 
+   1768     /*
+   1769      * Do not clear error (by ctx->error = X509_V_OK), it must be "sticky",
+   1770      * only the user's callback is allowed to reset errors (at its own peril).
+   1771      */
+ ► 1772     while (n >= 0) {
+   1773         /*-
+   1774          * For each iteration of this loop:
+   1775          * n is the subject depth
+   1776          * xs is the subject cert, for which the signature is to be checked
+   1777          * xi is NULL for DANE-verified bare public key TA signatures
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d57919 internal_verify+73
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> p xs
+$11 = (X509 *) 0x5555557383e0
+pwndbg> p xi
+$12 = (X509 *) 0x555555739b70
+pwndbg> n
+1785	        if (xi != NULL
+
+ 
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/crypto/x509/x509_vfy.c
+   1780          */
+   1781         /*
+   1782          * Do signature check for self-signed certificates only if explicitly
+   1783          * asked for because it does not add any security and just wastes time.
+   1784          */
+ ► 1785         if (xi != NULL
+   1786             && (xs != xi
+   1787                 || ((ctx->param->flags & X509_V_FLAG_CHECK_SS_SIGNATURE) != 0
+   1788                     && (xi->ex_flags & EXFLAG_SS) != 0))) {
+   1789             EVP_PKEY *pkey;
+   1790             /*
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d57933 internal_verify+99
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> n
+1812	            CB_FAIL_IF(ret != X509_V_OK, ctx, xi, issuer_depth, ret);
+
+ 
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/crypto/x509/x509_vfy.c
+   1807              * we are free to ignore any key usage restrictions on such certs.
+   1808              */
+   1809             int ret = xs == xi && (xi->ex_flags & EXFLAG_CA) == 0
+   1810                 ? X509_V_OK : ossl_x509_signing_allowed(xi, xs);
+   1811 
+ ► 1812             CB_FAIL_IF(ret != X509_V_OK, ctx, xi, issuer_depth, ret);
+   1813             if ((pkey = X509_get0_pubkey(xi)) == NULL) {
+   1814                 CB_FAIL_IF(1, ctx, xi, issuer_depth,
+   1815                            X509_V_ERR_UNABLE_TO_DECODE_ISSUER_PUBLIC_KEY);
+   1816             } else {
+   1817                 CB_FAIL_IF(X509_verify(xs, pkey) <= 0,
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d5795d internal_verify+141
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> n
+1813	            if ((pkey = X509_get0_pubkey(xi)) == NULL) {
+
+ 
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/crypto/x509/x509_vfy.c
+   1808              */
+   1809             int ret = xs == xi && (xi->ex_flags & EXFLAG_CA) == 0
+   1810                 ? X509_V_OK : ossl_x509_signing_allowed(xi, xs);
+   1811 
+   1812             CB_FAIL_IF(ret != X509_V_OK, ctx, xi, issuer_depth, ret);
+ ► 1813             if ((pkey = X509_get0_pubkey(xi)) == NULL) {
+   1814                 CB_FAIL_IF(1, ctx, xi, issuer_depth,
+   1815                            X509_V_ERR_UNABLE_TO_DECODE_ISSUER_PUBLIC_KEY);
+   1816             } else {
+   1817                 CB_FAIL_IF(X509_verify(xs, pkey) <= 0,
+   1818                            ctx, xs, n, X509_V_ERR_CERT_SIGNATURE_FAILURE);
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d57965 internal_verify+149
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> n
+1817	                CB_FAIL_IF(X509_verify(xs, pkey) <= 0,
+
+ 
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/crypto/x509/x509_vfy.c
+   1812             CB_FAIL_IF(ret != X509_V_OK, ctx, xi, issuer_depth, ret);
+   1813             if ((pkey = X509_get0_pubkey(xi)) == NULL) {
+   1814                 CB_FAIL_IF(1, ctx, xi, issuer_depth,
+   1815                            X509_V_ERR_UNABLE_TO_DECODE_ISSUER_PUBLIC_KEY);
+   1816             } else {
+ ► 1817                 CB_FAIL_IF(X509_verify(xs, pkey) <= 0,
+   1818                            ctx, xs, n, X509_V_ERR_CERT_SIGNATURE_FAILURE);
+   1819             }
+   1820         }
+   1821 
+   1822         /* In addition to RFC 5280 requirements do also for trust anchor cert */
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d57979 internal_verify+169
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> p pkey
+$13 = (EVP_PKEY *) 0x55555573b510
+pwndbg> info locals 
+pkey = 0x55555573b510
+issuer_depth = <optimized out>
+ret = <optimized out>
+n = 1
+xi = 0x555555739b70
+xs = 0x5555557383e0
+pwndbg> p *pkey
+$14 = {
+  type = 6,
+  save_type = 0,
+  ameth = 0x0,
+  engine = 0x0,
+  pmeth_engine = 0x0,
+  pkey = {
+    ptr = 0x0,
+    rsa = 0x0,
+    dsa = 0x0,
+    dh = 0x0,
+    ec = 0x0,
+    ecx = 0x0
+  },
+  legacy_cache_pkey = {
+    ptr = 0x0,
+    rsa = 0x0,
+    dsa = 0x0,
+    dh = 0x0,
+    ec = 0x0,
+    ecx = 0x0
+  },
+  references = 1,
+  lock = 0x55555573b5b0,
+  attributes = 0x0,
+  save_parameters = 1,
+  foreign = 0,
+  ex_data = {
+    ctx = 0x0,
+    sk = 0x0
+  },
+  keymgmt = 0x5555556ff240,
+  keydata = 0x55555573a650,
+  dirty_cnt = 0,
+  operation_cache = 0x0,
+  dirty_cnt_copy = 0,
+  cache = {
+    bits = 4096,
+    security_bits = 152,
+    size = 512
+  }
+}
+pwndbg> s
+X509_verify (a=a@entry=0x5555557383e0, r=0x55555573b510) at crypto/x509/x_all.c:33
+33	    if (X509_ALGOR_cmp(&a->sig_alg, &a->cert_info.signature))
+ (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/crypto/x509/x_all.c
+   28 #include "crypto/x509.h"
+   29 #include "crypto/rsa.h"
+   30 
+   31 int X509_verify(X509 *a, EVP_PKEY *r)
+   32 {
+ ► 33     if (X509_ALGOR_cmp(&a->sig_alg, &a->cert_info.signature))
+   34         return 0;
+   35 
+   36     return ASN1_item_verify_ex(ASN1_ITEM_rptr(X509_CINF), &a->sig_alg,
+   37                                &a->signature, &a->cert_info,
+   38                                a->distinguishing_id, r, a->libctx, a->propq);
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d5d5a0 X509_verify
+   f 1   0x7ffff7d57981 internal_verify+177
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d5964e verify_chain+2974
+   f 4   0x7ffff7d59b6e X509_verify_cert+190
+   f 5   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 6   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> p &a->sig_alg
+$15 = (X509_ALGOR *) 0x555555738468
+pwndbg> p &a->cert_info.signature
+$16 = (X509_ALGOR *) 0x555555738400
+pwndbg> n
+36	    return ASN1_item_verify_ex(ASN1_ITEM_rptr(X509_CINF), &a->sig_alg,
+
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/crypto/x509/x_all.c
+   31 int X509_verify(X509 *a, EVP_PKEY *r)
+   32 {
+   33     if (X509_ALGOR_cmp(&a->sig_alg, &a->cert_info.signature))
+   34         return 0;
+   35 
+ ► 36     return ASN1_item_verify_ex(ASN1_ITEM_rptr(X509_CINF), &a->sig_alg,
+   37                                &a->signature, &a->cert_info,
+   38                                a->distinguishing_id, r, a->libctx, a->propq);
+   39 }
+   40 
+   41 int X509_REQ_verify_ex(X509_REQ *a, EVP_PKEY *r, OSSL_LIB_CTX *libctx,
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d5d5d1 X509_verify+49
+   f 1   0x7ffff7d57981 internal_verify+177
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d5964e verify_chain+2974
+   f 4   0x7ffff7d59b6e X509_verify_cert+190
+   f 5   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 6   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> info locals 
+No locals.
+pwndbg> n
+internal_verify (ctx=0x555555703710) at crypto/x509/x509_vfy.c:1824
+1824	        if (!ossl_x509_check_cert_time(ctx, xs, n))
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/crypto/x509/x509_vfy.c
+   1819             }
+   1820         }
+   1821 
+   1822         /* In addition to RFC 5280 requirements do also for trust anchor cert */
+   1823         /* Calls verify callback as needed */
+ ► 1824         if (!ossl_x509_check_cert_time(ctx, xs, n))
+   1825             return 0;
+   1826 
+   1827         /*
+   1828          * Signal success at this depth.  However, the previous error (if any)
+   1829          * is retained.
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d57989 internal_verify+185
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> n
+1832	        ctx->current_cert = xs;
+xb8], xmm3
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/crypto/x509/x509_vfy.c
+   1827         /*
+   1828          * Signal success at this depth.  However, the previous error (if any)
+   1829          * is retained.
+   1830          */
+   1831         ctx->current_issuer = xi;
+ ► 1832         ctx->current_cert = xs;
+   1833         ctx->error_depth = n;
+   1834         if (!ctx->verify_cb(1, ctx))
+   1835             return 0;
+   1836 
+   1837         if (--n >= 0) {
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d5799e internal_verify+206
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> n
+1834	        if (!ctx->verify_cb(1, ctx))
+
+ 
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/crypto/x509/x509_vfy.c
+   1829          * is retained.
+   1830          */
+   1831         ctx->current_issuer = xi;
+   1832         ctx->current_cert = xs;
+   1833         ctx->error_depth = n;
+ ► 1834         if (!ctx->verify_cb(1, ctx))
+   1835             return 0;
+   1836 
+   1837         if (--n >= 0) {
+   1838             xi = xs;
+   1839             xs = sk_X509_value(ctx->chain, n);
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d579b8 internal_verify+232
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> p n
+$17 = 1
+pwndbg> n
+depth=1 C=US, O=Google Trust Services LLC, CN=GTS CA 1C3
+verify return:1
+1837	        if (--n >= 0) {
+bp
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/crypto/x509/x509_vfy.c
+   1832         ctx->current_cert = xs;
+   1833         ctx->error_depth = n;
+   1834         if (!ctx->verify_cb(1, ctx))
+   1835             return 0;
+   1836 
+ ► 1837         if (--n >= 0) {
+   1838             xi = xs;
+   1839             xs = sk_X509_value(ctx->chain, n);
+   1840         }
+   1841     }
+   1842     return 1;
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d579c3 internal_verify+243
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> n
+1839	            xs = sk_X509_value(ctx->chain, n);
+
+ 
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/crypto/x509/x509_vfy.c
+   1834         if (!ctx->verify_cb(1, ctx))
+   1835             return 0;
+   1836 
+   1837         if (--n >= 0) {
+   1838             xi = xs;
+ ► 1839             xs = sk_X509_value(ctx->chain, n);
+   1840         }
+   1841     }
+   1842     return 1;
+   1843 }
+   1844 
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d57b00 internal_verify+560
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> p xi
+$18 = (X509 *) 0x5555557383e0
+pwndbg> p xs
+$19 = (X509 *) 0x5555557383e0
+pwndbg> n
+1772	    while (n >= 0) {
+d ptr [rsp], xmm1
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/crypto/x509/x509_vfy.c
+   1767 
+   1768     /*
+   1769      * Do not clear error (by ctx->error = X509_V_OK), it must be "sticky",
+   1770      * only the user's callback is allowed to reset errors (at its own peril).
+   1771      */
+ ► 1772     while (n >= 0) {
+   1773         /*-
+   1774          * For each iteration of this loop:
+   1775          * n is the subject depth
+   1776          * xs is the subject cert, for which the signature is to be checked
+   1777          * xi is NULL for DANE-verified bare public key TA signatures
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d57b11 internal_verify+577
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> info locals 
+n = 0
+xi = 0x5555557383e0
+xs = 0x5555557231c0
+pwndbg> n
+1785	        if (xi != NULL
+
+ 
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/crypto/x509/x509_vfy.c
+   1780          */
+   1781         /*
+   1782          * Do signature check for self-signed certificates only if explicitly
+   1783          * asked for because it does not add any security and just wastes time.
+   1784          */
+ ► 1785         if (xi != NULL
+   1786             && (xs != xi
+   1787                 || ((ctx->param->flags & X509_V_FLAG_CHECK_SS_SIGNATURE) != 0
+   1788                     && (xi->ex_flags & EXFLAG_SS) != 0))) {
+   1789             EVP_PKEY *pkey;
+   1790             /*
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d57933 internal_verify+99
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> n
+1812	            CB_FAIL_IF(ret != X509_V_OK, ctx, xi, issuer_depth, ret);
+
+ 
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/crypto/x509/x509_vfy.c
+   1807              * we are free to ignore any key usage restrictions on such certs.
+   1808              */
+   1809             int ret = xs == xi && (xi->ex_flags & EXFLAG_CA) == 0
+   1810                 ? X509_V_OK : ossl_x509_signing_allowed(xi, xs);
+   1811 
+ ► 1812             CB_FAIL_IF(ret != X509_V_OK, ctx, xi, issuer_depth, ret);
+   1813             if ((pkey = X509_get0_pubkey(xi)) == NULL) {
+   1814                 CB_FAIL_IF(1, ctx, xi, issuer_depth,
+   1815                            X509_V_ERR_UNABLE_TO_DECODE_ISSUER_PUBLIC_KEY);
+   1816             } else {
+   1817                 CB_FAIL_IF(X509_verify(xs, pkey) <= 0,
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d5795d internal_verify+141
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> n
+1813	            if ((pkey = X509_get0_pubkey(xi)) == NULL) {
+
+ 
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/crypto/x509/x509_vfy.c
+   1808              */
+   1809             int ret = xs == xi && (xi->ex_flags & EXFLAG_CA) == 0
+   1810                 ? X509_V_OK : ossl_x509_signing_allowed(xi, xs);
+   1811 
+   1812             CB_FAIL_IF(ret != X509_V_OK, ctx, xi, issuer_depth, ret);
+ ► 1813             if ((pkey = X509_get0_pubkey(xi)) == NULL) {
+   1814                 CB_FAIL_IF(1, ctx, xi, issuer_depth,
+   1815                            X509_V_ERR_UNABLE_TO_DECODE_ISSUER_PUBLIC_KEY);
+   1816             } else {
+   1817                 CB_FAIL_IF(X509_verify(xs, pkey) <= 0,
+   1818                            ctx, xs, n, X509_V_ERR_CERT_SIGNATURE_FAILURE);
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d57965 internal_verify+149
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> n
+1817	                CB_FAIL_IF(X509_verify(xs, pkey) <= 0,
+
+ 
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/crypto/x509/x509_vfy.c
+   1812             CB_FAIL_IF(ret != X509_V_OK, ctx, xi, issuer_depth, ret);
+   1813             if ((pkey = X509_get0_pubkey(xi)) == NULL) {
+   1814                 CB_FAIL_IF(1, ctx, xi, issuer_depth,
+   1815                            X509_V_ERR_UNABLE_TO_DECODE_ISSUER_PUBLIC_KEY);
+   1816             } else {
+ ► 1817                 CB_FAIL_IF(X509_verify(xs, pkey) <= 0,
+   1818                            ctx, xs, n, X509_V_ERR_CERT_SIGNATURE_FAILURE);
+   1819             }
+   1820         }
+   1821 
+   1822         /* In addition to RFC 5280 requirements do also for trust anchor cert */
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d57979 internal_verify+169
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> p pkey
+$20 = (EVP_PKEY *) 0x5555557394a0
+pwndbg> 
+$21 = (EVP_PKEY *) 0x5555557394a0
+pwndbg> n
+1824	        if (!ossl_x509_check_cert_time(ctx, xs, n))
+
+ 
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/crypto/x509/x509_vfy.c
+   1819             }
+   1820         }
+   1821 
+   1822         /* In addition to RFC 5280 requirements do also for trust anchor cert */
+   1823         /* Calls verify callback as needed */
+ ► 1824         if (!ossl_x509_check_cert_time(ctx, xs, n))
+   1825             return 0;
+   1826 
+   1827         /*
+   1828          * Signal success at this depth.  However, the previous error (if any)
+   1829          * is retained.
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d57989 internal_verify+185
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> n
+1832	        ctx->current_cert = xs;
+xb8], xmm3
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/crypto/x509/x509_vfy.c
+   1827         /*
+   1828          * Signal success at this depth.  However, the previous error (if any)
+   1829          * is retained.
+   1830          */
+   1831         ctx->current_issuer = xi;
+ ► 1832         ctx->current_cert = xs;
+   1833         ctx->error_depth = n;
+   1834         if (!ctx->verify_cb(1, ctx))
+   1835             return 0;
+   1836 
+   1837         if (--n >= 0) {
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d5799e internal_verify+206
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+1834	        if (!ctx->verify_cb(1, ctx))
+
+ 
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/crypto/x509/x509_vfy.c
+   1829          * is retained.
+   1830          */
+   1831         ctx->current_issuer = xi;
+   1832         ctx->current_cert = xs;
+   1833         ctx->error_depth = n;
+ ► 1834         if (!ctx->verify_cb(1, ctx))
+   1835             return 0;
+   1836 
+   1837         if (--n >= 0) {
+   1838             xi = xs;
+   1839             xs = sk_X509_value(ctx->chain, n);
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d579b8 internal_verify+232
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+depth=0 CN=dns.google
+verify return:1
+1837	        if (--n >= 0) {
+ax, 1
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/crypto/x509/x509_vfy.c
+   1832         ctx->current_cert = xs;
+   1833         ctx->error_depth = n;
+   1834         if (!ctx->verify_cb(1, ctx))
+   1835             return 0;
+   1836 
+ ► 1837         if (--n >= 0) {
+   1838             xi = xs;
+   1839             xs = sk_X509_value(ctx->chain, n);
+   1840         }
+   1841     }
+   1842     return 1;
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d579c3 internal_verify+243
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+verify_chain (ctx=0x555555703710) at crypto/x509/x509_vfy.c:230
+230	    if (ok <= 0)
+
+ 
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/crypto/x509/x509_vfy.c
+   225                                   ctx->param->flags);
+   226     CB_FAIL_IF(err != X509_V_OK, ctx, NULL, ctx->error_depth, err);
+   227 
+   228     /* Verify chain signatures and expiration times */
+   229     ok = ctx->verify != NULL ? ctx->verify(ctx) : internal_verify(ctx);
+ ► 230     if (ok <= 0)
+   231         return ok;
+   232 
+   233     if ((ok = check_name_constraints(ctx)) <= 0)
+   234         return ok;
+   235 
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d5964e verify_chain+2974
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d59b6e X509_verify_cert+190
+   f 3   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 4   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f50e0c ssl3_write_bytes+924
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> p ok
+$22 = 1
+pwndbg> info locals 
+err = 0
+ok = 1
+err = <optimized out>
+ok = <optimized out>
+pwndbg> n
+233	    if ((ok = check_name_constraints(ctx)) <= 0)
+
+ 
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/crypto/x509/x509_vfy.c
+   228     /* Verify chain signatures and expiration times */
+   229     ok = ctx->verify != NULL ? ctx->verify(ctx) : internal_verify(ctx);
+   230     if (ok <= 0)
+   231         return ok;
+   232 
+ ► 233     if ((ok = check_name_constraints(ctx)) <= 0)
+   234         return ok;
+   235 
+   236 #ifndef OPENSSL_NO_RFC3779
+   237     /* RFC 3779 path validation, now that CRL check has been done */
+   238     if ((ok = X509v3_asid_validate_path(ctx)) <= 0)
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d59656 verify_chain+2982
+   f 1   0x7ffff7d59656 verify_chain+2982
+   f 2   0x7ffff7d59b6e X509_verify_cert+190
+   f 3   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 4   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f50e0c ssl3_write_bytes+924
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> n
+238	    if ((ok = X509v3_asid_validate_path(ctx)) <= 0)
+
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/crypto/x509/x509_vfy.c
+   233     if ((ok = check_name_constraints(ctx)) <= 0)
+   234         return ok;
+   235 
+   236 #ifndef OPENSSL_NO_RFC3779
+   237     /* RFC 3779 path validation, now that CRL check has been done */
+ ► 238     if ((ok = X509v3_asid_validate_path(ctx)) <= 0)
+   239         return ok;
+   240     if ((ok = X509v3_addr_validate_path(ctx)) <= 0)
+   241         return ok;
+   242 #endif
+   243 
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d599a0 verify_chain+3824
+   f 1   0x7ffff7d599a0 verify_chain+3824
+   f 2   0x7ffff7d59b6e X509_verify_cert+190
+   f 3   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 4   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f50e0c ssl3_write_bytes+924
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> n
+240	    if ((ok = X509v3_addr_validate_path(ctx)) <= 0)
+
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/crypto/x509/x509_vfy.c
+   235 
+   236 #ifndef OPENSSL_NO_RFC3779
+   237     /* RFC 3779 path validation, now that CRL check has been done */
+   238     if ((ok = X509v3_asid_validate_path(ctx)) <= 0)
+   239         return ok;
+ ► 240     if ((ok = X509v3_addr_validate_path(ctx)) <= 0)
+   241         return ok;
+   242 #endif
+   243 
+   244     /* If we get this far evaluate policies */
+   245     if ((ctx->param->flags & X509_V_FLAG_POLICY_CHECK) != 0)
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d599b0 verify_chain+3840
+   f 1   0x7ffff7d599b0 verify_chain+3840
+   f 2   0x7ffff7d59b6e X509_verify_cert+190
+   f 3   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 4   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f50e0c ssl3_write_bytes+924
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> n
+245	    if ((ctx->param->flags & X509_V_FLAG_POLICY_CHECK) != 0)
+
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/crypto/x509/x509_vfy.c
+   240     if ((ok = X509v3_addr_validate_path(ctx)) <= 0)
+   241         return ok;
+   242 #endif
+   243 
+   244     /* If we get this far evaluate policies */
+ ► 245     if ((ctx->param->flags & X509_V_FLAG_POLICY_CHECK) != 0)
+   246         ok = ctx->check_policy(ctx);
+   247     return ok;
+   248 }
+   249 
+   250 int X509_STORE_CTX_verify(X509_STORE_CTX *ctx)
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d599c0 verify_chain+3856
+   f 1   0x7ffff7d599c0 verify_chain+3856
+   f 2   0x7ffff7d59b6e X509_verify_cert+190
+   f 3   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 4   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f50e0c ssl3_write_bytes+924
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> n
+X509_verify_cert (ctx=ctx@entry=0x555555703710) at crypto/x509/x509_vfy.c:302
+302	    if (ret <= 0 && ctx->error == X509_V_OK)
+ax
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/crypto/x509/x509_vfy.c
+   297     /*
+   298      * Safety-net.  If we are returning an error, we must also set ctx->error,
+   299      * so that the chain is not considered verified should the error be ignored
+   300      * (e.g. TLS with SSL_VERIFY_NONE).
+   301      */
+ ► 302     if (ret <= 0 && ctx->error == X509_V_OK)
+   303         ctx->error = X509_V_ERR_UNSPECIFIED;
+   304     return ret;
+   305 }
+   306 
+   307 static int sk_X509_contains(STACK_OF(X509) *sk, X509 *cert)
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d59b6e X509_verify_cert+190
+   f 1   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 2   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 3   0x7ffff7f62f9d state_machine.part+1965
+   f 4   0x7ffff7f62f9d state_machine.part+1965
+   f 5   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 6   0x7ffff7f32135 SSL_write+21
+   f 7   0x5555555ce9b4 s_client_main+16100
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> n
+ssl_verify_cert_chain (s=s@entry=0x5555557108c0, sk=<optimized out>) at ssl/ssl_cert.c:438
+438	        if (i < 0)
+
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/ssl_cert.c
+   433     if (s->ctx->app_verify_callback != NULL) {
+   434         i = s->ctx->app_verify_callback(ctx, s->ctx->app_verify_arg);
+   435     } else {
+   436         i = X509_verify_cert(ctx);
+   437         /* We treat an error in the same way as a failure to verify */
+ ► 438         if (i < 0)
+   439             i = 0;
+   440     }
+   441 
+   442     s->verify_result = X509_STORE_CTX_get_error(ctx);
+   443     OSSL_STACK_OF_X509_free(s->verified_chain);
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 1   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f62f9d state_machine.part+1965
+   f 4   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 5   0x7ffff7f32135 SSL_write+21
+   f 6   0x5555555ce9b4 s_client_main+16100
+   f 7   0x5555555ba9ba do_cmd+186
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> n
+442	    s->verify_result = X509_STORE_CTX_get_error(ctx);
+
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/ssl_cert.c
+   437         /* We treat an error in the same way as a failure to verify */
+   438         if (i < 0)
+   439             i = 0;
+   440     }
+   441 
+ ► 442     s->verify_result = X509_STORE_CTX_get_error(ctx);
+   443     OSSL_STACK_OF_X509_free(s->verified_chain);
+   444     s->verified_chain = NULL;
+   445     if (X509_STORE_CTX_get0_chain(ctx) != NULL) {
+   446         s->verified_chain = X509_STORE_CTX_get1_chain(ctx);
+   447         if (s->verified_chain == NULL) {
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f2830f ssl_verify_cert_chain+447
+   f 1   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f62f9d state_machine.part+1965
+   f 4   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 5   0x7ffff7f32135 SSL_write+21
+   f 6   0x5555555ce9b4 s_client_main+16100
+   f 7   0x5555555ba9ba do_cmd+186
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> n
+443	    OSSL_STACK_OF_X509_free(s->verified_chain);
+
+ 
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/ssl_cert.c
+   438         if (i < 0)
+   439             i = 0;
+   440     }
+   441 
+   442     s->verify_result = X509_STORE_CTX_get_error(ctx);
+ ► 443     OSSL_STACK_OF_X509_free(s->verified_chain);
+   444     s->verified_chain = NULL;
+   445     if (X509_STORE_CTX_get0_chain(ctx) != NULL) {
+   446         s->verified_chain = X509_STORE_CTX_get1_chain(ctx);
+   447         if (s->verified_chain == NULL) {
+   448             ERR_raise(ERR_LIB_SSL, ERR_R_MALLOC_FAILURE);
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f28327 ssl_verify_cert_chain+471
+   f 1   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f62f9d state_machine.part+1965
+   f 4   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 5   0x7ffff7f32135 SSL_write+21
+   f 6   0x5555555ce9b4 s_client_main+16100
+   f 7   0x5555555ba9ba do_cmd+186
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> n
+444	    s->verified_chain = NULL;
+
+ 
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/ssl_cert.c
+   439             i = 0;
+   440     }
+   441 
+   442     s->verify_result = X509_STORE_CTX_get_error(ctx);
+   443     OSSL_STACK_OF_X509_free(s->verified_chain);
+ ► 444     s->verified_chain = NULL;
+   445     if (X509_STORE_CTX_get0_chain(ctx) != NULL) {
+   446         s->verified_chain = X509_STORE_CTX_get1_chain(ctx);
+   447         if (s->verified_chain == NULL) {
+   448             ERR_raise(ERR_LIB_SSL, ERR_R_MALLOC_FAILURE);
+   449             i = 0;
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f2832c ssl_verify_cert_chain+476
+   f 1   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f62f9d state_machine.part+1965
+   f 4   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 5   0x7ffff7f32135 SSL_write+21
+   f 6   0x5555555ce9b4 s_client_main+16100
+   f 7   0x5555555ba9ba do_cmd+186
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> nn
+Undefined command: "nn".  Try "help".
+pwndbg> n
+445	    if (X509_STORE_CTX_get0_chain(ctx) != NULL) {
+
+ 
+ 
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/ssl_cert.c
+   440     }
+   441 
+   442     s->verify_result = X509_STORE_CTX_get_error(ctx);
+   443     OSSL_STACK_OF_X509_free(s->verified_chain);
+   444     s->verified_chain = NULL;
+ ► 445     if (X509_STORE_CTX_get0_chain(ctx) != NULL) {
+   446         s->verified_chain = X509_STORE_CTX_get1_chain(ctx);
+   447         if (s->verified_chain == NULL) {
+   448             ERR_raise(ERR_LIB_SSL, ERR_R_MALLOC_FAILURE);
+   449             i = 0;
+   450         }
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f2833a ssl_verify_cert_chain+490
+   f 1   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f62f9d state_machine.part+1965
+   f 4   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 5   0x7ffff7f32135 SSL_write+21
+   f 6   0x5555555ce9b4 s_client_main+16100
+   f 7   0x5555555ba9ba do_cmd+186
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+446	        s->verified_chain = X509_STORE_CTX_get1_chain(ctx);
+
+ 
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/ssl_cert.c
+   441 
+   442     s->verify_result = X509_STORE_CTX_get_error(ctx);
+   443     OSSL_STACK_OF_X509_free(s->verified_chain);
+   444     s->verified_chain = NULL;
+   445     if (X509_STORE_CTX_get0_chain(ctx) != NULL) {
+ ► 446         s->verified_chain = X509_STORE_CTX_get1_chain(ctx);
+   447         if (s->verified_chain == NULL) {
+   448             ERR_raise(ERR_LIB_SSL, ERR_R_MALLOC_FAILURE);
+   449             i = 0;
+   450         }
+   451     }
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f28344 ssl_verify_cert_chain+500
+   f 1   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f62f9d state_machine.part+1965
+   f 4   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 5   0x7ffff7f32135 SSL_write+21
+   f 6   0x5555555ce9b4 s_client_main+16100
+   f 7   0x5555555ba9ba do_cmd+186
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+447	        if (s->verified_chain == NULL) {
+
+ 
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/ssl_cert.c
+   442     s->verify_result = X509_STORE_CTX_get_error(ctx);
+   443     OSSL_STACK_OF_X509_free(s->verified_chain);
+   444     s->verified_chain = NULL;
+   445     if (X509_STORE_CTX_get0_chain(ctx) != NULL) {
+   446         s->verified_chain = X509_STORE_CTX_get1_chain(ctx);
+ ► 447         if (s->verified_chain == NULL) {
+   448             ERR_raise(ERR_LIB_SSL, ERR_R_MALLOC_FAILURE);
+   449             i = 0;
+   450         }
+   451     }
+   452 
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f28353 ssl_verify_cert_chain+515
+   f 1   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f62f9d state_machine.part+1965
+   f 4   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 5   0x7ffff7f32135 SSL_write+21
+   f 6   0x5555555ce9b4 s_client_main+16100
+   f 7   0x5555555ba9ba do_cmd+186
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+454	    X509_VERIFY_PARAM_move_peername(s->param, param);
+
+ 
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/ssl_cert.c
+   449             i = 0;
+   450         }
+   451     }
+   452 
+   453     /* Move peername from the store context params to the SSL handle's */
+ ► 454     X509_VERIFY_PARAM_move_peername(s->param, param);
+   455 
+   456  end:
+   457     X509_STORE_CTX_free(ctx);
+   458     return i;
+   459 }
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f2835c ssl_verify_cert_chain+524
+   f 1   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f62f9d state_machine.part+1965
+   f 4   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 5   0x7ffff7f32135 SSL_write+21
+   f 6   0x5555555ce9b4 s_client_main+16100
+   f 7   0x5555555ba9ba do_cmd+186
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+457	    X509_STORE_CTX_free(ctx);
+
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/ssl_cert.c
+   452 
+   453     /* Move peername from the store context params to the SSL handle's */
+   454     X509_VERIFY_PARAM_move_peername(s->param, param);
+   455 
+   456  end:
+ ► 457     X509_STORE_CTX_free(ctx);
+   458     return i;
+   459 }
+   460 
+   461 static void set0_CA_list(STACK_OF(X509_NAME) **ca_list,
+   462                         STACK_OF(X509_NAME) *name_list)
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f2836b ssl_verify_cert_chain+539
+   f 1   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f62f9d state_machine.part+1965
+   f 4   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 5   0x7ffff7f32135 SSL_write+21
+   f 6   0x5555555ce9b4 s_client_main+16100
+   f 7   0x5555555ba9ba do_cmd+186
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+458	    return i;
+bx
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/ssl_cert.c
+   453     /* Move peername from the store context params to the SSL handle's */
+   454     X509_VERIFY_PARAM_move_peername(s->param, param);
+   455 
+   456  end:
+   457     X509_STORE_CTX_free(ctx);
+ ► 458     return i;
+   459 }
+   460 
+   461 static void set0_CA_list(STACK_OF(X509_NAME) **ca_list,
+   462                         STACK_OF(X509_NAME) *name_list)
+   463 {
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f28373 ssl_verify_cert_chain+547
+   f 1   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f62f9d state_machine.part+1965
+   f 4   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 5   0x7ffff7f32135 SSL_write+21
+   f 6   0x5555555ce9b4 s_client_main+16100
+   f 7   0x5555555ba9ba do_cmd+186
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+tls_post_process_server_certificate (s=0x5555557108c0, wst=<optimized out>) at ssl/statem/statem_clnt.c:1863
+1863	    if (i == -1) {
+
+ 
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/statem/statem_clnt.c
+   1858     const SSL_CERT_LOOKUP *clu;
+   1859     size_t certidx;
+   1860     int i;
+   1861 
+   1862     i = ssl_verify_cert_chain(s, s->session->peer_chain);
+ ► 1863     if (i == -1) {
+   1864         s->rwstate = SSL_RETRY_VERIFY;
+   1865         return WORK_MORE_A;
+   1866     }
+   1867     /*
+   1868      * The documented interface is that SSL_VERIFY_PEER should be set in order
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 1   0x7ffff7f62f9d state_machine.part+1965
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 4   0x7ffff7f32135 SSL_write+21
+   f 5   0x5555555ce9b4 s_client_main+16100
+   f 6   0x5555555ba9ba do_cmd+186
+   f 7   0x5555555963c7 main+599
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+1881	    if (s->verify_mode != SSL_VERIFY_NONE && i == 0) {
+
+ 
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/statem/statem_clnt.c
+   1876      * nothing. SSL_CTX_set_verify()/SSL_set_verify() cannot validate the flags
+   1877      * sent to them because they are void functions. Therefore, we now use the
+   1878      * (less clean) historic behaviour of performing validation if any flag is
+   1879      * set. The *documented* interface remains the same.
+   1880      */
+ ► 1881     if (s->verify_mode != SSL_VERIFY_NONE && i == 0) {
+   1882         SSLfatal(s, ssl_x509err2alert(s->verify_result),
+   1883                  SSL_R_CERTIFICATE_VERIFY_FAILED);
+   1884         return WORK_ERROR;
+   1885     }
+   1886     ERR_clear_error();          /* but we keep s->verify_result */
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f66b37 tls_post_process_server_certificate+39
+   f 1   0x7ffff7f62f9d state_machine.part+1965
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 4   0x7ffff7f32135 SSL_write+21
+   f 5   0x5555555ce9b4 s_client_main+16100
+   f 6   0x5555555ba9ba do_cmd+186
+   f 7   0x5555555963c7 main+599
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+1886	    ERR_clear_error();          /* but we keep s->verify_result */
+ax
+ 
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/statem/statem_clnt.c
+   1881     if (s->verify_mode != SSL_VERIFY_NONE && i == 0) {
+   1882         SSLfatal(s, ssl_x509err2alert(s->verify_result),
+   1883                  SSL_R_CERTIFICATE_VERIFY_FAILED);
+   1884         return WORK_ERROR;
+   1885     }
+ ► 1886     ERR_clear_error();          /* but we keep s->verify_result */
+   1887 
+   1888     /*
+   1889      * Inconsistency alert: cert_chain does include the peer's certificate,
+   1890      * which we don't include in statem_srvr.c
+   1891      */
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f66b49 tls_post_process_server_certificate+57
+   f 1   0x7ffff7f62f9d state_machine.part+1965
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 4   0x7ffff7f32135 SSL_write+21
+   f 5   0x5555555ce9b4 s_client_main+16100
+   f 6   0x5555555ba9ba do_cmd+186
+   f 7   0x5555555963c7 main+599
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+1892	    x = sk_X509_value(s->session->peer_chain, 0);
+ax
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/statem/statem_clnt.c
+   1887 
+   1888     /*
+   1889      * Inconsistency alert: cert_chain does include the peer's certificate,
+   1890      * which we don't include in statem_srvr.c
+   1891      */
+ ► 1892     x = sk_X509_value(s->session->peer_chain, 0);
+   1893 
+   1894     pkey = X509_get0_pubkey(x);
+   1895 
+   1896     if (pkey == NULL || EVP_PKEY_missing_parameters(pkey)) {
+   1897         SSLfatal(s, SSL_AD_INTERNAL_ERROR,
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f66b4e tls_post_process_server_certificate+62
+   f 1   0x7ffff7f62f9d state_machine.part+1965
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 4   0x7ffff7f32135 SSL_write+21
+   f 5   0x5555555ce9b4 s_client_main+16100
+   f 6   0x5555555ba9ba do_cmd+186
+   f 7   0x5555555963c7 main+599
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+1894	    pkey = X509_get0_pubkey(x);
+
+ 
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/statem/statem_clnt.c
+   1889      * Inconsistency alert: cert_chain does include the peer's certificate,
+   1890      * which we don't include in statem_srvr.c
+   1891      */
+   1892     x = sk_X509_value(s->session->peer_chain, 0);
+   1893 
+ ► 1894     pkey = X509_get0_pubkey(x);
+   1895 
+   1896     if (pkey == NULL || EVP_PKEY_missing_parameters(pkey)) {
+   1897         SSLfatal(s, SSL_AD_INTERNAL_ERROR,
+   1898                  SSL_R_UNABLE_TO_FIND_PUBLIC_KEY_PARAMETERS);
+   1899         return WORK_ERROR;
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f66b69 tls_post_process_server_certificate+89
+   f 1   0x7ffff7f62f9d state_machine.part+1965
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 4   0x7ffff7f32135 SSL_write+21
+   f 5   0x5555555ce9b4 s_client_main+16100
+   f 6   0x5555555ba9ba do_cmd+186
+   f 7   0x5555555963c7 main+599
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+1896	    if (pkey == NULL || EVP_PKEY_missing_parameters(pkey)) {
+
+ 
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/statem/statem_clnt.c
+   1891      */
+   1892     x = sk_X509_value(s->session->peer_chain, 0);
+   1893 
+   1894     pkey = X509_get0_pubkey(x);
+   1895 
+ ► 1896     if (pkey == NULL || EVP_PKEY_missing_parameters(pkey)) {
+   1897         SSLfatal(s, SSL_AD_INTERNAL_ERROR,
+   1898                  SSL_R_UNABLE_TO_FIND_PUBLIC_KEY_PARAMETERS);
+   1899         return WORK_ERROR;
+   1900     }
+   1901 
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f66b71 tls_post_process_server_certificate+97
+   f 1   0x7ffff7f62f9d state_machine.part+1965
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 4   0x7ffff7f32135 SSL_write+21
+   f 5   0x5555555ce9b4 s_client_main+16100
+   f 6   0x5555555ba9ba do_cmd+186
+   f 7   0x5555555963c7 main+599
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+1902	    if ((clu = ssl_cert_lookup_by_pkey(pkey, &certidx)) == NULL) {
+
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/statem/statem_clnt.c
+   1897         SSLfatal(s, SSL_AD_INTERNAL_ERROR,
+   1898                  SSL_R_UNABLE_TO_FIND_PUBLIC_KEY_PARAMETERS);
+   1899         return WORK_ERROR;
+   1900     }
+   1901 
+ ► 1902     if ((clu = ssl_cert_lookup_by_pkey(pkey, &certidx)) == NULL) {
+   1903         SSLfatal(s, SSL_AD_ILLEGAL_PARAMETER, SSL_R_UNKNOWN_CERTIFICATE_TYPE);
+   1904         return WORK_ERROR;
+   1905     }
+   1906     /*
+   1907      * Check certificate type is consistent with ciphersuite. For TLS 1.3
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f66bc8 tls_post_process_server_certificate+184
+   f 1   0x7ffff7f62f9d state_machine.part+1965
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 4   0x7ffff7f32135 SSL_write+21
+   f 5   0x5555555ce9b4 s_client_main+16100
+   f 6   0x5555555ba9ba do_cmd+186
+   f 7   0x5555555963c7 main+599
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+1911	    if (!SSL_IS_TLS13(s)) {
+
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/statem/statem_clnt.c
+   1906     /*
+   1907      * Check certificate type is consistent with ciphersuite. For TLS 1.3
+   1908      * skip check since TLS 1.3 ciphersuites can be used with any certificate
+   1909      * type.
+   1910      */
+ ► 1911     if (!SSL_IS_TLS13(s)) {
+   1912         if ((clu->amask & s->s3.tmp.new_cipher->algorithm_auth) == 0) {
+   1913             SSLfatal(s, SSL_AD_ILLEGAL_PARAMETER, SSL_R_WRONG_CERTIFICATE_TYPE);
+   1914             return WORK_ERROR;
+   1915         }
+   1916     }
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f66bde tls_post_process_server_certificate+206
+   f 1   0x7ffff7f62f9d state_machine.part+1965
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 4   0x7ffff7f32135 SSL_write+21
+   f 5   0x5555555ce9b4 s_client_main+16100
+   f 6   0x5555555ba9ba do_cmd+186
+   f 7   0x5555555963c7 main+599
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+1918	    X509_free(s->session->peer);
+], rdx
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/statem/statem_clnt.c
+   1913             SSLfatal(s, SSL_AD_ILLEGAL_PARAMETER, SSL_R_WRONG_CERTIFICATE_TYPE);
+   1914             return WORK_ERROR;
+   1915         }
+   1916     }
+   1917 
+ ► 1918     X509_free(s->session->peer);
+   1919     X509_up_ref(x);
+   1920     s->session->peer = x;
+   1921     s->session->verify_result = s->verify_result;
+   1922 
+   1923     /* Save the current hash state for when we receive the CertificateVerify */
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f66c16 tls_post_process_server_certificate+262
+   f 1   0x7ffff7f62f9d state_machine.part+1965
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 4   0x7ffff7f32135 SSL_write+21
+   f 5   0x5555555ce9b4 s_client_main+16100
+   f 6   0x5555555ba9ba do_cmd+186
+   f 7   0x5555555963c7 main+599
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+1919	    X509_up_ref(x);
+], rdx
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/statem/statem_clnt.c
+   1914             return WORK_ERROR;
+   1915         }
+   1916     }
+   1917 
+   1918     X509_free(s->session->peer);
+ ► 1919     X509_up_ref(x);
+   1920     s->session->peer = x;
+   1921     s->session->verify_result = s->verify_result;
+   1922 
+   1923     /* Save the current hash state for when we receive the CertificateVerify */
+   1924     if (SSL_IS_TLS13(s)
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f66c2f tls_post_process_server_certificate+287
+   f 1   0x7ffff7f62f9d state_machine.part+1965
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 4   0x7ffff7f32135 SSL_write+21
+   f 5   0x5555555ce9b4 s_client_main+16100
+   f 6   0x5555555ba9ba do_cmd+186
+   f 7   0x5555555963c7 main+599
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+1920	    s->session->peer = x;
+
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/statem/statem_clnt.c
+   1915         }
+   1916     }
+   1917 
+   1918     X509_free(s->session->peer);
+   1919     X509_up_ref(x);
+ ► 1920     s->session->peer = x;
+   1921     s->session->verify_result = s->verify_result;
+   1922 
+   1923     /* Save the current hash state for when we receive the CertificateVerify */
+   1924     if (SSL_IS_TLS13(s)
+   1925             && !ssl_handshake_hash(s, s->cert_verify_hash,
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f66c37 tls_post_process_server_certificate+295
+   f 1   0x7ffff7f62f9d state_machine.part+1965
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 4   0x7ffff7f32135 SSL_write+21
+   f 5   0x5555555ce9b4 s_client_main+16100
+   f 6   0x5555555ba9ba do_cmd+186
+   f 7   0x5555555963c7 main+599
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+1921	    s->session->verify_result = s->verify_result;
+
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/statem/statem_clnt.c
+   1916     }
+   1917 
+   1918     X509_free(s->session->peer);
+   1919     X509_up_ref(x);
+   1920     s->session->peer = x;
+ ► 1921     s->session->verify_result = s->verify_result;
+   1922 
+   1923     /* Save the current hash state for when we receive the CertificateVerify */
+   1924     if (SSL_IS_TLS13(s)
+   1925             && !ssl_handshake_hash(s, s->cert_verify_hash,
+   1926                                    sizeof(s->cert_verify_hash),
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f66c4c tls_post_process_server_certificate+316
+   f 1   0x7ffff7f62f9d state_machine.part+1965
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 4   0x7ffff7f32135 SSL_write+21
+   f 5   0x5555555ce9b4 s_client_main+16100
+   f 6   0x5555555ba9ba do_cmd+186
+   f 7   0x5555555963c7 main+599
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+1924	    if (SSL_IS_TLS13(s)
+rd ptr [rax]
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/statem/statem_clnt.c
+   1919     X509_up_ref(x);
+   1920     s->session->peer = x;
+   1921     s->session->verify_result = s->verify_result;
+   1922 
+   1923     /* Save the current hash state for when we receive the CertificateVerify */
+ ► 1924     if (SSL_IS_TLS13(s)
+   1925             && !ssl_handshake_hash(s, s->cert_verify_hash,
+   1926                                    sizeof(s->cert_verify_hash),
+   1927                                    &s->cert_verify_hash_len)) {
+   1928         /* SSLfatal() already called */;
+   1929         return WORK_ERROR;
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f66c53 tls_post_process_server_certificate+323
+   f 1   0x7ffff7f62f9d state_machine.part+1965
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 4   0x7ffff7f32135 SSL_write+21
+   f 5   0x5555555ce9b4 s_client_main+16100
+   f 6   0x5555555ba9ba do_cmd+186
+   f 7   0x5555555963c7 main+599
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+1899	        return WORK_ERROR;
+, 0
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/statem/statem_clnt.c
+   1894     pkey = X509_get0_pubkey(x);
+   1895 
+   1896     if (pkey == NULL || EVP_PKEY_missing_parameters(pkey)) {
+   1897         SSLfatal(s, SSL_AD_INTERNAL_ERROR,
+   1898                  SSL_R_UNABLE_TO_FIND_PUBLIC_KEY_PARAMETERS);
+ ► 1899         return WORK_ERROR;
+   1900     }
+   1901 
+   1902     if ((clu = ssl_cert_lookup_by_pkey(pkey, &certidx)) == NULL) {
+   1903         SSLfatal(s, SSL_AD_ILLEGAL_PARAMETER, SSL_R_UNKNOWN_CERTIFICATE_TYPE);
+   1904         return WORK_ERROR;
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f66bb8 tls_post_process_server_certificate+168
+   f 1   0x7ffff7f62f9d state_machine.part+1965
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 4   0x7ffff7f32135 SSL_write+21
+   f 5   0x5555555ce9b4 s_client_main+16100
+   f 6   0x5555555ba9ba do_cmd+186
+   f 7   0x5555555963c7 main+599
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+read_state_machine (s=0x5555557108c0) at ssl/statem/statem.c:679
+679	            switch (st->read_state_work) {
+
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/statem/statem.c
+   674             }
+   675             break;
+   676 
+   677         case READ_STATE_POST_PROCESS:
+   678             st->read_state_work = post_process_message(s, st->read_state_work);
+ ► 679             switch (st->read_state_work) {
+   680             case WORK_ERROR:
+   681                 check_fatal(s);
+   682                 /* Fall through */
+   683             case WORK_MORE_A:
+   684             case WORK_MORE_B:
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f62fa1 state_machine.part+1969
+   f 1   0x7ffff7f62fa1 state_machine.part+1969
+   f 2   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 3   0x7ffff7f32135 SSL_write+21
+   f 4   0x5555555ce9b4 s_client_main+16100
+   f 5   0x5555555ba9ba do_cmd+186
+   f 6   0x5555555963c7 main+599
+   f 7   0x7ffff78cc7ed __libc_start_main+205
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+672	                st->read_state = READ_STATE_HEADER;
+
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/statem/statem.c
+   667                 st->read_state = READ_STATE_POST_PROCESS;
+   668                 st->read_state_work = WORK_MORE_A;
+   669                 break;
+   670 
+   671             default:
+ ► 672                 st->read_state = READ_STATE_HEADER;
+   673                 break;
+   674             }
+   675             break;
+   676 
+   677         case READ_STATE_POST_PROCESS:
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f62d87 state_machine.part+1431
+   f 1   0x7ffff7f62d87 state_machine.part+1431
+   f 2   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 3   0x7ffff7f32135 SSL_write+21
+   f 4   0x5555555ce9b4 s_client_main+16100
+   f 5   0x5555555ba9ba do_cmd+186
+   f 6   0x5555555963c7 main+599
+   f 7   0x7ffff78cc7ed __libc_start_main+205
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+582	            if (SSL_IS_DTLS(s)) {
+
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/statem/statem.c
+   577     while (1) {
+   578         switch (st->read_state) {
+   579         case READ_STATE_HEADER:
+   580             /* Get the state the peer wants to move to */
+   581 // when address is 8.8.8.8, return false, goto 587
+ ► 582             if (SSL_IS_DTLS(s)) {
+   583                 /*
+   584                  * In DTLS we get the whole message in one go - header and body
+   585                  */
+   586                 ret = dtls_get_message(s, &mt);
+   587             } else {
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f62d8f state_machine.part+1439
+   f 1   0x7ffff7f62d8f state_machine.part+1439
+   f 2   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 3   0x7ffff7f32135 SSL_write+21
+   f 4   0x5555555ce9b4 s_client_main+16100
+   f 5   0x5555555ba9ba do_cmd+186
+   f 6   0x5555555963c7 main+599
+   f 7   0x7ffff78cc7ed __libc_start_main+205
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+589	                ret = tls_get_message_header(s, &mt);
+0xc0]
+ 
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/statem/statem.c
+   584                  * In DTLS we get the whole message in one go - header and body
+   585                  */
+   586                 ret = dtls_get_message(s, &mt);
+   587             } else {
+   588 // return value was tls form, thus get_tls_message_header(s, &mt);
+ ► 589                 ret = tls_get_message_header(s, &mt);
+   590             }
+   591 
+   592             if (ret == 0) {
+   593                 /* Could be non-blocking IO */
+   594                 return SUB_STATE_ERROR;
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f63220 state_machine.part+2608
+   f 1   0x7ffff7f63220 state_machine.part+2608
+   f 2   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 3   0x7ffff7f32135 SSL_write+21
+   f 4   0x5555555ce9b4 s_client_main+16100
+   f 5   0x5555555ba9ba do_cmd+186
+   f 6   0x5555555963c7 main+599
+   f 7   0x7ffff78cc7ed __libc_start_main+205
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+592	            if (ret == 0) {
+di, r15
+ 
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/statem/statem.c
+   587             } else {
+   588 // return value was tls form, thus get_tls_message_header(s, &mt);
+   589                 ret = tls_get_message_header(s, &mt);
+   590             }
+   591 
+ ► 592             if (ret == 0) {
+   593                 /* Could be non-blocking IO */
+   594                 return SUB_STATE_ERROR;
+   595             }
+   596 // cb == NULL
+   597             if (cb != NULL) {
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f62db1 state_machine.part+1473
+   f 1   0x7ffff7f62db1 state_machine.part+1473
+   f 2   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 3   0x7ffff7f32135 SSL_write+21
+   f 4   0x5555555ce9b4 s_client_main+16100
+   f 5   0x5555555ba9ba do_cmd+186
+   f 6   0x5555555963c7 main+599
+   f 7   0x7ffff78cc7ed __libc_start_main+205
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+597	            if (cb != NULL) {
+di, r15
+ 
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/statem/statem.c
+   592             if (ret == 0) {
+   593                 /* Could be non-blocking IO */
+   594                 return SUB_STATE_ERROR;
+   595             }
+   596 // cb == NULL
+ ► 597             if (cb != NULL) {
+   598                 /* Notify callback of an impending state change */
+   599                 if (s->server)
+   600                     cb(s, SSL_CB_ACCEPT_LOOP, 1);
+   601                 else
+   602                     cb(s, SSL_CB_CONNECT_LOOP, 1);
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f62db9 state_machine.part+1481
+   f 1   0x7ffff7f62db9 state_machine.part+1481
+   f 2   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 3   0x7ffff7f32135 SSL_write+21
+   f 4   0x5555555ce9b4 s_client_main+16100
+   f 5   0x5555555ba9ba do_cmd+186
+   f 6   0x5555555963c7 main+599
+   f 7   0x7ffff78cc7ed __libc_start_main+205
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+609	            if (!transition(s, mt))
+
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/statem/statem.c
+   604             /*
+   605              * Validate that we are allowed to move to the new state and move
+   606              * to that state if so
+   607              */
+   608 // if (!trun)
+ ► 609             if (!transition(s, mt))
+   610                 return SUB_STATE_ERROR;
+   611 
+   612             if (s->s3.tmp.message_size > max_message_size(s)) {
+   613                 SSLfatal(s, SSL_AD_ILLEGAL_PARAMETER,
+   614                          SSL_R_EXCESSIVE_MESSAGE_SIZE);
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f62dd9 state_machine.part+1513
+   f 1   0x7ffff7f62dd9 state_machine.part+1513
+   f 2   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 3   0x7ffff7f32135 SSL_write+21
+   f 4   0x5555555ce9b4 s_client_main+16100
+   f 5   0x5555555ba9ba do_cmd+186
+   f 6   0x5555555963c7 main+599
+   f 7   0x7ffff78cc7ed __libc_start_main+205
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+612	            if (s->s3.tmp.message_size > max_message_size(s)) {
+
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/statem/statem.c
+   607              */
+   608 // if (!trun)
+   609             if (!transition(s, mt))
+   610                 return SUB_STATE_ERROR;
+   611 
+ ► 612             if (s->s3.tmp.message_size > max_message_size(s)) {
+   613                 SSLfatal(s, SSL_AD_ILLEGAL_PARAMETER,
+   614                          SSL_R_EXCESSIVE_MESSAGE_SIZE);
+   615                 return SUB_STATE_ERROR;
+   616             }
+   617 
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f62deb state_machine.part+1531
+   f 1   0x7ffff7f62deb state_machine.part+1531
+   f 2   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 3   0x7ffff7f32135 SSL_write+21
+   f 4   0x5555555ce9b4 s_client_main+16100
+   f 5   0x5555555ba9ba do_cmd+186
+   f 6   0x5555555963c7 main+599
+   f 7   0x7ffff78cc7ed __libc_start_main+205
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+619	            if (!SSL_IS_DTLS(s)
+
+ 
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/statem/statem.c
+   614                          SSL_R_EXCESSIVE_MESSAGE_SIZE);
+   615                 return SUB_STATE_ERROR;
+   616             }
+   617 
+   618             /* dtls_get_message already did this */
+ ► 619             if (!SSL_IS_DTLS(s)
+   620                     && s->s3.tmp.message_size > 0
+   621                     && !grow_init_buf(s, s->s3.tmp.message_size
+   622                                          + SSL3_HM_HEADER_LENGTH)) {
+   623                 SSLfatal(s, SSL_AD_INTERNAL_ERROR, ERR_R_BUF_LIB);
+   624                 return SUB_STATE_ERROR;
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f62e06 state_machine.part+1558
+   f 1   0x7ffff7f62e06 state_machine.part+1558
+   f 2   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 3   0x7ffff7f32135 SSL_write+21
+   f 4   0x5555555ce9b4 s_client_main+16100
+   f 5   0x5555555ba9ba do_cmd+186
+   f 6   0x5555555963c7 main+599
+   f 7   0x7ffff78cc7ed __libc_start_main+205
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+445	                init_write_state_machine(s);
+
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/statem/statem.c
+   440     while (st->state != MSG_FLOW_FINISHED) {
+   441         if (st->state == MSG_FLOW_READING) {
+   442             ssret = read_state_machine(s);
+   443             if (ssret == SUB_STATE_FINISHED) {
+   444                 st->state = MSG_FLOW_WRITING;
+ ► 445                 init_write_state_machine(s);
+   446             } else {
+   447                 /* NBIO or error */
+   448                 goto end;
+   449             }
+   450         } else if (st->state == MSG_FLOW_WRITING) {
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f62a80 state_machine.part+656
+   f 1   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 2   0x7ffff7f32135 SSL_write+21
+   f 3   0x5555555ce9b4 s_client_main+16100
+   f 4   0x5555555ba9ba do_cmd+186
+   f 5   0x5555555963c7 main+599
+   f 6   0x7ffff78cc7ed __libc_start_main+205
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+450	        } else if (st->state == MSG_FLOW_WRITING) {
+
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/statem/statem.c
+   445                 init_write_state_machine(s);
+   446             } else {
+   447                 /* NBIO or error */
+   448                 goto end;
+   449             }
+ ► 450         } else if (st->state == MSG_FLOW_WRITING) {
+   451             ssret = write_state_machine(s);
+   452             if (ssret == SUB_STATE_FINISHED) {
+   453                 st->state = MSG_FLOW_READING;
+   454                 init_read_state_machine(s);
+   455             } else if (ssret == SUB_STATE_END_HANDSHAKE) {
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f62a8b state_machine.part+667
+   f 1   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 2   0x7ffff7f32135 SSL_write+21
+   f 3   0x5555555ce9b4 s_client_main+16100
+   f 4   0x5555555ba9ba do_cmd+186
+   f 5   0x5555555963c7 main+599
+   f 6   0x7ffff78cc7ed __libc_start_main+205
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> n
+451	            ssret = write_state_machine(s);
+
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/statem/statem.c
+   446             } else {
+   447                 /* NBIO or error */
+   448                 goto end;
+   449             }
+   450         } else if (st->state == MSG_FLOW_WRITING) {
+ ► 451             ssret = write_state_machine(s);
+   452             if (ssret == SUB_STATE_FINISHED) {
+   453                 st->state = MSG_FLOW_READING;
+   454                 init_read_state_machine(s);
+   455             } else if (ssret == SUB_STATE_END_HANDSHAKE) {
+   456                 st->state = MSG_FLOW_FINISHED;
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f6287d state_machine.part+141
+   f 1   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 2   0x7ffff7f32135 SSL_write+21
+   f 3   0x5555555ce9b4 s_client_main+16100
+   f 4   0x5555555ba9ba do_cmd+186
+   f 5   0x5555555963c7 main+599
+   f 6   0x7ffff78cc7ed __libc_start_main+205
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+456	                st->state = MSG_FLOW_FINISHED;
+ord ptr [rsp + 0x14]
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/statem/statem.c
+   451             ssret = write_state_machine(s);
+   452             if (ssret == SUB_STATE_FINISHED) {
+   453                 st->state = MSG_FLOW_READING;
+   454                 init_read_state_machine(s);
+   455             } else if (ssret == SUB_STATE_END_HANDSHAKE) {
+ ► 456                 st->state = MSG_FLOW_FINISHED;
+   457             } else {
+   458                 /* NBIO or error */
+   459                 goto end;
+   460             }
+   461         } else {
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f6290a state_machine.part+282
+   f 1   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 2   0x7ffff7f32135 SSL_write+21
+   f 3   0x5555555ce9b4 s_client_main+16100
+   f 4   0x5555555ba9ba do_cmd+186
+   f 5   0x5555555963c7 main+599
+   f 6   0x7ffff78cc7ed __libc_start_main+205
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+440	    while (st->state != MSG_FLOW_FINISHED) {
+ord ptr [rsp + 0x14]
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/statem/statem.c
+   435 
+   436         st->state = MSG_FLOW_WRITING;
+   437         init_write_state_machine(s);
+   438     }
+   439 
+ ► 440     while (st->state != MSG_FLOW_FINISHED) {
+   441         if (st->state == MSG_FLOW_READING) {
+   442             ssret = read_state_machine(s);
+   443             if (ssret == SUB_STATE_FINISHED) {
+   444                 st->state = MSG_FLOW_WRITING;
+   445                 init_write_state_machine(s);
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f62912 state_machine.part+290
+   f 1   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 2   0x7ffff7f32135 SSL_write+21
+   f 3   0x5555555ce9b4 s_client_main+16100
+   f 4   0x5555555ba9ba do_cmd+186
+   f 5   0x5555555963c7 main+599
+   f 6   0x7ffff78cc7ed __libc_start_main+205
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+472	    st->in_handshake--;
+ord ptr [rsp + 0x14]
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/statem/statem.c
+   467     }
+   468 
+   469     ret = 1;
+   470 
+   471  end:
+ ► 472     st->in_handshake--;
+   473 
+   474 #ifndef OPENSSL_NO_SCTP
+   475     if (SSL_IS_DTLS(s) && BIO_dgram_is_sctp(SSL_get_wbio(s))) {
+   476         /*
+   477          * Notify SCTP BIO socket to leave handshake mode and allow stream
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f6291a state_machine.part+298
+   f 1   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 2   0x7ffff7f32135 SSL_write+21
+   f 3   0x5555555ce9b4 s_client_main+16100
+   f 4   0x5555555ba9ba do_cmd+186
+   f 5   0x5555555963c7 main+599
+   f 6   0x7ffff78cc7ed __libc_start_main+205
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+485	    BUF_MEM_free(buf);
+ord ptr [rsp + 0x14]
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/statem/statem.c
+   480         BIO_ctrl(SSL_get_wbio(s), BIO_CTRL_DGRAM_SCTP_SET_IN_HANDSHAKE,
+   481                  st->in_handshake, NULL);
+   482     }
+   483 #endif
+   484 
+ ► 485     BUF_MEM_free(buf);
+   486     if (cb != NULL) {
+   487         if (server)
+   488             cb(s, SSL_CB_ACCEPT_EXIT, ret);
+   489         else
+   490             cb(s, SSL_CB_CONNECT_EXIT, ret);
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f6291f state_machine.part+303
+   f 1   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 2   0x7ffff7f32135 SSL_write+21
+   f 3   0x5555555ce9b4 s_client_main+16100
+   f 4   0x5555555ba9ba do_cmd+186
+   f 5   0x5555555963c7 main+599
+   f 6   0x7ffff78cc7ed __libc_start_main+205
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+486	    if (cb != NULL) {
+ax, r12d
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/statem/statem.c
+   481                  st->in_handshake, NULL);
+   482     }
+   483 #endif
+   484 
+   485     BUF_MEM_free(buf);
+ ► 486     if (cb != NULL) {
+   487         if (server)
+   488             cb(s, SSL_CB_ACCEPT_EXIT, ret);
+   489         else
+   490             cb(s, SSL_CB_CONNECT_EXIT, ret);
+   491     }
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f62927 state_machine.part+311
+   f 1   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 2   0x7ffff7f32135 SSL_write+21
+   f 3   0x5555555ce9b4 s_client_main+16100
+   f 4   0x5555555ba9ba do_cmd+186
+   f 5   0x5555555963c7 main+599
+   f 6   0x7ffff78cc7ed __libc_start_main+205
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+ssl3_write_bytes (s=0x5555557108c0, type=23, buf_=0x55555565c8e0, len=0, written=0x7fffffffd738) at ssl/record/rec_layer_s3.c:405
+405	        if (i < 0)
+
+ 
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/record/rec_layer_s3.c
+   400      */
+   401     if (SSL_in_init(s) && !ossl_statem_get_in_handshake(s)
+   402             && s->early_data_state != SSL_EARLY_DATA_UNAUTH_WRITING) {
+   403         i = s->handshake_func(s);
+   404         /* SSLfatal() already called */
+ ► 405         if (i < 0)
+   406             return i;
+   407         if (i == 0) {
+   408             return -1;
+   409         }
+   410     }
+ ► f 0   0x7ffff7f50e0f ssl3_write_bytes+927
+   f 1   0x7ffff7f32135 SSL_write+21
+   f 2   0x5555555ce9b4 s_client_main+16100
+   f 3   0x5555555ba9ba do_cmd+186
+   f 4   0x5555555963c7 main+599
+   f 5   0x7ffff78cc7ed __libc_start_main+205
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+407	        if (i == 0) {
+
+ 
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/record/rec_layer_s3.c
+   402             && s->early_data_state != SSL_EARLY_DATA_UNAUTH_WRITING) {
+   403         i = s->handshake_func(s);
+   404         /* SSLfatal() already called */
+   405         if (i < 0)
+   406             return i;
+ ► 407         if (i == 0) {
+   408             return -1;
+   409         }
+   410     }
+   411 
+   412     /*
+ ► f 0   0x7ffff7f50e17 ssl3_write_bytes+935
+   f 1   0x7ffff7f32135 SSL_write+21
+   f 2   0x5555555ce9b4 s_client_main+16100
+   f 3   0x5555555ba9ba do_cmd+186
+   f 4   0x5555555963c7 main+599
+   f 5   0x7ffff78cc7ed __libc_start_main+205
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+416	    if (wb->left != 0) {
+
+ 
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/record/rec_layer_s3.c
+   411 
+   412     /*
+   413      * first check if there is a SSL3_BUFFER still being written out.  This
+   414      * will happen with non blocking IO
+   415      */
+ ► 416     if (wb->left != 0) {
+   417         /* SSLfatal() already called if appropriate */
+   418         i = ssl3_write_pending(s, type, &buf[tot], s->rlayer.wpend_tot,
+   419                                &tmpwrit);
+   420         if (i <= 0) {
+   421             /* XXX should we ssl3_release_write_buffer if i<0? */
+ ► f 0   0x7ffff7f50af3 ssl3_write_bytes+131
+   f 1   0x7ffff7f32135 SSL_write+21
+   f 2   0x5555555ce9b4 s_client_main+16100
+   f 3   0x5555555ba9ba do_cmd+186
+   f 4   0x5555555963c7 main+599
+   f 5   0x7ffff78cc7ed __libc_start_main+205
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+434	    if (type == SSL3_RT_APPLICATION_DATA
+
+ 
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/record/rec_layer_s3.c
+   429      * Depending on platform multi-block can deliver several *times*
+   430      * better performance. Downside is that it has to allocate
+   431      * jumbo buffer to accommodate up to 8 records, but the
+   432      * compromise is considered worthy.
+   433      */
+ ► 434     if (type == SSL3_RT_APPLICATION_DATA
+   435             && len >= 4 * (max_send_fragment = ssl_get_max_send_fragment(s))
+   436             && s->compress == NULL
+   437             && s->msg_callback == NULL
+   438             && !SSL_WRITE_ETM(s)
+   439             && SSL_USE_EXPLICIT_IV(s)
+ ► f 0   0x7ffff7f50b01 ssl3_write_bytes+145
+   f 1   0x7ffff7f32135 SSL_write+21
+   f 2   0x5555555ce9b4 s_client_main+16100
+   f 3   0x5555555ba9ba do_cmd+186
+   f 4   0x5555555963c7 main+599
+   f 5   0x7ffff78cc7ed __libc_start_main+205
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+561	    if (tot == len) {           /* done? */
+
+    ↓
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/record/rec_layer_s3.c
+   556             n -= tmpwrit;
+   557             tot += tmpwrit;
+   558         }
+   559     } else
+   560 #endif  /* !defined(OPENSSL_NO_MULTIBLOCK) && EVP_CIPH_FLAG_TLS1_1_MULTIBLOCK */
+ ► 561     if (tot == len) {           /* done? */
+   562         if (s->mode & SSL_MODE_RELEASE_BUFFERS && !SSL_IS_DTLS(s))
+   563             ssl3_release_write_buffer(s);
+   564 
+   565         *written = tot;
+   566         return 1;
+ ► f 0   0x7ffff7f50b0b ssl3_write_bytes+155
+   f 1   0x7ffff7f32135 SSL_write+21
+   f 2   0x5555555ce9b4 s_client_main+16100
+   f 3   0x5555555ba9ba do_cmd+186
+   f 4   0x5555555963c7 main+599
+   f 5   0x7ffff78cc7ed __libc_start_main+205
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+562	        if (s->mode & SSL_MODE_RELEASE_BUFFERS && !SSL_IS_DTLS(s))
+bp
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/record/rec_layer_s3.c
+   557             tot += tmpwrit;
+   558         }
+   559     } else
+   560 #endif  /* !defined(OPENSSL_NO_MULTIBLOCK) && EVP_CIPH_FLAG_TLS1_1_MULTIBLOCK */
+   561     if (tot == len) {           /* done? */
+ ► 562         if (s->mode & SSL_MODE_RELEASE_BUFFERS && !SSL_IS_DTLS(s))
+   563             ssl3_release_write_buffer(s);
+   564 
+   565         *written = tot;
+   566         return 1;
+   567     }
+ ► f 0   0x7ffff7f51202 ssl3_write_bytes+1938
+   f 1   0x7ffff7f32135 SSL_write+21
+   f 2   0x5555555ce9b4 s_client_main+16100
+   f 3   0x5555555ba9ba do_cmd+186
+   f 4   0x5555555963c7 main+599
+   f 5   0x7ffff78cc7ed __libc_start_main+205
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+565	        *written = tot;
+
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/record/rec_layer_s3.c
+   560 #endif  /* !defined(OPENSSL_NO_MULTIBLOCK) && EVP_CIPH_FLAG_TLS1_1_MULTIBLOCK */
+   561     if (tot == len) {           /* done? */
+   562         if (s->mode & SSL_MODE_RELEASE_BUFFERS && !SSL_IS_DTLS(s))
+   563             ssl3_release_write_buffer(s);
+   564 
+ ► 565         *written = tot;
+   566         return 1;
+   567     }
+   568 
+   569     n = (len - tot);
+   570 
+ ► f 0   0x7ffff7f5121d ssl3_write_bytes+1965
+   f 1   0x7ffff7f32135 SSL_write+21
+   f 2   0x5555555ce9b4 s_client_main+16100
+   f 3   0x5555555ba9ba do_cmd+186
+   f 4   0x5555555963c7 main+599
+   f 5   0x7ffff78cc7ed __libc_start_main+205
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+566	        return 1;
+
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/record/rec_layer_s3.c
+   561     if (tot == len) {           /* done? */
+   562         if (s->mode & SSL_MODE_RELEASE_BUFFERS && !SSL_IS_DTLS(s))
+   563             ssl3_release_write_buffer(s);
+   564 
+   565         *written = tot;
+ ► 566         return 1;
+   567     }
+   568 
+   569     n = (len - tot);
+   570 
+   571     max_send_fragment = ssl_get_max_send_fragment(s);
+ ► f 0   0x7ffff7f5122b ssl3_write_bytes+1979
+   f 1   0x7ffff7f32135 SSL_write+21
+   f 2   0x5555555ce9b4 s_client_main+16100
+   f 3   0x5555555ba9ba do_cmd+186
+   f 4   0x5555555963c7 main+599
+   f 5   0x7ffff78cc7ed __libc_start_main+205
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+641	            return i;
+
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/record/rec_layer_s3.c
+   636                           &tmpwrit);
+   637         if (i <= 0) {
+   638             /* SSLfatal() already called if appropriate */
+   639             /* XXX should we ssl3_release_write_buffer if i<0? */
+   640             s->rlayer.wnum = tot;
+ ► 641             return i;
+   642         }
+   643 
+   644         if (tmpwrit == n ||
+   645             (type == SSL3_RT_APPLICATION_DATA &&
+   646              (s->mode & SSL_MODE_ENABLE_PARTIAL_WRITE))) {
+ ► f 0   0x7ffff7f511b5 ssl3_write_bytes+1861
+   f 1   0x7ffff7f32135 SSL_write+21
+   f 2   0x5555555ce9b4 s_client_main+16100
+   f 3   0x5555555ba9ba do_cmd+186
+   f 4   0x5555555963c7 main+599
+   f 5   0x7ffff78cc7ed __libc_start_main+205
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+SSL_write (s=s@entry=0x5555557108c0, buf=buf@entry=0x55555565c8e0, num=num@entry=0) at ssl/ssl_lib.c:2131
+2131	    if (ret > 0)
+
+   0x5555555ce9c3 <s_client_main+16115>    ja     s_client_main+11346 <s_client_main+11346>
+ 
+   0x5555555ce9c9 <s_client_main+16121>    lea    rcx, [rip + 0x45560]
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/ssl/ssl_lib.c
+   2126 
+   2127     /*
+   2128      * The cast is safe here because ret should be <= INT_MAX because num is
+   2129      * <= INT_MAX
+   2130      */
+ ► 2131     if (ret > 0)
+   2132         ret = (int)written;
+   2133 
+   2134     return ret;
+   2135 }
+   2136 
+ ► f 0   0x7ffff7f32135 SSL_write+21
+   f 1   0x5555555ce9b4 s_client_main+16100
+   f 2   0x5555555ba9ba do_cmd+186
+   f 3   0x5555555963c7 main+599
+   f 4   0x7ffff78cc7ed __libc_start_main+205
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+s_client_main (argc=<optimized out>, argv=<optimized out>) at apps/s_client.c:2859
+2859	                if ((k != 0) || (cbuf_len != 0)) {
+
+   0x5555555cd731 <s_client_main+11361>    rep stosd dword ptr [rdi], eax
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/apps/s_client.c
+   2854                     write_ssl = 0;
+   2855                     break;
+   2856                 }
+   2857 
+   2858             case SSL_ERROR_SYSCALL:
+ ► 2859                 if ((k != 0) || (cbuf_len != 0)) {
+   2860                     BIO_printf(bio_err, "write:errno=%d\n",
+   2861                                get_last_socket_error());
+   2862                     goto shut;
+   2863                 } else {
+   2864                     read_tty = 1;
+ ► f 0   0x5555555cea6e s_client_main+16286
+   f 1   0x5555555ba9ba do_cmd+186
+   f 2   0x5555555963c7 main+599
+   f 3   0x7ffff78cc7ed __libc_start_main+205
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+2691	        FD_ZERO(&readfds);
+URCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/apps/s_client.c
+   2686 
+   2687         BIO_free(edfile);
+   2688     }
+   2689 // for looping to check connection type
+   2690     for (;;) {
+ ► 2691         FD_ZERO(&readfds);
+   2692         FD_ZERO(&writefds);
+   2693 // verify whether using datagram TLS -> SSL_is_dtls(0x55d996ee6220, 105, 0, 0)  = 0
+   2694         if (SSL_is_dtls(con) && DTLSv1_get_timeout(con, &timeout))
+   2695             timeoutp = &timeout;
+   2696         else
+ ► f 0   0x5555555cd722 s_client_main+11346
+   f 1   0x5555555ba9ba do_cmd+186
+   f 2   0x5555555963c7 main+599
+   f 3   0x7ffff78cc7ed __libc_start_main+205
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+2694	        if (SSL_is_dtls(con) && DTLSv1_get_timeout(con, &timeout))
+
+   0x5555555cd75e <s_client_main+11406>    je     s_client_main+15108 <s_client_main+15108>
+ 
+   0x5555555cd764 <s_client_main+11412>    cmp    dword ptr [rsp + 0xb8], 0
+   0x5555555cd76c <s_client_main+11420>    je     s_client_main+11497 <s_client_main+11497>
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/apps/s_client.c
+   2689 // for looping to check connection type
+   2690     for (;;) {
+   2691         FD_ZERO(&readfds);
+   2692         FD_ZERO(&writefds);
+   2693 // verify whether using datagram TLS -> SSL_is_dtls(0x55d996ee6220, 105, 0, 0)  = 0
+ ► 2694         if (SSL_is_dtls(con) && DTLSv1_get_timeout(con, &timeout))
+   2695             timeoutp = &timeout;
+   2696         else
+   2697             timeoutp = NULL;
+   2698 // return true -> SSL_is_init_finished(0x55d996ee6220, 105, 0, 0) = 0
+   2699         if (!SSL_is_init_finished(con) && SSL_total_renegotiations(con) == 0
+ ► f 0   0x5555555cd742 s_client_main+11378
+   f 1   0x5555555ba9ba do_cmd+186
+   f 2   0x5555555963c7 main+599
+   f 3   0x7ffff78cc7ed __libc_start_main+205
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+2699	        if (!SSL_is_init_finished(con) && SSL_total_renegotiations(con) == 0
+
+   0x5555555cd75e <s_client_main+11406>    je     s_client_main+15108 <s_client_main+15108>
+ 
+   0x5555555cd764 <s_client_main+11412>    cmp    dword ptr [rsp + 0xb8], 0
+   0x5555555cd76c <s_client_main+11420>    je     s_client_main+11497 <s_client_main+11497>
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/apps/s_client.c
+   2694         if (SSL_is_dtls(con) && DTLSv1_get_timeout(con, &timeout))
+   2695             timeoutp = &timeout;
+   2696         else
+   2697             timeoutp = NULL;
+   2698 // return true -> SSL_is_init_finished(0x55d996ee6220, 105, 0, 0) = 0
+ ► 2699         if (!SSL_is_init_finished(con) && SSL_total_renegotiations(con) == 0
+   2700 // SSL_get_key_update_type(0x55d996ee6220, 9, 0, 0) = 0xffffffff
+   2701                 && SSL_get_key_update_type(con) == SSL_KEY_UPDATE_NONE) {
+   2702             in_init = 1;
+   2703             tty_on = 0;
+   2704         } else {
+ ► f 0   0x5555555cd754 s_client_main+11396
+   f 1   0x5555555ba9ba do_cmd+186
+   f 2   0x5555555963c7 main+599
+   f 3   0x7ffff78cc7ed __libc_start_main+205
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+2706	            if (in_init) {
+
+   0x5555555cd776 <s_client_main+11430>    jne    s_client_main+18067 <s_client_main+18067>
+ 
+   0x5555555cd77c <s_client_main+11436>    mov    edx, dword ptr [rsp + 0xc8]
+   0x5555555cd783 <s_client_main+11443>    mov    rdi, qword ptr [rip + 0x785be] <0x555555645d48>
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/apps/s_client.c
+   2701                 && SSL_get_key_update_type(con) == SSL_KEY_UPDATE_NONE) {
+   2702             in_init = 1;
+   2703             tty_on = 0;
+   2704         } else {
+   2705             tty_on = 1;
+ ► 2706             if (in_init) {
+   2707                 in_init = 0;
+   2708                 if (c_brief) {
+   2709                     BIO_puts(bio_err, "CONNECTION ESTABLISHED\n");
+   2710                     print_ssl_summary(con);
+   2711                 }
+ ► f 0   0x5555555cd764 s_client_main+11412
+   f 1   0x5555555ba9ba do_cmd+186
+   f 2   0x5555555963c7 main+599
+   f 3   0x7ffff78cc7ed __libc_start_main+205
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+2708	                if (c_brief) {
+
+   0x5555555cd783 <s_client_main+11443>    mov    rdi, qword ptr [rip + 0x785be] <0x555555645d48>
+   0x5555555cd78a <s_client_main+11450>    mov    rsi, r13
+   0x5555555cd78d <s_client_main+11453>    call   print_stuff <print_stuff>
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/apps/s_client.c
+   2703             tty_on = 0;
+   2704         } else {
+   2705             tty_on = 1;
+   2706             if (in_init) {
+   2707                 in_init = 0;
+ ► 2708                 if (c_brief) {
+   2709                     BIO_puts(bio_err, "CONNECTION ESTABLISHED\n");
+   2710                     print_ssl_summary(con);
+   2711                 }
+   2712 
+   2713                 print_stuff(bio_c_out, con, full_log);
+ ► f 0   0x5555555cd76e s_client_main+11422
+   f 1   0x5555555ba9ba do_cmd+186
+   f 2   0x5555555963c7 main+599
+   f 3   0x7ffff78cc7ed __libc_start_main+205
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+2713	                print_stuff(bio_c_out, con, full_log);
+
+   0x5555555cd78d <s_client_main+11453>    call   print_stuff <print_stuff>
+ 
+   0x5555555cd792 <s_client_main+11458>    cmp    dword ptr [rsp + 0x278], 0
+   0x5555555cd79a <s_client_main+11466>    jne    s_client_main+17999 <s_client_main+17999>
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/apps/s_client.c
+   2708                 if (c_brief) {
+   2709                     BIO_puts(bio_err, "CONNECTION ESTABLISHED\n");
+   2710                     print_ssl_summary(con);
+   2711                 }
+   2712 
+ ► 2713                 print_stuff(bio_c_out, con, full_log);
+   2714                 if (full_log > 0)
+   2715                     full_log--;
+   2716 
+   2717                 if (starttls_proto) {
+   2718                     BIO_write(bio_err, mbuf, mbuf_len);
+ ► f 0   0x5555555cd77c s_client_main+11436
+   f 1   0x5555555ba9ba do_cmd+186
+   f 2   0x5555555963c7 main+599
+   f 3   0x7ffff78cc7ed __libc_start_main+205
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 
+---
+Certificate chain
+ 0 s:CN=dns.google
+   i:C=US, O=Google Trust Services LLC, CN=GTS CA 1C3
+   a:PKEY: rsaEncryption, 2048 (bit); sigalg: RSA-SHA256
+   v:NotBefore: Jan 10 03:38:02 2022 GMT; NotAfter: Apr  4 03:38:01 2022 GMT
+-----BEGIN CERTIFICATE-----
+MIIF4zCCBMugAwIBAgIRAK2Gd8ltOduNCgAAAAEuB5YwDQYJKoZIhvcNAQELBQAw
+RjELMAkGA1UEBhMCVVMxIjAgBgNVBAoTGUdvb2dsZSBUcnVzdCBTZXJ2aWNlcyBM
+TEMxEzARBgNVBAMTCkdUUyBDQSAxQzMwHhcNMjIwMTEwMDMzODAyWhcNMjIwNDA0
+MDMzODAxWjAVMRMwEQYDVQQDEwpkbnMuZ29vZ2xlMIIBIjANBgkqhkiG9w0BAQEF
+AAOCAQ8AMIIBCgKCAQEAlZGnq5utltmCeOV87FSJRt82dOtHd1cOP85H8R44OGqC
+LBgxxEgBlmi8rq0zwnGHdKIlCx8s8wX2k72N8tON9aLoF75JG+q7bYWFo4fdyULX
+jbuWYzwAVERxd8ffqnuC1lG6InL5hIhMBLCf7yxASuU/Ek9RB5Eu8gwee60kDTXB
+IEZZQhremLxM3coRm1fqv3ftSatnhq70RktfbWmQcFFAFAXHYoGUPM7Sa5inUm0w
+Nfv6IFv3jWpKPwmW1CEGd7Ooh6Se4Y+jGCl2gNdaiG5GyedsZ8XYhDVY8kH+kvOY
+KOEucNyF18sA04p5XGD47Q6UPlQ5bF/M4TRTT+Ct9wIDAQABo4IC+zCCAvcwDgYD
+VR0PAQH/BAQDAgWgMBMGA1UdJQQMMAoGCCsGAQUFBwMBMAwGA1UdEwEB/wQCMAAw
+HQYDVR0OBBYEFBHClmuc+yhuTKXLSWigjb1cSfsNMB8GA1UdIwQYMBaAFIp0f6+F
+ze6VzT2c0OJGFPNxNR0nMGoGCCsGAQUFBwEBBF4wXDAnBggrBgEFBQcwAYYbaHR0
+cDovL29jc3AucGtpLmdvb2cvZ3RzMWMzMDEGCCsGAQUFBzAChiVodHRwOi8vcGtp
+Lmdvb2cvcmVwby9jZXJ0cy9ndHMxYzMuZGVyMIGsBgNVHREEgaQwgaGCCmRucy5n
+b29nbGWCDmRucy5nb29nbGUuY29tghAqLmRucy5nb29nbGUuY29tggs4ODg4Lmdv
+b2dsZYIQZG5zNjQuZG5zLmdvb2dsZYcECAgICIcECAgEBIcQIAFIYEhgAAAAAAAA
+AACIiIcQIAFIYEhgAAAAAAAAAACIRIcQIAFIYEhgAAAAAAAAAABkZIcQIAFIYEhg
+AAAAAAAAAAAAZDAhBgNVHSAEGjAYMAgGBmeBDAECATAMBgorBgEEAdZ5AgUDMDwG
+A1UdHwQ1MDMwMaAvoC2GK2h0dHA6Ly9jcmxzLnBraS5nb29nL2d0czFjMy9RcUZ4
+Ymk5TTQ4Yy5jcmwwggEEBgorBgEEAdZ5AgQCBIH1BIHyAPAAdgBGpVXrdfqRIDC1
+oolp9PN9ESxBdL79SbiFq/L8cP5tRwAAAX5CR3lSAAAEAwBHMEUCIQDmwagiC1wb
+AY/XHuXYRn21OJ6/ZYPvFV2zIPqZYmV6sAIgQmKDhSrZLkrftlh0lyvjFO2ATKaJ
+ZypBiRChznVoiFEAdgDDZfmzZU8yg8edqY6T10GPW6t74yUsmOHS8Eu560J9IwAA
+AX5CR3jyAAAEAwBHMEUCIBx1+KiCHRwlZk2ULRX8LtJ2kzlWKRPKR0++EArNX+Ul
+AiEAogJuhsyPPGzstP9R7fhFw4pNsle6M4tIRlcAUgXC194wDQYJKoZIhvcNAQEL
+BQADggEBAM5c+J/G5/PQrUXpQHldmHqkqD/Uv/yt7Vjha/BqVMoBPjhH8uH/7XeH
+MgzzTLUU3Xau/vcH11Jb55JuwE+e3xIRjY86xHtcgRE3OLbA9iUrfxOO6muACuog
+rBVuwZNqHINVptEvjKNWhTCl7C44PEDDtZPyHVtk6smgT71ljizmvrYIh/nyFWR3
+nudmAnpV+yp8ph94k+C2sp8qvvT8G5vTRzX57Mj7Q25kW0/ibn3VXgmCqHv+FL20
+aGIB/TbEFbZmnkeHf6z5RoCAPs4P1XAo9UZCFu9JadSIO3Vav6Gsab5KJa4bjpFt
+FFdUP1jQkPVe5PUQg516Ita2T457kr8=
+-----END CERTIFICATE-----
+ 1 s:C=US, O=Google Trust Services LLC, CN=GTS CA 1C3
+   i:C=US, O=Google Trust Services LLC, CN=GTS Root R1
+   a:PKEY: rsaEncryption, 2048 (bit); sigalg: RSA-SHA256
+   v:NotBefore: Aug 13 00:00:42 2020 GMT; NotAfter: Sep 30 00:00:42 2027 GMT
+-----BEGIN CERTIFICATE-----
+MIIFljCCA36gAwIBAgINAgO8U1lrNMcY9QFQZjANBgkqhkiG9w0BAQsFADBHMQsw
+CQYDVQQGEwJVUzEiMCAGA1UEChMZR29vZ2xlIFRydXN0IFNlcnZpY2VzIExMQzEU
+MBIGA1UEAxMLR1RTIFJvb3QgUjEwHhcNMjAwODEzMDAwMDQyWhcNMjcwOTMwMDAw
+MDQyWjBGMQswCQYDVQQGEwJVUzEiMCAGA1UEChMZR29vZ2xlIFRydXN0IFNlcnZp
+Y2VzIExMQzETMBEGA1UEAxMKR1RTIENBIDFDMzCCASIwDQYJKoZIhvcNAQEBBQAD
+ggEPADCCAQoCggEBAPWI3+dijB43+DdCkH9sh9D7ZYIl/ejLa6T/belaI+KZ9hzp
+kgOZE3wJCor6QtZeViSqejOEH9Hpabu5dOxXTGZok3c3VVP+ORBNtzS7XyV3NzsX
+lOo85Z3VvMO0Q+sup0fvsEQRY9i0QYXdQTBIkxu/t/bgRQIh4JZCF8/ZK2VWNAcm
+BA2o/X3KLu/qSHw3TT8An4Pf73WELnlXXPxXbhqW//yMmqaZviXZf5YsBvcRKgKA
+gOtjGDxQSYflispfGStZloEAoPtR28p3CwvJlk/vcEnHXG0g/Zm0tOLKLnf9LdwL
+tmsTDIwZKxeWmLnwi/agJ7u2441Rj72ux5uxiZ0CAwEAAaOCAYAwggF8MA4GA1Ud
+DwEB/wQEAwIBhjAdBgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIwEgYDVR0T
+AQH/BAgwBgEB/wIBADAdBgNVHQ4EFgQUinR/r4XN7pXNPZzQ4kYU83E1HScwHwYD
+VR0jBBgwFoAU5K8rJnEaK0gnhS9SZizv8IkTcT4waAYIKwYBBQUHAQEEXDBaMCYG
+CCsGAQUFBzABhhpodHRwOi8vb2NzcC5wa2kuZ29vZy9ndHNyMTAwBggrBgEFBQcw
+AoYkaHR0cDovL3BraS5nb29nL3JlcG8vY2VydHMvZ3RzcjEuZGVyMDQGA1UdHwQt
+MCswKaAnoCWGI2h0dHA6Ly9jcmwucGtpLmdvb2cvZ3RzcjEvZ3RzcjEuY3JsMFcG
+A1UdIARQME4wOAYKKwYBBAHWeQIFAzAqMCgGCCsGAQUFBwIBFhxodHRwczovL3Br
+aS5nb29nL3JlcG9zaXRvcnkvMAgGBmeBDAECATAIBgZngQwBAgIwDQYJKoZIhvcN
+AQELBQADggIBAIl9rCBcDDy+mqhXlRu0rvqrpXJxtDaV/d9AEQNMwkYUuxQkq/BQ
+cSLbrcRuf8/xam/IgxvYzolfh2yHuKkMo5uhYpSTld9brmYZCwKWnvy15xBpPnrL
+RklfRuFBsdeYTWU0AIAaP0+fbH9JAIFTQaSSIYKCGvGjRFsqUBITTcFTNvNCCK9U
++o53UxtkOCcXCb1YyRt8OS1b887U7ZfbFAO/CVMkH8IMBHmYJvJh8VNS/UKMG2Yr
+PxWhu//2m+OBmgEGcYk1KCTd4b3rGS3hSMs9WYNRtHTGnXzGsYZbr8w0xNPM1IER
+lQCh9BIiAfq0g3GvjLeMcySsN1PCAJA/Ef5c7TaUEDu9Ka7ixzpiO2xj2YC/WXGs
+Yye5TBeg2vZzFb8q3o/zpWwygTMD0IZRcZk0upONXbVRWPeyk+gB9lm+cZv9TSjO
+z23HFtz30dZGm6fKa+l3D/2gthsjgx0QGtkJAITgRNOidSOzNIb2ILCkXhAd4FJG
+AJ2xDx8hcFH1mt0G/FX0Kw4zd8NLQsLxdxP8c4CU6x+7Nz/OAipmsHMdMqUybDKw
+juDEI/9bfU1lcKwrmz3O2+BtjjKAvpafkmO8l7tdufThcV4q5O8DIrGKZTqPwJNl
+1IXNDw9bg1kWRxYtnCQ6yICmJhSFm/Y3m6xv+cXDBlHz4n/FsRC6UfTd
+-----END CERTIFICATE-----
+ 2 s:C=US, O=Google Trust Services LLC, CN=GTS Root R1
+   i:C=BE, O=GlobalSign nv-sa, OU=Root CA, CN=GlobalSign Root CA
+   a:PKEY: rsaEncryption, 4096 (bit); sigalg: RSA-SHA256
+   v:NotBefore: Jun 19 00:00:42 2020 GMT; NotAfter: Jan 28 00:00:42 2028 GMT
+-----BEGIN CERTIFICATE-----
+MIIFYjCCBEqgAwIBAgIQd70NbNs2+RrqIQ/E8FjTDTANBgkqhkiG9w0BAQsFADBX
+MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEQMA4GA1UE
+CxMHUm9vdCBDQTEbMBkGA1UEAxMSR2xvYmFsU2lnbiBSb290IENBMB4XDTIwMDYx
+OTAwMDA0MloXDTI4MDEyODAwMDA0MlowRzELMAkGA1UEBhMCVVMxIjAgBgNVBAoT
+GUdvb2dsZSBUcnVzdCBTZXJ2aWNlcyBMTEMxFDASBgNVBAMTC0dUUyBSb290IFIx
+MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAthECix7joXebO9y/lD63
+ladAPKH9gvl9MgaCcfb2jH/76Nu8ai6Xl6OMS/kr9rH5zoQdsfnFl97vufKj6bwS
+iV6nqlKr+CMny6SxnGPb15l+8Ape62im9MZaRw1NEDPjTrETo8gYbEvs/AmQ351k
+KSUjB6G00j0uYODP0gmHu81I8E3CwnqIiru6z1kZ1q+PsAewnjHxgsHA3y6mbWwZ
+DrXYfiYaRQM9sHmklCitD38m5agI/pboPGiUU+6DOogrFZYJsuB6jC511pzrp1Zk
+j5ZPaK49l8KEj8C8QMALXL32h7M1bKwYUH+E4EzNktMg6TO8UpmvMrUpsyUqtEj5
+cuHKZPfmghCN6J3Cioj6OGaK/GP5Afl4/Xtcd/p2h/rs37EOeZVXtL0m79YB0esW
+CruOC7XFxYpVq9Os6pFLKcwZpDIlTirxZUTQAs6qzkm06p98g7BAe+dDq6dso499
+iYH6TKX/1Y7DzkvgtdizjkXPdsDtQCv9Uw+wp9U7DbGKogPeMa3Md+pvez7W35Ei
+Eua++tgy/BBjFFFy3l3WFpO9KWgz7zpm7AeKJt8T11dleCfeXkkUAKIAf5qoIbap
+sZWwpbkNFhHax2xIPEDgfg1azVY80ZcFuctL7TlLnMQ/0lUTbiSw1nH69MG6zO0b
+9f6BQdgAmD06yK56mDcYBZUCAwEAAaOCATgwggE0MA4GA1UdDwEB/wQEAwIBhjAP
+BgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBTkrysmcRorSCeFL1JmLO/wiRNxPjAf
+BgNVHSMEGDAWgBRge2YaRQ2XyolQL30EzTSo//z9SzBgBggrBgEFBQcBAQRUMFIw
+JQYIKwYBBQUHMAGGGWh0dHA6Ly9vY3NwLnBraS5nb29nL2dzcjEwKQYIKwYBBQUH
+MAKGHWh0dHA6Ly9wa2kuZ29vZy9nc3IxL2dzcjEuY3J0MDIGA1UdHwQrMCkwJ6Al
+oCOGIWh0dHA6Ly9jcmwucGtpLmdvb2cvZ3NyMS9nc3IxLmNybDA7BgNVHSAENDAy
+MAgGBmeBDAECATAIBgZngQwBAgIwDQYLKwYBBAHWeQIFAwIwDQYLKwYBBAHWeQIF
+AwMwDQYJKoZIhvcNAQELBQADggEBADSkHrEoo9C0dhemMXoh6dFSPsjbdBZBiLg9
+NR3t5P+T4Vxfq7vqfM/b5A3Ri1fyJm9bvhdGaJQ3b2t6yMAYN/olUazsaL+yyEn9
+WprKASOshIArAoyZl+tJaox118fessmXn1hIVw41oeQa1v1vg4Fv74zPl6/AhSrw
+9U5pCZEt4Wi4wStz6dTZ/CLANx8LZh1J7QJVj2fhMtfTJr9w4z30Z209fOU0iOMy
++qduBmpvvYuR7hZL6Dupszfnw0Skfths18dG9ZKb59UhvmaSGZRVbNQpsg3BZlvi
+d0lIKO2d1xozclOzgjXPYovJJIultzkMu34qQb9Sz/yilrbCgj8=
+-----END CERTIFICATE-----
+---
+Server certificate
+subject=CN=dns.google
+issuer=C=US, O=Google Trust Services LLC, CN=GTS CA 1C3
+---
+No client certificate CA names sent
+Peer signing digest: SHA256
+Peer signature type: RSA-PSS
+Server Temp Key: X25519, 253 bits
+---
+SSL handshake has read 4827 bytes and written 383 bytes
+Verification error: unable to get local issuer certificate
+---
+New, TLSv1.3, Cipher is TLS_AES_256_GCM_SHA384
+Server public key is 2048 bit
+This TLS version forbids renegotiation.
+Compression: NONE
+Expansion: NONE
+No ALPN negotiated
+Early data was not sent
+Verify return code: 20 (unable to get local issuer certificate)
+---
+2717	                if (starttls_proto) {
+
+   0x5555555cd7a8 <s_client_main+11480>    jne    s_client_main+16915 <s_client_main+16915>
+ 
+   0x5555555cd7ae <s_client_main+11486>    mov    dword ptr [rsp + 0xc8], 0
+   0x5555555cd7b9 <s_client_main+11497>    cmp    dword ptr [rsp + 0xe0], 0
+──────────────────────────────────────────────────[ SOURCE (CODE) ]───────────────────────────────────────────────────
+In file: /home/song856854132/iii/openssl/apps/s_client.c
+   2712 
+   2713                 print_stuff(bio_c_out, con, full_log);
+   2714                 if (full_log > 0)
+   2715                     full_log--;
+   2716 
+ ► 2717                 if (starttls_proto) {
+   2718                     BIO_write(bio_err, mbuf, mbuf_len);
+   2719                     /* We don't need to know any more */
+   2720                     if (!reconnect)
+   2721                         starttls_proto = PROTO_OFF;
+   2722                 }
+ ► f 0   0x5555555cd792 s_client_main+11458
+   f 1   0x5555555ba9ba do_cmd+186
+   f 2   0x5555555963c7 main+599
+   f 3   0x7ffff78cc7ed __libc_start_main+205
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> 

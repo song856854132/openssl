@@ -1,0 +1,1100 @@
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d58ab0 verify_chain
+   f 1   0x7ffff7d59b6e X509_verify_cert+190
+   f 2   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 3   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 4   0x7ffff7f62f9d state_machine.part+1965
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 7   0x7ffff7f32135 SSL_write+21
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d575c1 build_chain+2097
+   f 1   0x7ffff7d575c1 build_chain+2097
+   f 2   0x7ffff7d58ac6 verify_chain+22
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d575ca build_chain+2106
+   f 1   0x7ffff7d575ca build_chain+2106
+   f 2   0x7ffff7d58ac6 verify_chain+22
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d575d1 build_chain+2113
+   f 1   0x7ffff7d575d1 build_chain+2113
+   f 2   0x7ffff7d58ac6 verify_chain+22
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d575ee build_chain+2142
+   f 1   0x7ffff7d58ac6 verify_chain+22
+   f 2   0x7ffff7d59b6e X509_verify_cert+190
+   f 3   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 4   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f50e0c ssl3_write_bytes+924
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x5555555f86e0 verify_callback
+   f 1   0x7ffff7d58ac6 verify_chain+22
+   f 2   0x7ffff7d59b6e X509_verify_cert+190
+   f 3   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 4   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f50e0c ssl3_write_bytes+924
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x5555555f8701 verify_callback+33
+   f 1   0x7ffff7d58ac6 verify_chain+22
+   f 2   0x7ffff7d59b6e X509_verify_cert+190
+   f 3   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 4   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f50e0c ssl3_write_bytes+924
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x5555555f870c verify_callback+44
+   f 1   0x7ffff7d58ac6 verify_chain+22
+   f 2   0x7ffff7d59b6e X509_verify_cert+190
+   f 3   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 4   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f50e0c ssl3_write_bytes+924
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x5555555f8714 verify_callback+52
+   f 1   0x7ffff7d58ac6 verify_chain+22
+   f 2   0x7ffff7d59b6e X509_verify_cert+190
+   f 3   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 4   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f50e0c ssl3_write_bytes+924
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x5555555f8748 verify_callback+104
+   f 1   0x7ffff7d58ac6 verify_chain+22
+   f 2   0x7ffff7d59b6e X509_verify_cert+190
+   f 3   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 4   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f50e0c ssl3_write_bytes+924
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x5555555f8763 verify_callback+131
+   f 1   0x7ffff7d58ac6 verify_chain+22
+   f 2   0x7ffff7d59b6e X509_verify_cert+190
+   f 3   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 4   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f50e0c ssl3_write_bytes+924
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x5555555f876c verify_callback+140
+   f 1   0x7ffff7d58ac6 verify_chain+22
+   f 2   0x7ffff7d59b6e X509_verify_cert+190
+   f 3   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 4   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f50e0c ssl3_write_bytes+924
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x5555555f8790 verify_callback+176
+   f 1   0x7ffff7d58ac6 verify_chain+22
+   f 2   0x7ffff7d59b6e X509_verify_cert+190
+   f 3   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 4   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f50e0c ssl3_write_bytes+924
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x5555555f879f verify_callback+191
+   f 1   0x7ffff7d58ac6 verify_chain+22
+   f 2   0x7ffff7d59b6e X509_verify_cert+190
+   f 3   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 4   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f50e0c ssl3_write_bytes+924
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x5555555f87a3 verify_callback+195
+   f 1   0x7ffff7d58ac6 verify_chain+22
+   f 2   0x7ffff7d59b6e X509_verify_cert+190
+   f 3   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 4   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f50e0c ssl3_write_bytes+924
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x5555555f87c2 verify_callback+226
+   f 1   0x7ffff7d58ac6 verify_chain+22
+   f 2   0x7ffff7d59b6e X509_verify_cert+190
+   f 3   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 4   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f50e0c ssl3_write_bytes+924
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x5555555f87d8 verify_callback+248
+   f 1   0x7ffff7d58ac6 verify_chain+22
+   f 2   0x7ffff7d59b6e X509_verify_cert+190
+   f 3   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 4   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f50e0c ssl3_write_bytes+924
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x5555555f87ef verify_callback+271
+   f 1   0x7ffff7d58ac6 verify_chain+22
+   f 2   0x7ffff7d59b6e X509_verify_cert+190
+   f 3   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 4   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f50e0c ssl3_write_bytes+924
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x5555555f884f verify_callback+367
+   f 1   0x7ffff7d58ac6 verify_chain+22
+   f 2   0x7ffff7d59b6e X509_verify_cert+190
+   f 3   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 4   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f50e0c ssl3_write_bytes+924
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x5555555f88a1 verify_callback+449
+   f 1   0x7ffff7d58ac6 verify_chain+22
+   f 2   0x7ffff7d59b6e X509_verify_cert+190
+   f 3   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 4   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f50e0c ssl3_write_bytes+924
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d58ace verify_chain+30
+   f 1   0x7ffff7d59b6e X509_verify_cert+190
+   f 2   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 3   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 4   0x7ffff7f62f9d state_machine.part+1965
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 7   0x7ffff7f32135 SSL_write+21
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d58e41 verify_chain+913
+   f 1   0x7ffff7d59b6e X509_verify_cert+190
+   f 2   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 3   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 4   0x7ffff7f62f9d state_machine.part+1965
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 7   0x7ffff7f32135 SSL_write+21
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d59615 verify_chain+2917
+   f 1   0x7ffff7d59b6e X509_verify_cert+190
+   f 2   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 3   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 4   0x7ffff7f62f9d state_machine.part+1965
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 7   0x7ffff7f32135 SSL_write+21
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d578d0 internal_verify
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d578f8 internal_verify+40
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d5790b internal_verify+59
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d57aa0 internal_verify+464
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d57ab9 internal_verify+489
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d57abd internal_verify+493
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d57ac1 internal_verify+497
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d57ad1 internal_verify+513
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d57919 internal_verify+73
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d57933 internal_verify+99
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d5795d internal_verify+141
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d57965 internal_verify+149
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d57979 internal_verify+169
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d5d5a0 X509_verify
+   f 1   0x7ffff7d57981 internal_verify+177
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d5964e verify_chain+2974
+   f 4   0x7ffff7d59b6e X509_verify_cert+190
+   f 5   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 6   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d5d5d1 X509_verify+49
+   f 1   0x7ffff7d57981 internal_verify+177
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d5964e verify_chain+2974
+   f 4   0x7ffff7d59b6e X509_verify_cert+190
+   f 5   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 6   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d57989 internal_verify+185
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d5799e internal_verify+206
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d579b8 internal_verify+232
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d579c3 internal_verify+243
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d57b00 internal_verify+560
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d57b11 internal_verify+577
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d57933 internal_verify+99
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d5795d internal_verify+141
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d57965 internal_verify+149
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d57979 internal_verify+169
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d57989 internal_verify+185
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d5799e internal_verify+206
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d579b8 internal_verify+232
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d579c3 internal_verify+243
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d5964e verify_chain+2974
+   f 3   0x7ffff7d59b6e X509_verify_cert+190
+   f 4   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 5   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f62f9d state_machine.part+1965
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d5964e verify_chain+2974
+   f 1   0x7ffff7d5964e verify_chain+2974
+   f 2   0x7ffff7d59b6e X509_verify_cert+190
+   f 3   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 4   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f50e0c ssl3_write_bytes+924
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d59656 verify_chain+2982
+   f 1   0x7ffff7d59656 verify_chain+2982
+   f 2   0x7ffff7d59b6e X509_verify_cert+190
+   f 3   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 4   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f50e0c ssl3_write_bytes+924
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d599a0 verify_chain+3824
+   f 1   0x7ffff7d599a0 verify_chain+3824
+   f 2   0x7ffff7d59b6e X509_verify_cert+190
+   f 3   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 4   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f50e0c ssl3_write_bytes+924
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d599b0 verify_chain+3840
+   f 1   0x7ffff7d599b0 verify_chain+3840
+   f 2   0x7ffff7d59b6e X509_verify_cert+190
+   f 3   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 4   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f50e0c ssl3_write_bytes+924
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d599c0 verify_chain+3856
+   f 1   0x7ffff7d599c0 verify_chain+3856
+   f 2   0x7ffff7d59b6e X509_verify_cert+190
+   f 3   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 4   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 5   0x7ffff7f62f9d state_machine.part+1965
+   f 6   0x7ffff7f62f9d state_machine.part+1965
+   f 7   0x7ffff7f50e0c ssl3_write_bytes+924
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7d59b6e X509_verify_cert+190
+   f 1   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 2   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 3   0x7ffff7f62f9d state_machine.part+1965
+   f 4   0x7ffff7f62f9d state_machine.part+1965
+   f 5   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 6   0x7ffff7f32135 SSL_write+21
+   f 7   0x5555555ce9b4 s_client_main+16100
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f283d8 ssl_verify_cert_chain+648
+   f 1   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f62f9d state_machine.part+1965
+   f 4   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 5   0x7ffff7f32135 SSL_write+21
+   f 6   0x5555555ce9b4 s_client_main+16100
+   f 7   0x5555555ba9ba do_cmd+186
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f2830f ssl_verify_cert_chain+447
+   f 1   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f62f9d state_machine.part+1965
+   f 4   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 5   0x7ffff7f32135 SSL_write+21
+   f 6   0x5555555ce9b4 s_client_main+16100
+   f 7   0x5555555ba9ba do_cmd+186
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f28327 ssl_verify_cert_chain+471
+   f 1   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f62f9d state_machine.part+1965
+   f 4   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 5   0x7ffff7f32135 SSL_write+21
+   f 6   0x5555555ce9b4 s_client_main+16100
+   f 7   0x5555555ba9ba do_cmd+186
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f2832c ssl_verify_cert_chain+476
+   f 1   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f62f9d state_machine.part+1965
+   f 4   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 5   0x7ffff7f32135 SSL_write+21
+   f 6   0x5555555ce9b4 s_client_main+16100
+   f 7   0x5555555ba9ba do_cmd+186
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f2833a ssl_verify_cert_chain+490
+   f 1   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f62f9d state_machine.part+1965
+   f 4   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 5   0x7ffff7f32135 SSL_write+21
+   f 6   0x5555555ce9b4 s_client_main+16100
+   f 7   0x5555555ba9ba do_cmd+186
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f28344 ssl_verify_cert_chain+500
+   f 1   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f62f9d state_machine.part+1965
+   f 4   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 5   0x7ffff7f32135 SSL_write+21
+   f 6   0x5555555ce9b4 s_client_main+16100
+   f 7   0x5555555ba9ba do_cmd+186
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f28353 ssl_verify_cert_chain+515
+   f 1   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f62f9d state_machine.part+1965
+   f 4   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 5   0x7ffff7f32135 SSL_write+21
+   f 6   0x5555555ce9b4 s_client_main+16100
+   f 7   0x5555555ba9ba do_cmd+186
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f2835c ssl_verify_cert_chain+524
+   f 1   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f62f9d state_machine.part+1965
+   f 4   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 5   0x7ffff7f32135 SSL_write+21
+   f 6   0x5555555ce9b4 s_client_main+16100
+   f 7   0x5555555ba9ba do_cmd+186
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f2836b ssl_verify_cert_chain+539
+   f 1   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f62f9d state_machine.part+1965
+   f 4   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 5   0x7ffff7f32135 SSL_write+21
+   f 6   0x5555555ce9b4 s_client_main+16100
+   f 7   0x5555555ba9ba do_cmd+186
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f28373 ssl_verify_cert_chain+547
+   f 1   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f62f9d state_machine.part+1965
+   f 4   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 5   0x7ffff7f32135 SSL_write+21
+   f 6   0x5555555ce9b4 s_client_main+16100
+   f 7   0x5555555ba9ba do_cmd+186
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f66b2e tls_post_process_server_certificate+30
+   f 1   0x7ffff7f62f9d state_machine.part+1965
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 4   0x7ffff7f32135 SSL_write+21
+   f 5   0x5555555ce9b4 s_client_main+16100
+   f 6   0x5555555ba9ba do_cmd+186
+   f 7   0x5555555963c7 main+599
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f66b37 tls_post_process_server_certificate+39
+   f 1   0x7ffff7f62f9d state_machine.part+1965
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 4   0x7ffff7f32135 SSL_write+21
+   f 5   0x5555555ce9b4 s_client_main+16100
+   f 6   0x5555555ba9ba do_cmd+186
+   f 7   0x5555555963c7 main+599
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f66b49 tls_post_process_server_certificate+57
+   f 1   0x7ffff7f62f9d state_machine.part+1965
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 4   0x7ffff7f32135 SSL_write+21
+   f 5   0x5555555ce9b4 s_client_main+16100
+   f 6   0x5555555ba9ba do_cmd+186
+   f 7   0x5555555963c7 main+599
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f66b4e tls_post_process_server_certificate+62
+   f 1   0x7ffff7f62f9d state_machine.part+1965
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 4   0x7ffff7f32135 SSL_write+21
+   f 5   0x5555555ce9b4 s_client_main+16100
+   f 6   0x5555555ba9ba do_cmd+186
+   f 7   0x5555555963c7 main+599
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f66b69 tls_post_process_server_certificate+89
+   f 1   0x7ffff7f62f9d state_machine.part+1965
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 4   0x7ffff7f32135 SSL_write+21
+   f 5   0x5555555ce9b4 s_client_main+16100
+   f 6   0x5555555ba9ba do_cmd+186
+   f 7   0x5555555963c7 main+599
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f66b71 tls_post_process_server_certificate+97
+   f 1   0x7ffff7f62f9d state_machine.part+1965
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 4   0x7ffff7f32135 SSL_write+21
+   f 5   0x5555555ce9b4 s_client_main+16100
+   f 6   0x5555555ba9ba do_cmd+186
+   f 7   0x5555555963c7 main+599
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f66bc8 tls_post_process_server_certificate+184
+   f 1   0x7ffff7f62f9d state_machine.part+1965
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 4   0x7ffff7f32135 SSL_write+21
+   f 5   0x5555555ce9b4 s_client_main+16100
+   f 6   0x5555555ba9ba do_cmd+186
+   f 7   0x5555555963c7 main+599
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f66bde tls_post_process_server_certificate+206
+   f 1   0x7ffff7f62f9d state_machine.part+1965
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 4   0x7ffff7f32135 SSL_write+21
+   f 5   0x5555555ce9b4 s_client_main+16100
+   f 6   0x5555555ba9ba do_cmd+186
+   f 7   0x5555555963c7 main+599
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f66c16 tls_post_process_server_certificate+262
+   f 1   0x7ffff7f62f9d state_machine.part+1965
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 4   0x7ffff7f32135 SSL_write+21
+   f 5   0x5555555ce9b4 s_client_main+16100
+   f 6   0x5555555ba9ba do_cmd+186
+   f 7   0x5555555963c7 main+599
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f66c2f tls_post_process_server_certificate+287
+   f 1   0x7ffff7f62f9d state_machine.part+1965
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 4   0x7ffff7f32135 SSL_write+21
+   f 5   0x5555555ce9b4 s_client_main+16100
+   f 6   0x5555555ba9ba do_cmd+186
+   f 7   0x5555555963c7 main+599
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f66c37 tls_post_process_server_certificate+295
+   f 1   0x7ffff7f62f9d state_machine.part+1965
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 4   0x7ffff7f32135 SSL_write+21
+   f 5   0x5555555ce9b4 s_client_main+16100
+   f 6   0x5555555ba9ba do_cmd+186
+   f 7   0x5555555963c7 main+599
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f66c4c tls_post_process_server_certificate+316
+   f 1   0x7ffff7f62f9d state_machine.part+1965
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 4   0x7ffff7f32135 SSL_write+21
+   f 5   0x5555555ce9b4 s_client_main+16100
+   f 6   0x5555555ba9ba do_cmd+186
+   f 7   0x5555555963c7 main+599
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f66c53 tls_post_process_server_certificate+323
+   f 1   0x7ffff7f62f9d state_machine.part+1965
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 4   0x7ffff7f32135 SSL_write+21
+   f 5   0x5555555ce9b4 s_client_main+16100
+   f 6   0x5555555ba9ba do_cmd+186
+   f 7   0x5555555963c7 main+599
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f66bb8 tls_post_process_server_certificate+168
+   f 1   0x7ffff7f62f9d state_machine.part+1965
+   f 2   0x7ffff7f62f9d state_machine.part+1965
+   f 3   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 4   0x7ffff7f32135 SSL_write+21
+   f 5   0x5555555ce9b4 s_client_main+16100
+   f 6   0x5555555ba9ba do_cmd+186
+   f 7   0x5555555963c7 main+599
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f62fa1 state_machine.part+1969
+   f 1   0x7ffff7f62fa1 state_machine.part+1969
+   f 2   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 3   0x7ffff7f32135 SSL_write+21
+   f 4   0x5555555ce9b4 s_client_main+16100
+   f 5   0x5555555ba9ba do_cmd+186
+   f 6   0x5555555963c7 main+599
+   f 7   0x7ffff78cc7ed __libc_start_main+205
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f62d87 state_machine.part+1431
+   f 1   0x7ffff7f62d87 state_machine.part+1431
+   f 2   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 3   0x7ffff7f32135 SSL_write+21
+   f 4   0x5555555ce9b4 s_client_main+16100
+   f 5   0x5555555ba9ba do_cmd+186
+   f 6   0x5555555963c7 main+599
+   f 7   0x7ffff78cc7ed __libc_start_main+205
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f62d8f state_machine.part+1439
+   f 1   0x7ffff7f62d8f state_machine.part+1439
+   f 2   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 3   0x7ffff7f32135 SSL_write+21
+   f 4   0x5555555ce9b4 s_client_main+16100
+   f 5   0x5555555ba9ba do_cmd+186
+   f 6   0x5555555963c7 main+599
+   f 7   0x7ffff78cc7ed __libc_start_main+205
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f63220 state_machine.part+2608
+   f 1   0x7ffff7f63220 state_machine.part+2608
+   f 2   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 3   0x7ffff7f32135 SSL_write+21
+   f 4   0x5555555ce9b4 s_client_main+16100
+   f 5   0x5555555ba9ba do_cmd+186
+   f 6   0x5555555963c7 main+599
+   f 7   0x7ffff78cc7ed __libc_start_main+205
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f62db1 state_machine.part+1473
+   f 1   0x7ffff7f62db1 state_machine.part+1473
+   f 2   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 3   0x7ffff7f32135 SSL_write+21
+   f 4   0x5555555ce9b4 s_client_main+16100
+   f 5   0x5555555ba9ba do_cmd+186
+   f 6   0x5555555963c7 main+599
+   f 7   0x7ffff78cc7ed __libc_start_main+205
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f62db9 state_machine.part+1481
+   f 1   0x7ffff7f62db9 state_machine.part+1481
+   f 2   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 3   0x7ffff7f32135 SSL_write+21
+   f 4   0x5555555ce9b4 s_client_main+16100
+   f 5   0x5555555ba9ba do_cmd+186
+   f 6   0x5555555963c7 main+599
+   f 7   0x7ffff78cc7ed __libc_start_main+205
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f62dd9 state_machine.part+1513
+   f 1   0x7ffff7f62dd9 state_machine.part+1513
+   f 2   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 3   0x7ffff7f32135 SSL_write+21
+   f 4   0x5555555ce9b4 s_client_main+16100
+   f 5   0x5555555ba9ba do_cmd+186
+   f 6   0x5555555963c7 main+599
+   f 7   0x7ffff78cc7ed __libc_start_main+205
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f62deb state_machine.part+1531
+   f 1   0x7ffff7f62deb state_machine.part+1531
+   f 2   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 3   0x7ffff7f32135 SSL_write+21
+   f 4   0x5555555ce9b4 s_client_main+16100
+   f 5   0x5555555ba9ba do_cmd+186
+   f 6   0x5555555963c7 main+599
+   f 7   0x7ffff78cc7ed __libc_start_main+205
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f62e06 state_machine.part+1558
+   f 1   0x7ffff7f62e06 state_machine.part+1558
+   f 2   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 3   0x7ffff7f32135 SSL_write+21
+   f 4   0x5555555ce9b4 s_client_main+16100
+   f 5   0x5555555ba9ba do_cmd+186
+   f 6   0x5555555963c7 main+599
+   f 7   0x7ffff78cc7ed __libc_start_main+205
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f62a80 state_machine.part+656
+   f 1   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 2   0x7ffff7f32135 SSL_write+21
+   f 3   0x5555555ce9b4 s_client_main+16100
+   f 4   0x5555555ba9ba do_cmd+186
+   f 5   0x5555555963c7 main+599
+   f 6   0x7ffff78cc7ed __libc_start_main+205
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f62a8b state_machine.part+667
+   f 1   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 2   0x7ffff7f32135 SSL_write+21
+   f 3   0x5555555ce9b4 s_client_main+16100
+   f 4   0x5555555ba9ba do_cmd+186
+   f 5   0x5555555963c7 main+599
+   f 6   0x7ffff78cc7ed __libc_start_main+205
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f6287d state_machine.part+141
+   f 1   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 2   0x7ffff7f32135 SSL_write+21
+   f 3   0x5555555ce9b4 s_client_main+16100
+   f 4   0x5555555ba9ba do_cmd+186
+   f 5   0x5555555963c7 main+599
+   f 6   0x7ffff78cc7ed __libc_start_main+205
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f6290a state_machine.part+282
+   f 1   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 2   0x7ffff7f32135 SSL_write+21
+   f 3   0x5555555ce9b4 s_client_main+16100
+   f 4   0x5555555ba9ba do_cmd+186
+   f 5   0x5555555963c7 main+599
+   f 6   0x7ffff78cc7ed __libc_start_main+205
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f62912 state_machine.part+290
+   f 1   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 2   0x7ffff7f32135 SSL_write+21
+   f 3   0x5555555ce9b4 s_client_main+16100
+   f 4   0x5555555ba9ba do_cmd+186
+   f 5   0x5555555963c7 main+599
+   f 6   0x7ffff78cc7ed __libc_start_main+205
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f6291a state_machine.part+298
+   f 1   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 2   0x7ffff7f32135 SSL_write+21
+   f 3   0x5555555ce9b4 s_client_main+16100
+   f 4   0x5555555ba9ba do_cmd+186
+   f 5   0x5555555963c7 main+599
+   f 6   0x7ffff78cc7ed __libc_start_main+205
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f6291f state_machine.part+303
+   f 1   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 2   0x7ffff7f32135 SSL_write+21
+   f 3   0x5555555ce9b4 s_client_main+16100
+   f 4   0x5555555ba9ba do_cmd+186
+   f 5   0x5555555963c7 main+599
+   f 6   0x7ffff78cc7ed __libc_start_main+205
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f62927 state_machine.part+311
+   f 1   0x7ffff7f50e0c ssl3_write_bytes+924
+   f 2   0x7ffff7f32135 SSL_write+21
+   f 3   0x5555555ce9b4 s_client_main+16100
+   f 4   0x5555555ba9ba do_cmd+186
+   f 5   0x5555555963c7 main+599
+   f 6   0x7ffff78cc7ed __libc_start_main+205
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f50e0f ssl3_write_bytes+927
+   f 1   0x7ffff7f32135 SSL_write+21
+   f 2   0x5555555ce9b4 s_client_main+16100
+   f 3   0x5555555ba9ba do_cmd+186
+   f 4   0x5555555963c7 main+599
+   f 5   0x7ffff78cc7ed __libc_start_main+205
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f50e17 ssl3_write_bytes+935
+   f 1   0x7ffff7f32135 SSL_write+21
+   f 2   0x5555555ce9b4 s_client_main+16100
+   f 3   0x5555555ba9ba do_cmd+186
+   f 4   0x5555555963c7 main+599
+   f 5   0x7ffff78cc7ed __libc_start_main+205
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f50af3 ssl3_write_bytes+131
+   f 1   0x7ffff7f32135 SSL_write+21
+   f 2   0x5555555ce9b4 s_client_main+16100
+   f 3   0x5555555ba9ba do_cmd+186
+   f 4   0x5555555963c7 main+599
+   f 5   0x7ffff78cc7ed __libc_start_main+205
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f50b01 ssl3_write_bytes+145
+   f 1   0x7ffff7f32135 SSL_write+21
+   f 2   0x5555555ce9b4 s_client_main+16100
+   f 3   0x5555555ba9ba do_cmd+186
+   f 4   0x5555555963c7 main+599
+   f 5   0x7ffff78cc7ed __libc_start_main+205
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f50b0b ssl3_write_bytes+155
+   f 1   0x7ffff7f32135 SSL_write+21
+   f 2   0x5555555ce9b4 s_client_main+16100
+   f 3   0x5555555ba9ba do_cmd+186
+   f 4   0x5555555963c7 main+599
+   f 5   0x7ffff78cc7ed __libc_start_main+205
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f51202 ssl3_write_bytes+1938
+   f 1   0x7ffff7f32135 SSL_write+21
+   f 2   0x5555555ce9b4 s_client_main+16100
+   f 3   0x5555555ba9ba do_cmd+186
+   f 4   0x5555555963c7 main+599
+   f 5   0x7ffff78cc7ed __libc_start_main+205
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f5121d ssl3_write_bytes+1965
+   f 1   0x7ffff7f32135 SSL_write+21
+   f 2   0x5555555ce9b4 s_client_main+16100
+   f 3   0x5555555ba9ba do_cmd+186
+   f 4   0x5555555963c7 main+599
+   f 5   0x7ffff78cc7ed __libc_start_main+205
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f5122b ssl3_write_bytes+1979
+   f 1   0x7ffff7f32135 SSL_write+21
+   f 2   0x5555555ce9b4 s_client_main+16100
+   f 3   0x5555555ba9ba do_cmd+186
+   f 4   0x5555555963c7 main+599
+   f 5   0x7ffff78cc7ed __libc_start_main+205
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f511b5 ssl3_write_bytes+1861
+   f 1   0x7ffff7f32135 SSL_write+21
+   f 2   0x5555555ce9b4 s_client_main+16100
+   f 3   0x5555555ba9ba do_cmd+186
+   f 4   0x5555555963c7 main+599
+   f 5   0x7ffff78cc7ed __libc_start_main+205
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x7ffff7f32135 SSL_write+21
+   f 1   0x5555555ce9b4 s_client_main+16100
+   f 2   0x5555555ba9ba do_cmd+186
+   f 3   0x5555555963c7 main+599
+   f 4   0x7ffff78cc7ed __libc_start_main+205
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x5555555cea6e s_client_main+16286
+   f 1   0x5555555ba9ba do_cmd+186
+   f 2   0x5555555963c7 main+599
+   f 3   0x7ffff78cc7ed __libc_start_main+205
+   
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x5555555cd722 s_client_main+11346
+   f 1   0x5555555ba9ba do_cmd+186
+   f 2   0x5555555963c7 main+599
+   f 3   0x7ffff78cc7ed __libc_start_main+205
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x5555555cd742 s_client_main+11378
+   f 1   0x5555555ba9ba do_cmd+186
+   f 2   0x5555555963c7 main+599
+   f 3   0x7ffff78cc7ed __libc_start_main+205
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x5555555cd754 s_client_main+11396
+   f 1   0x5555555ba9ba do_cmd+186
+   f 2   0x5555555963c7 main+599
+   f 3   0x7ffff78cc7ed __libc_start_main+205
+
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x5555555cd764 s_client_main+11412
+   f 1   0x5555555ba9ba do_cmd+186
+   f 2   0x5555555963c7 main+599
+   f 3   0x7ffff78cc7ed __libc_start_main+205
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x5555555cd76e s_client_main+11422
+   f 1   0x5555555ba9ba do_cmd+186
+   f 2   0x5555555963c7 main+599
+   f 3   0x7ffff78cc7ed __libc_start_main+205
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x5555555cd77c s_client_main+11436
+   f 1   0x5555555ba9ba do_cmd+186
+   f 2   0x5555555963c7 main+599
+   f 3   0x7ffff78cc7ed __libc_start_main+205
+
+────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────
+ ► f 0   0x5555555cd792 s_client_main+11458
+   f 1   0x5555555ba9ba do_cmd+186
+   f 2   0x5555555963c7 main+599
+   f 3   0x7ffff78cc7ed __libc_start_main+205
